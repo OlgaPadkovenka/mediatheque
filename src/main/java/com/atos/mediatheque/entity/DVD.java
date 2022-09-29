@@ -1,4 +1,5 @@
-package com.atos.mediatheque.model;
+package com.atos.mediatheque.entity;
+
 
 import java.util.Objects;
 
@@ -13,17 +14,21 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="livre")
-public class Livre extends Item{
+@Table(name="dvd")
+public class DVD extends Item {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "livreSequenceGenerator")
-	@SequenceGenerator(name = "livreSequenceGenerator", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dvdSequenceGenerator")
+	@SequenceGenerator(name = "dvdSequenceGenerator", allocationSize = 1)
 	private Long id;
+
+	@Column(name="duree")
+	private String duree;
 	
-	@Column(name="numero_ISBN")
-	private Integer numeroISBN;
-	
+
+	@Column(name="dvd_type")
+	private DVDType dvdType;
+		
 	public Long getId() {
 		return id;
 	}
@@ -32,17 +37,25 @@ public class Livre extends Item{
 		this.id = id;
 	}
 
-	public Integer getNumeroISBN() {
-		return numeroISBN;
+	public String getDuree() {
+		return duree;
 	}
 
-	public void setNumeroISBN(Integer numeroISBN) {
-		this.numeroISBN = numeroISBN;
+	public void setDuree(String duree) {
+		this.duree = duree;
+	}
+
+	public DVDType getDvdType() {
+		return dvdType;
+	}
+
+	public void setDvdType(DVDType dvdType) {
+		this.dvdType = dvdType;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, numeroISBN);
+		return Objects.hash(duree, id);
 	}
 
 	@Override
@@ -53,21 +66,20 @@ public class Livre extends Item{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Livre other = (Livre) obj;
-		return Objects.equals(id, other.id) && Objects.equals(numeroISBN, other.numeroISBN);
+		DVD other = (DVD) obj;
+		return Objects.equals(duree, other.duree) && Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Livre [id=");
+		builder.append("DVD [id=");
 		builder.append(id);
-		builder.append(", numeroISBN=");
-		builder.append(numeroISBN);
+		builder.append(", duree=");
+		builder.append(duree);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-
 	
 }

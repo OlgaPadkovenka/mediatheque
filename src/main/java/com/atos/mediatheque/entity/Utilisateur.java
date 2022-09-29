@@ -1,4 +1,4 @@
-package com.atos.mediatheque.model;
+package com.atos.mediatheque.entity;
 
 import java.util.Objects;
 import java.util.Set;
