@@ -41,7 +41,8 @@ public class Utilisateur {
 			 name = "utilisateur_CD",
 		     joinColumns = @JoinColumn(name = "utilisateur_id", referencedColumnName = "id"),
 		     inverseJoinColumns = @JoinColumn(name = "CD_id", referencedColumnName = "id"))
-		   Set<CD> CDs;
+		   Set<CD> cds;
+	
 			
 	public Long getId() {
 		return id;
@@ -74,6 +75,12 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 	}
 	
+	public Set<CD> getCds() {
+		return cds;
+	}
+	public void setCds(Set<CD> cds) {
+		this.cds = cds;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id, motDePasse, nom, prenom);

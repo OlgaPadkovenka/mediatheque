@@ -24,8 +24,9 @@ public class CD extends Item {
 	@Column(name="duree")
 	private String duree;
 	
-	@ManyToMany(mappedBy = "CDs")
+	@ManyToMany(mappedBy = "cds")
 	Set<Utilisateur> utilisateurs;
+	
 	
 	public Long getId() {
 		return id;
@@ -43,6 +44,14 @@ public class CD extends Item {
 		this.duree = duree;
 	}
 	
+	public Set<Utilisateur> getUtilisateurs() {
+		return utilisateurs;
+	}
+
+	public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(duree, id);
