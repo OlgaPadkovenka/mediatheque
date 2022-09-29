@@ -1,26 +1,84 @@
 package com.atos.mediatheque.model;
 
-import java.util.Date;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Table(name="dvd")
 public class DVD extends Item {
-
-	private String duree;
-	private Enum type;
-	//blue-ray, normal
 	
-	public DVD(Long id, String titre, Integer nombreDExemplaires, Date dateDeParution, String nom, String duree,
-			Enum type) {
-		super(id, titre, nombreDExemplaires, dateDeParution, nom);
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dvdSequenceGenerator")
+	@SequenceGenerator(name = "dvdSequenceGenerator", allocationSize = 1)
+	private Long id;
+
+	@Column(name="duree")
+	private String duree;
+	
+
+	@Column(name="dvd_type")
+	private DVDType dvdType;
+		
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDuree() {
+		return duree;
+	}
+
+	public void setDuree(String duree) {
 		this.duree = duree;
-		this.type = type;
+	}
+
+	public DVDType getDvdType() {
+		return dvdType;
+	}
+
+	public void setDvdType(DVDType dvdType) {
+		this.dvdType = dvdType;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(duree, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DVD other = (DVD) obj;
+		return Objects.equals(duree, other.duree) && Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DVD [id=");
+		builder.append(id);
+		builder.append(", duree=");
+		builder.append(duree);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	
