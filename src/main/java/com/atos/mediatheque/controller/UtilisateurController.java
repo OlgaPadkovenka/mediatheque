@@ -5,7 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,5 +50,11 @@ public class UtilisateurController {
 	  @PutMapping
 	  public ResponseEntity<UtilisateurDTO> update (@Valid @RequestBody UtilisateurDTO utilisateurDTO) {
 		  return ResponseEntity.ok(utilisateurService.save(utilisateurDTO));
+	  }
+	  
+	  @DeleteMapping("/by-email/{email}")
+	  public ResponseEntity<Void> deleteByEmail(@PathVariable String email) {
+		  utilisateurService.deleteByEmail(email);
+		  return ResponseEntity.ok().build();
 	  }
 }

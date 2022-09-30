@@ -3,6 +3,7 @@ package com.atos.mediatheque.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.atos.mediatheque.dto.UtilisateurDTO;
@@ -73,5 +74,10 @@ public class UtilisateurService {
 		Utilisateur utilisateurToSave = mapDTOToEntity(utilisateurDTO);
 		Utilisateur utilisateurSaved = utilisateurRerository.save(utilisateurToSave);
 		return mapEntityToDTO(utilisateurSaved);
+	}
+	
+	@Transactional
+	public void deleteByEmail(String email) {
+		utilisateurRerository.deleteByEmail(email);
 	}
 }
