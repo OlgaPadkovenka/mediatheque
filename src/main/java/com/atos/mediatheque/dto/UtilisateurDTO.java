@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class UtilisateurDTO {
 	
+	//private Long id;
+	
 	private String nom;
 
 	private String prenom;

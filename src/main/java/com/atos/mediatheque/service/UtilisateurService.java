@@ -49,4 +49,29 @@ public class UtilisateurService {
 		
 		return utilisateurDTOs;
 	}
+	
+	private Utilisateur mapDTOToEntity(UtilisateurDTO utilisateurDTO) {
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setEmail(utilisateurDTO.getEmail());
+		utilisateur.setMotDePasse(utilisateurDTO.getMotDePasse());
+		utilisateur.setNom(utilisateurDTO.getNom());
+		utilisateur.setPrenom(utilisateurDTO.getPrenom());
+		return utilisateur;
+	}
+	
+	private UtilisateurDTO mapEntityToDTO(Utilisateur utilisateurSaved) {
+		UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+		utilisateurDTO.setEmail(utilisateurSaved.getEmail());
+		utilisateurDTO.setMotDePasse(utilisateurSaved.getMotDePasse());
+		utilisateurDTO.setNom(utilisateurSaved.getNom());
+		utilisateurDTO.setPrenom(utilisateurSaved.getPrenom());
+		
+		return utilisateurDTO;
+	}
+	
+	public UtilisateurDTO save(UtilisateurDTO utilisateurDTO) {
+		Utilisateur utilisateurToSave = mapDTOToEntity(utilisateurDTO);
+		Utilisateur utilisateurSaved = utilisateurRerository.save(utilisateurToSave);
+		return mapEntityToDTO(utilisateurSaved);
+	}
 }
