@@ -40,6 +40,11 @@ public class CDService {
 			return cdDTOs;
 		}
 		
+		public List<CD> getAllCD() {
+			List<CD> allCDs = cdRepository.findAll();
+			return allCDs;
+		}
+		
 		private CD mapDTOToEntity (CDDTO cdDTO) {
 			CD cd = new CD();
 			cd.setId(cdDTO.getId());

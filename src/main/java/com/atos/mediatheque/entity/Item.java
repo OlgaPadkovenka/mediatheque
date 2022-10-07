@@ -6,22 +6,24 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
 @MappedSuperclass
-public abstract class Item {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Item {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cdSequenceGenerator")
-	@SequenceGenerator(name = "cdSequenceGenerator", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
+	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1)
 	private Long id;
 		
 	@Column(name="titre")
-	private String titre;
+	private String titre; 
 	
 	@Column(name="nombre_d_exemplaires")
 	private Integer nombreDExemplaires;

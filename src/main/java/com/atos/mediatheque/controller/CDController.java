@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.mediatheque.dto.CDDTO;
+import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.service.CDService;
 
 @RestController
@@ -33,6 +34,15 @@ public class CDController {
 	  public ResponseEntity<List<CDDTO>> getAll() {
 		  
 		  List<CDDTO> allCDs = cdService.getAll();
+		  
+		  return ResponseEntity.ok(allCDs);
+	  }
+	  
+	  @GetMapping("/cd")
+	  
+	  public ResponseEntity<List<CD>> getAllCD() {
+		  
+		  List<CD> allCDs = cdService.getAllCD();
 		  
 		  return ResponseEntity.ok(allCDs);
 	  }

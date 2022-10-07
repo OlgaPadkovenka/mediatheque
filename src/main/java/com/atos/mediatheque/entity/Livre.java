@@ -11,7 +11,8 @@ public class Livre extends Item{
 		
 	@Column(name="numero_ISBN")
 	private Integer numeroISBN;
-	
+
+
 	public Integer getNumeroISBN() {
 		return numeroISBN;
 	}

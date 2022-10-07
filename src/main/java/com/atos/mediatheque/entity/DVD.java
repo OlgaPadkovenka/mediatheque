@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="dvd")
 public class DVD extends Item {
-	
+		
 	@Column(name="duree")
 	private String duree;
 	
