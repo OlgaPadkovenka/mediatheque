@@ -28,6 +28,7 @@ public class CDService {
 			
 			for(CD cd : allCDs) {
 				CDDTO cdDTO = new CDDTO();
+				//marche sans id aussi, dans ce cas-là l'id est null
 				cdDTO.setId(cd.getId());
 				cdDTO.setTitre(cd.getTitre());
 				cdDTO.setNom(cd.getNom());

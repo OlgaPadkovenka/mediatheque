@@ -30,17 +30,14 @@ public class CDController {
 	}
 
 	//Mapping avec DTO
-	//ca ne marche pas
 	  @GetMapping
 	  public ResponseEntity<List<CDDTO>> getAll() {
 		  List<CDDTO> allCDs = cdService.getAll();
 		  System.out.println(allCDs);
 		  return ResponseEntity.ok(allCDs);
-		  
 	  }
 	  
 	//Mapping sans DTO
-	//ca marche
 	  @GetMapping("/cd")
 	  public ResponseEntity<List<CD>> getAllCD() { 
 		  List<CD> allCDs = cdService.getAllCD();

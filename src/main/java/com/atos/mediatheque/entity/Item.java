@@ -14,8 +14,10 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @MappedSuperclass
+//@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Item {
+//je ne vaux pas pour qu'elle soit instanciée
+public abstract class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
