@@ -21,13 +21,14 @@ public class CDService {
 		this.cdRepository = cdRepository;
 	}
 	
-	//Methode pour récupérer tous les cds
+	//Methode pour récupérer tous les cds avec DTO, ca ne marche pas
 		public List<CDDTO> getAll() {
 			List<CD> allCDs = cdRepository.findAll();
 			List<CDDTO> cdDTOs = new ArrayList<>();
 			
 			for(CD cd : allCDs) {
 				CDDTO cdDTO = new CDDTO();
+				cdDTO.setId(cd.getId());
 				cdDTO.setTitre(cd.getTitre());
 				cdDTO.setNom(cd.getNom());
 				//date format à revoir
@@ -35,11 +36,15 @@ public class CDService {
 				cdDTO.setDateDeParution(cd.getDateDeParution());
 				cdDTO.setNombreDExemplaires(cd.getNombreDExemplaires());
 				cdDTO.setDuree(cd.getDuree());
+				
+				// Ajout dans le tableau de sorti
+	        	cdDTOs.add(cdDTO);
 			}
 			
 			return cdDTOs;
 		}
 		
+		////Methode pour récupérer tous les cds sans DTO
 		public List<CD> getAllCD() {
 			List<CD> allCDs = cdRepository.findAll();
 			return allCDs;
