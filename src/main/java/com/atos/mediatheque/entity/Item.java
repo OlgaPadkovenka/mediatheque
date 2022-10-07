@@ -3,11 +3,22 @@ package com.atos.mediatheque.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @MappedSuperclass
 public abstract class Item {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cdSequenceGenerator")
+	@SequenceGenerator(name = "cdSequenceGenerator", allocationSize = 1)
+	private Long id;
 		
 	@Column(name="titre")
 	private String titre;
@@ -16,11 +27,18 @@ public abstract class Item {
 	private Integer nombreDExemplaires;
 	
 	@Column(name="date_de_parution")
-	private Date DateDeParution;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private Date dateDeParution;
 	
 	@Column(name="nom")
 	private String nom;
-
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTitre() {
 		return titre;
 	}
@@ -34,10 +52,10 @@ public abstract class Item {
 		this.nombreDExemplaires = nombreDExemplaires;
 	}
 	public Date getDateDeParution() {
-		return DateDeParution;
+		return dateDeParution;
 	}
 	public void setDateDeParution(Date dateDeParution) {
-		DateDeParution = dateDeParution;
+		this.dateDeParution = dateDeParution;
 	}
 	public String getNom() {
 		return nom;

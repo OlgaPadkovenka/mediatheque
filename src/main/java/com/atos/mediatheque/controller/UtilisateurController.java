@@ -29,6 +29,14 @@ public class UtilisateurController {
 	}
 
 	//Mapping
+//	[
+//	    {
+//	        "nom": "olga",
+//	        "prenom": "olga",
+//	        "email": "olga@gmail.com",
+//	        "motDePasse": "olga"
+//	    }
+//	]
 	  @GetMapping
 	     public ResponseEntity<List<UtilisateurDTO>> getAll() {
 		     // Etape 5 : Creation de ma resource (UtilisateurResource)
@@ -47,7 +55,7 @@ public class UtilisateurController {
 		  return ResponseEntity.ok(utilisateurService.save(utilisateurDTO));
 	  }
 	  
-	  @PutMapping
+	  @PutMapping("/by-id/{id}")
 	  public ResponseEntity<UtilisateurDTO> update (@Valid @RequestBody UtilisateurDTO utilisateurDTO) {
 		  return ResponseEntity.ok(utilisateurService.save(utilisateurDTO));
 	  }

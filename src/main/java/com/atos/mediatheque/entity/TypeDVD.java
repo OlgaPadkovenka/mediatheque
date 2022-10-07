@@ -1,6 +1,6 @@
 package com.atos.mediatheque.entity;
 
-public enum DVDType {
+public enum TypeDVD {
 	
 	blue_ray,
 	normal

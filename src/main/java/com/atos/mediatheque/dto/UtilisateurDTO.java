@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class UtilisateurDTO {
 	
-	//private Long id;
+	private Long id;
 	
 	private String nom;
 
@@ -13,6 +13,14 @@ public class UtilisateurDTO {
 	private String email;
 
 	private String motDePasse;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNom() {
 		return nom;

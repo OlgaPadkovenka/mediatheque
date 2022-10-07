@@ -39,6 +39,7 @@ public class UtilisateurService {
         	
         	// Creation de mes DTOs
         	UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+        	utilisateurDTO.setId(utilisateur.getId());
         	utilisateurDTO.setEmail(utilisateur.getEmail());
         	utilisateurDTO.setMotDePasse(utilisateur.getMotDePasse());
         	utilisateurDTO.setNom(utilisateur.getNom());
@@ -53,6 +54,7 @@ public class UtilisateurService {
 	
 	private Utilisateur mapDTOToEntity(UtilisateurDTO utilisateurDTO) {
 		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setId(utilisateurDTO.getId());
 		utilisateur.setEmail(utilisateurDTO.getEmail());
 		utilisateur.setMotDePasse(utilisateurDTO.getMotDePasse());
 		utilisateur.setNom(utilisateurDTO.getNom());
@@ -62,6 +64,7 @@ public class UtilisateurService {
 	
 	private UtilisateurDTO mapEntityToDTO(Utilisateur utilisateurSaved) {
 		UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+		utilisateurDTO.setId(utilisateurSaved.getId());
 		utilisateurDTO.setEmail(utilisateurSaved.getEmail());
 		utilisateurDTO.setMotDePasse(utilisateurSaved.getMotDePasse());
 		utilisateurDTO.setNom(utilisateurSaved.getNom());

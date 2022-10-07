@@ -1,18 +1,15 @@
 package com.atos.mediatheque.entity;
 
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
@@ -35,14 +32,6 @@ public class Utilisateur {
 	
 	@Column(name="mot_de_passe")
 	private String motDePasse;
-	
-	 @ManyToMany
-	 @JoinTable(
-			 name = "utilisateur_CD",
-		     joinColumns = @JoinColumn(name = "utilisateur_id", referencedColumnName = "id"),
-		     inverseJoinColumns = @JoinColumn(name = "CD_id", referencedColumnName = "id"))
-		   Set<CD> cds;
-	
 			
 	public Long getId() {
 		return id;
@@ -75,13 +64,7 @@ public class Utilisateur {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	
-	public Set<CD> getCds() {
-		return cds;
-	}
-	public void setCds(Set<CD> cds) {
-		this.cds = cds;
-	}
+		
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id, motDePasse, nom, prenom);

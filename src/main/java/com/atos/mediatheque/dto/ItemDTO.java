@@ -1,18 +1,29 @@
 package com.atos.mediatheque.dto;
 
 import java.util.Date;
-import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ItemDTO {
+	
+	private Long id;
 
 	private String titre;
 
 	private Integer nombreDExemplaires;
 
-	private Date DateDeParution;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private Date dateDeParution;
 
 	private String nom;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitre() {
 		return titre;
@@ -30,12 +41,13 @@ public class ItemDTO {
 		this.nombreDExemplaires = nombreDExemplaires;
 	}
 
+
 	public Date getDateDeParution() {
-		return DateDeParution;
+		return dateDeParution;
 	}
 
 	public void setDateDeParution(Date dateDeParution) {
-		DateDeParution = dateDeParution;
+		this.dateDeParution = dateDeParution;
 	}
 
 	public String getNom() {
@@ -45,40 +57,5 @@ public class ItemDTO {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(DateDeParution, nom, nombreDExemplaires, titre);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemDTO other = (ItemDTO) obj;
-		return Objects.equals(DateDeParution, other.DateDeParution) && Objects.equals(nom, other.nom)
-				&& Objects.equals(nombreDExemplaires, other.nombreDExemplaires) && Objects.equals(titre, other.titre);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ItemDTO [titre=");
-		builder.append(titre);
-		builder.append(", nombreDExemplaires=");
-		builder.append(nombreDExemplaires);
-		builder.append(", DateDeParution=");
-		builder.append(DateDeParution);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
 
 }
