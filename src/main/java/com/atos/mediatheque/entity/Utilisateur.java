@@ -2,11 +2,14 @@ package com.atos.mediatheque.entity;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -32,6 +35,12 @@ public class Utilisateur {
 	
 	@Column(name="mot_de_passe")
 	private String motDePasse;
+	
+//	 @OneToMany(mappedBy="utilisateur")
+//	    private Emprunte emprunte;
+	
+	@OneToOne(mappedBy = "utilisateur")
+	private Emprunt emprunte;
 			
 	public Long getId() {
 		return id;
@@ -64,40 +73,11 @@ public class Utilisateur {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-		
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, id, motDePasse, nom, prenom);
+	public Emprunt getEmprunte() {
+		return emprunte;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utilisateur other = (Utilisateur) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id)
-				&& Objects.equals(motDePasse, other.motDePasse) && Objects.equals(nom, other.nom)
-				&& Objects.equals(prenom, other.prenom);
+	public void setEmprunte(Emprunt emprunte) {
+		this.emprunte = emprunte;
 	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Utilisateur [id=");
-		builder.append(id);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append(", prenom=");
-		builder.append(prenom);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", motDePasse=");
-		builder.append(motDePasse);
-		builder.append("]");
-		return builder.toString();
-	}
-	
 	
 }

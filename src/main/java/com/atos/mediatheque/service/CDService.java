@@ -46,10 +46,10 @@ public class CDService {
 		}
 		
 		////Methode pour récupérer tous les cds sans DTO
-		public List<CD> getAllCD() {
-			List<CD> allCDs = cdRepository.findAll();
-			return allCDs;
-		}
+//		public List<CD> getAllCD() {
+//			List<CD> allCDs = cdRepository.findAll();
+//			return allCDs;
+//		}
 		
 		private CD mapDTOToEntity (CDDTO cdDTO) {
 			CD cd = new CD();
@@ -85,4 +85,6 @@ public class CDService {
 		public void deleteById(Long id) {
 			cdRepository.deleteById(id);
 		}
+		
+		
 }

@@ -1,44 +1,62 @@
 package com.atos.mediatheque.entity;
 
 import java.util.Date;
-import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="emprunt")
 public class Emprunt {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cdSequenceGenerator")
-	@SequenceGenerator(name = "cdSequenceGenerator", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empruntSequenceGenerator")
+	@SequenceGenerator(name = "empruntSequenceGenerator", allocationSize = 1)
 	private Long id;
 	
 	@Column(name="date_emprunt")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateEmprunt;
 	
 	@Column(name="date_retour")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateRetour;
 	
+	// @OneToOne(cascade = CascadeType.ALL)
+	 @ManyToOne
+	 @JoinColumn(name="utilisateur_id")
+	   // @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
+	    private Utilisateur utilisateur;
 	
-	@OneToOne
-	private Utilisateur utilisateur;
+//	@ManyToMany
+//	private CD cd;
+//	
+//	@ManyToMany
+//	private DVD dvd;
+//	
+//	@ManyToMany
+//	private Livre livre;
 	
-	@ManyToOne
-	private CD cd;
-	
-	@ManyToOne
-	private DVD dvd;
-	
-	@ManyToOne
-	private Livre livre;
+	 @ManyToMany
+ 	 @JoinTable(
+ 			 name = "emprunt_CD",
+ 		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
+ 		     inverseJoinColumns = @JoinColumn(name = "CD_id", referencedColumnName = "id"))
+ 		   Set<CD> CDs;
 		
 	public Long getId() {
 		return id;
@@ -63,7 +81,14 @@ public class Emprunt {
 	public void setDateRetour(Date dateRetour) {
 		this.dateRetour = dateRetour;
 	}
-	
+
+	public Set<CD> getCDs() {
+		return CDs;
+	}
+
+	public void setCDs(Set<CD> cDs) {
+		CDs = cDs;
+	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -73,61 +98,30 @@ public class Emprunt {
 		this.utilisateur = utilisateur;
 	}
 
+
 	
-	public CD getCd() {
-		return cd;
-	}
-
-	public void setCd(CD cd) {
-		this.cd = cd;
-	}
+//	public CD getCd() {
+//		return cd;
+//	}
+//
+//	public void setCd(CD cd) {
+//		this.cd = cd;
+//	}
 	
-	public DVD getDvd() {
-		return dvd;
-	}
-
-	public void setDvd(DVD dvd) {
-		this.dvd = dvd;
-	}
-
-	public Livre getLivre() {
-		return livre;
-	}
-
-	public void setLivre(Livre livre) {
-		this.livre = livre;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dateEmprunt, dateRetour, id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Emprunt other = (Emprunt) obj;
-		return Objects.equals(dateEmprunt, other.dateEmprunt) && Objects.equals(dateRetour, other.dateRetour)
-				&& Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Emprunt [id=");
-		builder.append(id);
-		builder.append(", dateEmprunt=");
-		builder.append(dateEmprunt);
-		builder.append(", dateRetour=");
-		builder.append(dateRetour);
-		builder.append("]");
-		return builder.toString();
-	}
-
+//	public DVD getDvd() {
+//		return dvd;
+//	}
+//
+//	public void setDvd(DVD dvd) {
+//		this.dvd = dvd;
+//	}
+//
+//	public Livre getLivre() {
+//		return livre;
+//	}
+//
+//	public void setLivre(Livre livre) {
+//		this.livre = livre;
+//	}
 	
 }

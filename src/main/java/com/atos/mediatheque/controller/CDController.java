@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.mediatheque.dto.CDDTO;
 import com.atos.mediatheque.entity.CD;
+import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.service.CDService;
 
 @RestController
@@ -37,13 +38,13 @@ public class CDController {
 		  return ResponseEntity.ok(allCDs);
 	  }
 	  
-	//Mapping sans DTO
-	  @GetMapping("/cd")
-	  public ResponseEntity<List<CD>> getAllCD() { 
-		  List<CD> allCDs = cdService.getAllCD();
-		  System.out.println(allCDs);
-		  return ResponseEntity.ok(allCDs);
-	  }
+//	//Mapping sans DTO
+//	  @GetMapping("/cd")
+//	  public ResponseEntity<List<CD>> getAllCD() { 
+//		  List<CD> allCDs = cdService.getAllCD();
+//		  System.out.println(allCDs);
+//		  return ResponseEntity.ok(allCDs);
+//	  }
 	  
 //	  {
 //	        "nom": "olga3",

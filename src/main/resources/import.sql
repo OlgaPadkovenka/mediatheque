@@ -9,3 +9,9 @@ insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (2,'Sylvie
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (3,'Roger','Smith','smithrog@hotmail.fr','unpassword');
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (4,'Erik','Jackson','jacksEr@hotmail.fr','unknown');
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (5,'Daniela','Sagna','sagnaD@hotmail.fr','flawless');
+
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR) VALUES (1, '2022-10-01', NULL);
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR) VALUES (2, '2022-09-20', NULL);
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR) VALUES (3, '2022-10-09', NULL);
+
+

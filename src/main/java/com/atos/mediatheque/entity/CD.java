@@ -1,10 +1,13 @@
 package com.atos.mediatheque.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +22,9 @@ public class CD extends Item {
 		
 	@Column(name="duree")
 	private String duree;
+	
+	@ManyToMany(mappedBy = "CDs")
+ 	Set<Emprunt> emprunts;
 	
 	
 	public Long getId() {
@@ -36,5 +42,14 @@ public class CD extends Item {
 	public void setDuree(String duree) {
 		this.duree = duree;
 	}
-	
+
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
+		
 }
