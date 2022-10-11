@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.mediatheque.dto.CDDTO;
-import com.atos.mediatheque.entity.CD;
-import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.service.CDService;
 
 @RestController

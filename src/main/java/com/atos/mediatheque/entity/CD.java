@@ -1,7 +1,9 @@
 package com.atos.mediatheque.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +25,8 @@ public class CD extends Item {
 	@Column(name="duree")
 	private String duree;
 	
-	@ManyToMany(mappedBy = "CDs")
- 	Set<Emprunt> emprunts;
+	@ManyToMany(mappedBy = "CDs", cascade = CascadeType.REMOVE)
+ 	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	
 	public Long getId() {

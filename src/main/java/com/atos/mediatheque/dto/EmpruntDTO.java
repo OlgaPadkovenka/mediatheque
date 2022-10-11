@@ -1,6 +1,8 @@
 package com.atos.mediatheque.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EmpruntDTO {
 	
@@ -9,6 +11,8 @@ public class EmpruntDTO {
 	private Date dateEmprunt;
 
 	private Date dateRetour;
+	
+	private List<CDDTO> cds = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -33,5 +37,14 @@ public class EmpruntDTO {
 	public void setDateRetour(Date dateRetour) {
 		this.dateRetour = dateRetour;
 	}
+
+	public List<CDDTO> getCds() {
+		return cds;
+	}
+
+	public void setCds(List<CDDTO> cds) {
+		this.cds = cds;
+	}
+
 	
 }

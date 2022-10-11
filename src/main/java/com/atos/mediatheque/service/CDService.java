@@ -1,7 +1,9 @@
 package com.atos.mediatheque.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -21,7 +23,7 @@ public class CDService {
 		this.cdRepository = cdRepository;
 	}
 	
-	//Methode pour récupérer tous les cds avec DTO, ca ne marche pas
+	//Methode pour récupérer tous les cds avec DTO
 		public List<CDDTO> getAll() {
 			List<CD> allCDs = cdRepository.findAll();
 			List<CDDTO> cdDTOs = new ArrayList<>();
@@ -84,6 +86,28 @@ public class CDService {
 		@Transactional
 		public void deleteById(Long id) {
 			cdRepository.deleteById(id);
+		}
+		
+		//map CDs à Emprunt
+		public List<CDDTO> mapCDs(Set<CD> cds) {
+			List<CDDTO> cdDTOs = new ArrayList<>();
+			for(CD cd : cds) {
+				CDDTO cdDTO = new CDDTO();
+				cdDTO.setId(cd.getId());
+				cdDTO.setNom(cd.getNom());
+				cdDTO.setNombreDExemplaires(cd.getNombreDExemplaires());
+				cdDTO.setTitre(cd.getTitre());
+				cdDTO.setDateDeParution(cd.getDateDeParution());
+				cdDTO.setDuree(cd.getDuree());
+				
+				cdDTOs.add(cdDTO);
+			}
+			return cdDTOs;
+		}
+		
+		public List<CDDTO> getAllCD() {
+			List<CD> allCDs = cdRepository.findAll();
+			return mapCDs(new HashSet<>(allCDs));
 		}
 		
 		
