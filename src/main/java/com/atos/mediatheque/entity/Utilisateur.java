@@ -1,6 +1,7 @@
 package com.atos.mediatheque.entity;
 
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,11 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 @Entity
@@ -36,11 +36,9 @@ public class Utilisateur {
 	@Column(name="mot_de_passe")
 	private String motDePasse;
 	
-//	 @OneToMany(mappedBy="utilisateur")
-//	    private Emprunte emprunte;
+	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	    private Set<Emprunt> emprunts = new HashSet<>();
 	
-	@OneToOne(mappedBy = "utilisateur")
-	private Emprunt emprunte;
 			
 	public Long getId() {
 		return id;
@@ -73,11 +71,12 @@ public class Utilisateur {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	public Emprunt getEmprunte() {
-		return emprunte;
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
 	}
-	public void setEmprunte(Emprunt emprunte) {
-		this.emprunte = emprunte;
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
 	}
-	
+
+
 }

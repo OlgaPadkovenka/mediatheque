@@ -1,6 +1,9 @@
 package com.atos.mediatheque.dto;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.atos.mediatheque.entity.Emprunt;
 
 public class UtilisateurDTO {
 	
@@ -13,6 +16,9 @@ public class UtilisateurDTO {
 	private String email;
 
 	private String motDePasse;
+	
+	private List<EmpruntDTO> emprunts = new ArrayList<>();
+	
 	
 	public Long getId() {
 		return id;
@@ -54,38 +60,13 @@ public class UtilisateurDTO {
 		this.motDePasse = motDePasse;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, motDePasse, nom, prenom);
+	public List<EmpruntDTO> getEmprunts() {
+		return emprunts;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UtilisateurDTO other = (UtilisateurDTO) obj;
-		return Objects.equals(email, other.email) && Objects.equals(motDePasse, other.motDePasse)
-				&& Objects.equals(nom, other.nom) && Objects.equals(prenom, other.prenom);
+	public void setEmprunts(List<EmpruntDTO> emprunts) {
+		this.emprunts = emprunts;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UtilisateurDTO [nom=");
-		builder.append(nom);
-		builder.append(", prenom=");
-		builder.append(prenom);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", motDePasse=");
-		builder.append(motDePasse);
-		builder.append("]");
-		return builder.toString();
-	}
 	
-
 }

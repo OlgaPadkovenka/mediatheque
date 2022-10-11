@@ -1,8 +1,10 @@
 package com.atos.mediatheque.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,9 +37,12 @@ public class Emprunt {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateRetour;
 
-	 @ManyToOne
-	 @JoinColumn(name="utilisateur_id")
-	 private Utilisateur utilisateur;
+	 
+//	@OneToMany(mappedBy="emprunt", cascade = CascadeType.REMOVE)
+//	private Set<Utilisateur> utilisateurs = new HashSet<>();
+	
+	@ManyToOne
+	private Utilisateur utilisateur;
 	
 //	@ManyToMany
 //	private CD cd;

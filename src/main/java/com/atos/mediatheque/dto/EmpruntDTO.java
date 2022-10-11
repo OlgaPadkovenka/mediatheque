@@ -3,6 +3,9 @@ package com.atos.mediatheque.dto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
+import com.atos.mediatheque.entity.Utilisateur;
 
 public class EmpruntDTO {
 	
@@ -13,7 +16,9 @@ public class EmpruntDTO {
 	private Date dateRetour;
 	
 	private List<CDDTO> cds = new ArrayList<>();
-
+	
+	private Long utilisateur;
+	
 	public Long getId() {
 		return id;
 	}
@@ -46,5 +51,12 @@ public class EmpruntDTO {
 		this.cds = cds;
 	}
 
-	
+	public Long getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Long utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
 }
