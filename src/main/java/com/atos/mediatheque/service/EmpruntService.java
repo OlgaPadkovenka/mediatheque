@@ -35,7 +35,7 @@ public class EmpruntService {
 			empruntDTO.setDateEmprunt(emprunt.getDateEmprunt());
 			empruntDTO.setDateRetour(emprunt.getDateRetour());
 			
-			//ne marche pas avec utilisateur
+			//ca marche avec utilisateur
 //			  {
 //			        "id": 1,
 //			        "dateEmprunt": "2022-09-30T22:00:00.000+00:00",
@@ -50,7 +50,7 @@ public class EmpruntService {
 //			                "duree": "125"
 //			            }
 //			        ],
-//			        "utilisateur": null
+//			        "utilisateur": 1
 //			    },
 			//http://localhost:8080/api/emprunts
 			empruntDTO.setUtilisateur(emprunt.getUtilisateur().getId());

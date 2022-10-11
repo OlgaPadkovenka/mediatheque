@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import com.atos.mediatheque.dto.CDDTO;
 import com.atos.mediatheque.dto.EmpruntDTO;
 import com.atos.mediatheque.dto.UtilisateurDTO;
 import com.atos.mediatheque.entity.Utilisateur;
@@ -18,11 +19,14 @@ public class UtilisateurService {
 	
 	private final UtilisateurRerository utilisateurRerository;
 	private final EmpruntService empruntService;
+	private final CDService cdService;
 	
 	//constructeur
-	public UtilisateurService(UtilisateurRerository utilisateurRerository, EmpruntService empruntService) {
+	public UtilisateurService(UtilisateurRerository utilisateurRerository,
+			EmpruntService empruntService, CDService cdService) {
 		this.utilisateurRerository = utilisateurRerository;
 		this.empruntService = empruntService;
+		this.cdService = cdService;
 	}
 
 	//Methode pour récupérer tous les utilisateurs
@@ -50,7 +54,7 @@ public class UtilisateurService {
         	utilisateurDTO.setNom(utilisateur.getNom());
         	utilisateurDTO.setPrenom(utilisateur.getPrenom());
         	
-        	//ne marche pas avec emprunts
+        	//ca marche avec emprunts
 //            {
 //                "id": 1,
 //                "nom": "Fleurisse",
@@ -60,16 +64,19 @@ public class UtilisateurService {
 //                "emprunts": []
 //            },
         	//http://localhost:8080/api/utilisateurs
-        	//List<EmpruntDTO> empruntsDTOs = empruntService.mapEmprunts(utilisateur.getEmprunts());
-        	//utilisateurDTO.setEmprunts(empruntsDTOs);
+        	//ajout emprunts à Utilisateur
+        	List<EmpruntDTO> empruntDTOs = empruntService.mapEmprunts(utilisateur.getEmprunts());
+        	utilisateurDTO.setEmprunts(empruntDTOs);
         	
         	// Ajout dans le tableau de sorti
         	utilisateurDTOs.add(utilisateurDTO);
-        	
         }
 		
 		return utilisateurDTOs;
 	}
+	
+	//List<CDDTO> cdDTOs = cdService.mapCDs();
+	//ajout cd à emprunts
 	
 	private Utilisateur mapDTOToEntity(UtilisateurDTO utilisateurDTO) {
 		Utilisateur utilisateur = new Utilisateur();
