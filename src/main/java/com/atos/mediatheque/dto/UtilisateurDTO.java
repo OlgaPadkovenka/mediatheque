@@ -2,6 +2,7 @@ package com.atos.mediatheque.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.atos.mediatheque.entity.Emprunt;
 
@@ -17,7 +18,7 @@ public class UtilisateurDTO {
 
 	private String motDePasse;
 	
-	private List<EmpruntDTO> emprunts = new ArrayList<>();
+	private List<EmpruntDTO> emprunts;
 	
 	
 	public Long getId() {
@@ -64,9 +65,8 @@ public class UtilisateurDTO {
 		return emprunts;
 	}
 
-	public void setEmprunts(List<EmpruntDTO> emprunts) {
-		this.emprunts = emprunts;
+	public void setEmprunts(List<EmpruntDTO> empruntDTOs) {
+		this.emprunts = empruntDTOs;
 	}
-
 	
 }

@@ -83,6 +83,21 @@ public class UtilisateurService {
 	
 	//public List<CDDTO> getAllCDs();
 	
+	public UtilisateurDTO getByIdUser(Long id) {
+		
+		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+		
+		UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+		utilisateurDTO.setId(utilisateur.getId());
+		utilisateurDTO.setMotDePasse(utilisateur.getMotDePasse());
+		utilisateurDTO.setNom(utilisateur.getNom());
+		utilisateurDTO.setPrenom(utilisateur.getPrenom());
+		utilisateur.setEmail(utilisateur.getEmail());
+		//utilisateurDTO.setEmprunts(utilisateur.getEmprunts());
+		
+		return utilisateurDTO;
+	}
+	
 	
 	private Utilisateur mapDTOToEntity(UtilisateurDTO utilisateurDTO) {
 		Utilisateur utilisateur = new Utilisateur();

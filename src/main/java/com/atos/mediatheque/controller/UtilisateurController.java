@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atos.mediatheque.dto.CDDTO;
 import com.atos.mediatheque.dto.UtilisateurDTO;
+import com.atos.mediatheque.service.CDService;
+import com.atos.mediatheque.service.EmpruntService;
 import com.atos.mediatheque.service.UtilisateurService;
 
 @RestController
@@ -22,6 +25,8 @@ import com.atos.mediatheque.service.UtilisateurService;
 public class UtilisateurController {
 	
 	private UtilisateurService utilisateurService;
+	//private final EmpruntService empruntService;
+	//private final CDService cdService;
 	
 	//Constructeur
 	private UtilisateurController(UtilisateurService utilisateurService) {
@@ -48,6 +53,12 @@ public class UtilisateurController {
 		  
 		  return ResponseEntity.ok(allUtilisateurs);
 		  
+	  }
+	  
+	  //get by id ne marche pas
+	  @GetMapping("/by-id/{id}")
+	  public ResponseEntity<UtilisateurDTO> getOne (@PathVariable Long id) {	
+		return ResponseEntity.ok(utilisateurService.getByIdUser(id));
 	  }
 	  
 	  
