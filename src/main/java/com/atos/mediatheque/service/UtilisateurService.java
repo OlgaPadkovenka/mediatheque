@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.atos.mediatheque.dto.CDDTO;
 import com.atos.mediatheque.dto.EmpruntDTO;
 import com.atos.mediatheque.dto.UtilisateurDTO;
+import com.atos.mediatheque.entity.Emprunt;
 import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
@@ -66,17 +67,22 @@ public class UtilisateurService {
         	//http://localhost:8080/api/utilisateurs
         	//ajout emprunts à Utilisateur
         	List<EmpruntDTO> empruntDTOs = empruntService.mapEmprunts(utilisateur.getEmprunts());
+        
         	utilisateurDTO.setEmprunts(empruntDTOs);
-        	
+
+        	        	
         	// Ajout dans le tableau de sorti
         	utilisateurDTOs.add(utilisateurDTO);
         }
-		
+        
 		return utilisateurDTOs;
 	}
 	
 	//List<CDDTO> cdDTOs = cdService.mapCDs();
 	//ajout cd à emprunts
+	
+	//public List<CDDTO> getAllCDs();
+	
 	
 	private Utilisateur mapDTOToEntity(UtilisateurDTO utilisateurDTO) {
 		Utilisateur utilisateur = new Utilisateur();

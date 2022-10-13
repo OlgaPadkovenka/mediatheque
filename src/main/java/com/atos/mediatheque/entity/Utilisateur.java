@@ -22,6 +22,7 @@ public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateurSequenceGenerator")
 	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="nom")

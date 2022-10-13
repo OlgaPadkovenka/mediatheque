@@ -3,10 +3,12 @@ package com.atos.mediatheque.service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atos.mediatheque.dto.CDDTO;
@@ -16,6 +18,7 @@ import com.atos.mediatheque.repository.CDRepository;
 @Service
 public class CDService {
 
+	@Autowired
 	private final CDRepository cdRepository;
 	
 	//Constructeur
@@ -53,6 +56,24 @@ public class CDService {
 //			return allCDs;
 //		}
 		
+
+		//Méthode pour récuréper un cd avec DTO
+		
+		public CDDTO getByIdCd(Long id){
+			CD cd =  cdRepository.findById(id).get();
+			
+			CDDTO cdDTO = new CDDTO();
+			cdDTO.setId(cd.getId());
+			cdDTO.setNom(cd.getNom());
+			cdDTO.setNombreDExemplaires(cd.getNombreDExemplaires());
+			cdDTO.setTitre(cd.getTitre());
+			cdDTO.setDateDeParution(cd.getDateDeParution());
+			cdDTO.setDuree(cd.getDuree());
+			
+			return cdDTO;
+		}
+		
+
 		private CD mapDTOToEntity (CDDTO cdDTO) {
 			CD cd = new CD();
 			cd.setId(cdDTO.getId());
@@ -108,7 +129,6 @@ public class CDService {
 		public List<CDDTO> getAllCD() {
 			List<CD> allCDs = cdRepository.findAll();
 			return mapCDs(new HashSet<>(allCDs));
-		}
-		
+		}		
 		
 }

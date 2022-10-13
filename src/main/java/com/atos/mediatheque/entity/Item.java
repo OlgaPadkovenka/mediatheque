@@ -3,6 +3,7 @@ package com.atos.mediatheque.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,6 +25,8 @@ public abstract class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
 	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 		
 	@Column(name="titre")

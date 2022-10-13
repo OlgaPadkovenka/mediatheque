@@ -34,4 +34,10 @@ public class EmpruntController {
 		  return ResponseEntity.ok(allEmprunts);
 	  }
  
+//	  @GetMapping
+//	  public ResponseEntity<List<EmpruntDTO>> getById() { 
+//		  List<EmpruntDTO> emprunt = empruntService.getById();
+//		  //System.out.println(allEmprunts);
+//		  return ResponseEntity.ok(emprunt);
+//	  }
 }

@@ -1,9 +1,12 @@
 package com.atos.mediatheque.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.mediatheque.dto.CDDTO;
+import com.atos.mediatheque.entity.CD;
+import com.atos.mediatheque.repository.CDRepository;
 import com.atos.mediatheque.service.CDService;
+
 
 @RestController
 @RequestMapping("/api/cds")
 public class CDController {
 	
 	private CDService cdService;
+
 	
-	//Controller
+	//Constructeur
 	private CDController(CDService cdService) {
 		this.cdService = cdService;
 	}
@@ -51,7 +58,14 @@ public class CDController {
 //	        "titre": "titre1",
 //	        "duree": 45
 //	}
-//	
+//
+//	  
+	  
+	  //get by id ne marche pas
+	  @GetMapping("/by-id/{id}")
+	  public ResponseEntity<CDDTO> getOne (@PathVariable Long id) {	
+		return ResponseEntity.ok(cdService.getByIdCd(id));
+	  }
 	  
 	  @PostMapping
 	  public ResponseEntity<CDDTO> save(@Valid @RequestBody CDDTO cdDTO) {
