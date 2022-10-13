@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.Utilisateur;
 
 public class EmpruntDTO {

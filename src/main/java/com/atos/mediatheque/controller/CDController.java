@@ -35,7 +35,7 @@ public class CDController {
 		this.cdService = cdService;
 	}
 
-	//Mapping avec DTO
+	//Mapping avec DTO All
 	  @GetMapping
 	  public ResponseEntity<List<CDDTO>> getAll() {
 		  List<CDDTO> allCDs = cdService.getAll();
@@ -61,10 +61,10 @@ public class CDController {
 //
 //	  
 	  
-	  //get by id ne marche pas
+	  //Mapping id avec DTO
 	  @GetMapping("/by-id/{id}")
 	  public ResponseEntity<CDDTO> getOne (@PathVariable Long id) {	
-		return ResponseEntity.ok(cdService.getByIdCd(id));
+		return ResponseEntity.ok(cdService.getById(id));
 	  }
 	  
 	  @PostMapping

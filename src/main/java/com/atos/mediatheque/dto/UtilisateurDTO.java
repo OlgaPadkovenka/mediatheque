@@ -1,10 +1,6 @@
 package com.atos.mediatheque.dto;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import com.atos.mediatheque.entity.Emprunt;
 
 public class UtilisateurDTO {
 	

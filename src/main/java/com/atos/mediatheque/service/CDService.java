@@ -3,7 +3,6 @@ package com.atos.mediatheque.service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -59,7 +58,7 @@ public class CDService {
 
 		//Méthode pour récuréper un cd avec DTO
 		
-		public CDDTO getByIdCd(Long id){
+		public CDDTO getById(Long id){
 			CD cd =  cdRepository.findById(id).get();
 			
 			CDDTO cdDTO = new CDDTO();

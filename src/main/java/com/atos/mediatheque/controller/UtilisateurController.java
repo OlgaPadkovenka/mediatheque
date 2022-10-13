@@ -55,10 +55,10 @@ public class UtilisateurController {
 		  
 	  }
 	  
-	  //get by id ne marche pas
+	  //Mapping avec id
 	  @GetMapping("/by-id/{id}")
 	  public ResponseEntity<UtilisateurDTO> getOne (@PathVariable Long id) {	
-		return ResponseEntity.ok(utilisateurService.getByIdUser(id));
+		return ResponseEntity.ok(utilisateurService.getById(id));
 	  }
 	  
 	  

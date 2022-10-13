@@ -53,6 +53,7 @@ public class EmpruntService {
 //			        "utilisateur": 1
 //			    },
 			//http://localhost:8080/api/emprunts
+			//pour ajouter l'utilisateur
 			empruntDTO.setUtilisateur(emprunt.getUtilisateur().getId());
 						
 			//ajout de CD à Emprunt
@@ -64,6 +65,24 @@ public class EmpruntService {
 		}
 		
 		return empruntDTOs;
+	}
+	
+	public EmpruntDTO getById(Long id) {
+		Emprunt emprunt = empruntRepository.findById(id).get();
+		
+		EmpruntDTO empruntDTO = new EmpruntDTO();
+		empruntDTO.setId(emprunt.getId());
+		empruntDTO.setDateEmprunt(emprunt.getDateEmprunt());
+		empruntDTO.setDateRetour(emprunt.getDateRetour());
+		
+		//pour ajouter l'utilisateur
+		empruntDTO.setUtilisateur(emprunt.getUtilisateur().getId());
+		
+		//ajout de CD à Emprunt
+		List<CDDTO> cdDTOs = cdService.mapCDs(emprunt.getCDs());
+		empruntDTO.setCds(cdDTOs);
+		
+		return empruntDTO;
 	}
 	
 	public List<EmpruntDTO> mapEmprunts(Set<Emprunt> emprunts) {

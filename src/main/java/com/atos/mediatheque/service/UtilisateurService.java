@@ -1,17 +1,13 @@
 package com.atos.mediatheque.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import com.atos.mediatheque.dto.CDDTO;
 import com.atos.mediatheque.dto.EmpruntDTO;
 import com.atos.mediatheque.dto.UtilisateurDTO;
-import com.atos.mediatheque.entity.Emprunt;
 import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
@@ -20,16 +16,14 @@ public class UtilisateurService {
 	
 	private final UtilisateurRerository utilisateurRerository;
 	private final EmpruntService empruntService;
-	private final CDService cdService;
 	
 	//constructeur
 	public UtilisateurService(UtilisateurRerository utilisateurRerository,
-			EmpruntService empruntService, CDService cdService) {
+			EmpruntService empruntService) {
 		this.utilisateurRerository = utilisateurRerository;
 		this.empruntService = empruntService;
-		this.cdService = cdService;
 	}
-
+	
 	//Methode pour récupérer tous les utilisateurs
 	public List<UtilisateurDTO> getAll() {
 		
@@ -65,25 +59,20 @@ public class UtilisateurService {
 //                "emprunts": []
 //            },
         	//http://localhost:8080/api/utilisateurs
+        	
         	//ajout emprunts à Utilisateur
         	List<EmpruntDTO> empruntDTOs = empruntService.mapEmprunts(utilisateur.getEmprunts());
-        
         	utilisateurDTO.setEmprunts(empruntDTOs);
-
-        	        	
+        	 	
         	// Ajout dans le tableau de sorti
         	utilisateurDTOs.add(utilisateurDTO);
         }
         
 		return utilisateurDTOs;
 	}
+
 	
-	//List<CDDTO> cdDTOs = cdService.mapCDs();
-	//ajout cd à emprunts
-	
-	//public List<CDDTO> getAllCDs();
-	
-	public UtilisateurDTO getByIdUser(Long id) {
+	public UtilisateurDTO getById(Long id) {
 		
 		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
 		
@@ -93,7 +82,9 @@ public class UtilisateurService {
 		utilisateurDTO.setNom(utilisateur.getNom());
 		utilisateurDTO.setPrenom(utilisateur.getPrenom());
 		utilisateur.setEmail(utilisateur.getEmail());
-		//utilisateurDTO.setEmprunts(utilisateur.getEmprunts());
+		//ajout emprunts à Utilisateur
+    	List<EmpruntDTO> empruntDTOs = empruntService.mapEmprunts(utilisateur.getEmprunts());
+    	utilisateurDTO.setEmprunts(empruntDTOs);
 		
 		return utilisateurDTO;
 	}

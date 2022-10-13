@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,10 +35,9 @@ public class EmpruntController {
 		  return ResponseEntity.ok(allEmprunts);
 	  }
  
-//	  @GetMapping
-//	  public ResponseEntity<List<EmpruntDTO>> getById() { 
-//		  List<EmpruntDTO> emprunt = empruntService.getById();
-//		  //System.out.println(allEmprunts);
-//		  return ResponseEntity.ok(emprunt);
-//	  }
+	  //Mapping id avec DTO
+	  @GetMapping("/by-id/{id}")
+	  public ResponseEntity<EmpruntDTO> getOne(@PathVariable Long id) { 
+		  return ResponseEntity.ok(empruntService.getById(id));
+	  }
 }
