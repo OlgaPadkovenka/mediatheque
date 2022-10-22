@@ -1,6 +1,7 @@
 package com.atos.mediatheque.entity;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="utilisateur")
-public class Utilisateur {
+public class Utilisateur{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateurSequenceGenerator")
@@ -39,7 +40,21 @@ public class Utilisateur {
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
 	    private Set<Emprunt> emprunts = new HashSet<>();
 	
+	public Utilisateur() {
+		super();
+	}
+	
 			
+	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+		this.emprunts = emprunts;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -77,6 +92,40 @@ public class Utilisateur {
 	public void setEmprunts(Set<Emprunt> emprunts) {
 		this.emprunts = emprunts;
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id, motDePasse, nom, prenom);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Utilisateur other = (Utilisateur) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id)
+				&& Objects.equals(motDePasse, other.motDePasse) && Objects.equals(nom, other.nom)
+				&& Objects.equals(prenom, other.prenom);
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Utilisateur [id=");
+		builder.append(id);
+		builder.append(", nom=");
+		builder.append(nom);
+		builder.append(", prenom=");
+		builder.append(prenom);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", motDePasse=");
+		builder.append(motDePasse);
+		builder.append("]");
+		return builder.toString();
+	}
 
+	
 
 }

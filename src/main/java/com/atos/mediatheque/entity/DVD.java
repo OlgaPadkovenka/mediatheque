@@ -1,5 +1,7 @@
 package com.atos.mediatheque.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,8 +18,7 @@ public class DVD extends Item {
 	
 
 	@Column(name="dvd_type")
-	//@Enumerated(EnumType.STRING)
-	private TypeDVD dvdType;
+	private String dvdType;
 		
 	public String getDuree() {
 		return duree;
@@ -27,12 +28,42 @@ public class DVD extends Item {
 		this.duree = duree;
 	}
 
-	public TypeDVD getDvdType() {
+	public String getDvdType() {
 		return dvdType;
 	}
 
-	public void setDvdType(TypeDVD dvdType) {
+	public void setDvdType(String dvdType) {
 		this.dvdType = dvdType;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DVD [duree=");
+		builder.append(duree);
+		builder.append(", dvdType=");
+		builder.append(dvdType);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(duree, dvdType);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DVD other = (DVD) obj;
+		return Objects.equals(duree, other.duree) && Objects.equals(dvdType, other.dvdType);
+	}
+
+
 	
 }

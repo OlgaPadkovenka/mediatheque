@@ -36,29 +36,16 @@ public class Emprunt {
 	@Column(name="date_retour")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateRetour;
-
-	 
-//	@OneToMany(mappedBy="emprunt", cascade = CascadeType.REMOVE)
-//	private Set<Utilisateur> utilisateurs = new HashSet<>();
 	
 	@ManyToOne
 	private Utilisateur utilisateur;
 	
-//	@ManyToMany
-//	private CD cd;
-//	
-//	@ManyToMany
-//	private DVD dvd;
-//	
-//	@ManyToMany
-//	private Livre livre;
-	
 	 @ManyToMany
  	 @JoinTable(
- 			 name = "emprunt_CD",
+ 			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
- 		     inverseJoinColumns = @JoinColumn(name = "CD_id", referencedColumnName = "id"))
- 		   Set<CD> CDs;
+ 		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
+ 		   Set<Item> Items;
 		
 	public Long getId() {
 		return id;
@@ -84,12 +71,12 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 
-	public Set<CD> getCDs() {
-		return CDs;
+	public Set<Item> getItems() {
+		return Items;
 	}
 
-	public void setCDs(Set<CD> cDs) {
-		CDs = cDs;
+	public void setItems(Set<Item> items) {
+		Items = items;
 	}
 
 	public Utilisateur getUtilisateur() {
@@ -100,29 +87,5 @@ public class Emprunt {
 		this.utilisateur = utilisateur;
 	}
 
-	
-//	public CD getCd() {
-//		return cd;
-//	}
-//
-//	public void setCd(CD cd) {
-//		this.cd = cd;
-//	}
-	
-//	public DVD getDvd() {
-//		return dvd;
-//	}
-//
-//	public void setDvd(DVD dvd) {
-//		this.dvd = dvd;
-//	}
-//
-//	public Livre getLivre() {
-//		return livre;
-//	}
-//
-//	public void setLivre(Livre livre) {
-//		this.livre = livre;
-//	}
-	
+
 }

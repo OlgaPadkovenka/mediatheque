@@ -1,7 +1,10 @@
 package com.atos.mediatheque.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@MappedSuperclass
-//@Entity
+//@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //je ne vaux pas pour qu'elle soit instanciée
 public abstract class Item {
@@ -41,6 +44,9 @@ public abstract class Item {
 	
 	@Column(name="nom")
 	private String nom;
+	
+	@ManyToMany(mappedBy = "Items", cascade = CascadeType.REMOVE)
+ 	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Long getId() {
 		return id;
@@ -72,5 +78,12 @@ public abstract class Item {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+	
 	
 }

@@ -1,17 +1,10 @@
 package com.atos.mediatheque.entity;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -26,33 +19,13 @@ public class CD extends Item {
 	@Column(name="duree")
 	private String duree;
 	
-	@ManyToMany(mappedBy = "CDs", cascade = CascadeType.REMOVE)
- 	private Set<Emprunt> emprunts = new HashSet<>();
 	
-
 	public String getDuree() {
 		return duree;
 	}
 
 	public void setDuree(String duree) {
 		this.duree = duree;
-	}
-
-	public Set<Emprunt> getEmprunts() {
-		return emprunts;
-	}
-
-	public void setEmprunts(Set<Emprunt> emprunts) {
-		this.emprunts = emprunts;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CD [duree=");
-		builder.append(duree);
-		builder.append("]");
-		return builder.toString();
 	}
 
 	@Override
@@ -72,6 +45,14 @@ public class CD extends Item {
 		return Objects.equals(duree, other.duree);
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CD [duree=");
+		builder.append(duree);
+		builder.append("]");
+		return builder.toString();
+	}
 	
-		
+	
 }
