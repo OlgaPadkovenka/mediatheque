@@ -45,14 +45,13 @@ public class Utilisateur{
 	}
 	
 			
-	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts) {
+	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.motDePasse = motDePasse;
-		this.emprunts = emprunts;
 	}
 	
 	public Long getId() {

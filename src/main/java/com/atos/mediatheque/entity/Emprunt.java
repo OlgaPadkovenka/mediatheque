@@ -46,7 +46,20 @@ public class Emprunt {
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
  		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
  		   Set<Item> Items;
+	 
+		public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur) {
+			super();
+		}
 		
+	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<Item> items) {
+		super();
+		this.id = id;
+		this.dateEmprunt = dateEmprunt;
+		this.dateRetour = dateRetour;
+		this.utilisateur = utilisateur;
+		Items = items;
+	}
+
 	public Long getId() {
 		return id;
 	}

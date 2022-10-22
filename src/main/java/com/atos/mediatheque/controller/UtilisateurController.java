@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
@@ -23,45 +24,40 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 
 @RestController
-@RequestMapping("/api/utilisateurs")
+@RequestMapping("/api")
 public class UtilisateurController {
 	
 @Autowired
 private UtilisateurRerository utilisateurRerository;
 
-//constructeur
 
+	  @GetMapping("/utilisateurs")
+	  public List<Utilisateur> getAll() {
+		  
+		  return utilisateurRerository.findAll();    
+	  }
+	  
+	  @GetMapping("/utilisateur/by-id/{id}")
+	  public ResponseEntity<Utilisateur> getOne(@PathVariable Long id) {
+		  Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+		  if(utilisateur == null) {
+			  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		  }
+		  return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
+	  }
+
+//  
+//	  @PostMapping("/utilisateur")
+//	  public ResponseEntity<Utilisateur> save(@Valid @RequestBody Utilisateur utilisateur) {
+//		  utilisateur = utilisateurRerository.save(utilisateur);
+//		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
+//	  }
+//	  
+//	  @PutMapping("/utilisateur/by-id/{id}")
+//	  public Utilisateur update (@Valid @RequestBody Utilisateur utilisateur) {
+//		  return utilisateurRerository.save(utilisateur);
 //
-//	//Mapping
-////	[
-////	    {
-////	        "nom": "olga",
-////	        "prenom": "olga",
-////	        "email": "olga@gmail.com",
-////	        "motDePasse": "olga"
-////	    }
-////	]
-
-	  @GetMapping
-	     public List<Utilisateur> getAll() {
-		    return utilisateurRerository.findAll();    
-	  }
-	  
-	  @GetMapping("/by-id/{id}")
-	  public Utilisateur getOne(@PathVariable Long id) {
-		  return utilisateurRerository.findById(id).get();
-	  }
-  
-	  @PostMapping
-	  public void save (@Validated @RequestBody Utilisateur newUtilisateur) {
-		   utilisateurRerository.save(newUtilisateur);
-	  }
-	  
-	  @PutMapping("/by-id/{id}")
-	  public Utilisateur update (@Valid @RequestBody Utilisateur utilisateur) {
-		  return utilisateurRerository.save(utilisateur);
-
-	  }
+//	  }
 	  
 	  //@DeleteMapping("/by-email/{email}")
 	  @DeleteMapping("/by-id/{id}")
