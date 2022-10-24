@@ -4,11 +4,15 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,13 +47,20 @@ public class EmpruntController
 		  return new ResponseEntity<Emprunt>(emprunt, HttpStatus.OK);
 	  }
 	  
+	  @GetMapping("/by-user/{id}")
+	  public List<Emprunt> getEmpruntByUtilisateur(Utilisateur utilisateur) {
+		 return empruntRepository.findEmpruntByUtilisateur(utilisateur);
+	  }
 	  
-	  
-//	  @GetMapping("/{id_utilisateur}")
-//	  public Optional<Utilisateur> getEmprunt(@PathVariable Long id_utilisateur) {
-//		  Optional<Utilisateur> utilisateur = utilisateurRerository.findById(id_utilisateur);
-//		return utilisateur;
+//	  //ne marche pas
+//	  @PostMapping
+//	  public ResponseEntity<Emprunt> save(@Valid @RequestBody Emprunt emprunt) {
+//		  emprunt = empruntRepository.save(emprunt);
+//		  return new ResponseEntity<Emprunt>(emprunt, HttpStatus.OK);
 //	  }
+	  
+	  
+	  
 	  
 	  
 
