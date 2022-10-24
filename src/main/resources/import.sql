@@ -1,5 +1,5 @@
 insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (1,'Kanye West', 125, 20,'2003-12-02','The college Dropout');
-insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (2,'Jay Z', 120, 54,'2003-11-14','The Black Album',);
+insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (2,'Jay Z', 120, 54,'2003-11-14','The Black Album');
 insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (3,'Aaliyah', 73, 18,'1996-08-13','One in a million');
 insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (4,'D Angelo', 78, 13,'2000-01-25','Voodoo');
 insert into CD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE) values (5,'Nas', 60, 18,'2006-12-19','HipHop is Dead');
@@ -21,3 +21,15 @@ insert into LIVRE (ID, NOM, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, NUMER
 insert into LIVRE (ID, NOM, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, NUMERO_ISBN) values (13,'Victor Hugo', 7, '1831-03-19', 'Notre de Dame de Paris','407036822X');
 insert into LIVRE (ID, NOM, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, NUMERO_ISBN) values (14,'Jane Austen', 5, '1813-09-21', 'Pride and Prejudice','507036822X');
 insert into LIVRE (ID, NOM, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, NUMERO_ISBN) values (15,'Guy de Maupassant', 6, '1886-11-19', 'Le Horla','607036822X');
+
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR, UTILISATEUR_ID) VALUES (1, '2022-10-01', NULL, 1);
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR, UTILISATEUR_ID) VALUES (2, '2022-09-20', NULL, 2);
+insert into EMPRUNT (ID, DATE_EMPRUNT, DATE_RETOUR, UTILISATEUR_ID) VALUES (3, '2022-10-09', NULL, 3);
+
+insert into EMPRUNT_ITEM (EMPRUNT_ID, ITEM_ID) VALUES (1, 1);
+insert into EMPRUNT_ITEM (EMPRUNT_ID, ITEM_ID) VALUES (2, 1);
+insert into EMPRUNT_ITEM (EMPRUNT_ID, ITEM_ID) VALUES (3, 2);
+
+alter sequence emprunt_sequence_generator restart with 100;
+alter sequence item_sequence_generator restart with 100;
+alter sequence utilisateur_sequence_generator restart with 100;

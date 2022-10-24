@@ -18,6 +18,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //@MappedSuperclass
 @Entity
@@ -27,7 +29,7 @@ public abstract class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
-	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1, initialValue = 16)
+	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1)
 	//@GeneratedValue(strategy = GenerationType.TABLE)
 
 	private Long id;
@@ -46,6 +48,8 @@ public abstract class Item {
 	private String nom;
 	
 	@ManyToMany(mappedBy = "Items", cascade = CascadeType.REMOVE)
+	//@JsonManagedReference
+	@JsonIgnore 
  	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Long getId() {

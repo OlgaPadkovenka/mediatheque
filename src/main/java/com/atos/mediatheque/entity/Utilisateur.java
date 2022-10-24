@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name="utilisateur")
@@ -21,7 +24,7 @@ public class Utilisateur{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateurSequenceGenerator")
-	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1, initialValue = 6)
+	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1)
 	//@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	
@@ -38,6 +41,7 @@ public class Utilisateur{
 	private String motDePasse;
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	//@JsonManagedReference
 	    private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Utilisateur() {
