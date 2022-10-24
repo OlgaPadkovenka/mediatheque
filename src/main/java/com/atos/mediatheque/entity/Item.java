@@ -27,8 +27,8 @@ public abstract class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
-	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1)
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1, initialValue = 16)
+	//@GeneratedValue(strategy = GenerationType.TABLE)
 
 	private Long id;
 		

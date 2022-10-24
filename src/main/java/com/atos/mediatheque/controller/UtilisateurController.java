@@ -24,20 +24,20 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/utilisateurs")
 public class UtilisateurController {
 	
 @Autowired
 private UtilisateurRerository utilisateurRerository;
 
 
-	  @GetMapping("/utilisateurs")
+	  @GetMapping
 	  public List<Utilisateur> getAll() {
 		  
 		  return utilisateurRerository.findAll();    
 	  }
 	  
-	  @GetMapping("/utilisateur/by-id/{id}")
+	  @GetMapping("/by-id/{id}")
 	  public ResponseEntity<Utilisateur> getOne(@PathVariable Long id) {
 		  Utilisateur utilisateur = utilisateurRerository.findById(id).get();
 		  if(utilisateur == null) {
@@ -46,18 +46,18 @@ private UtilisateurRerository utilisateurRerository;
 		  return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
 	  }
 
-//  
-//	  @PostMapping("/utilisateur")
-//	  public ResponseEntity<Utilisateur> save(@Valid @RequestBody Utilisateur utilisateur) {
-//		  utilisateur = utilisateurRerository.save(utilisateur);
-//		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
-//	  }
-//	  
-//	  @PutMapping("/utilisateur/by-id/{id}")
-//	  public Utilisateur update (@Valid @RequestBody Utilisateur utilisateur) {
-//		  return utilisateurRerository.save(utilisateur);
-//
-//	  }
+  
+	  @PostMapping
+	  public ResponseEntity<Utilisateur> save(@Valid @RequestBody Utilisateur utilisateur) {
+		  utilisateur = utilisateurRerository.save(utilisateur);
+		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
+	  }
+	  
+	  @PutMapping("/by-id/{id}")
+	  public ResponseEntity<Utilisateur> update(@Valid @RequestBody Utilisateur utilisateur) {
+		  utilisateur = utilisateurRerository.save(utilisateur);
+		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
+	  }
 	  
 	  //@DeleteMapping("/by-email/{email}")
 	  @DeleteMapping("/by-id/{id}")

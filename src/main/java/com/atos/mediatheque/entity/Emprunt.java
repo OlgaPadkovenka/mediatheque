@@ -27,6 +27,7 @@ public class Emprunt {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empruntSequenceGenerator")
 	@SequenceGenerator(name = "empruntSequenceGenerator", allocationSize = 1)
+	//@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	
 	@Column(name="date_emprunt")

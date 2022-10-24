@@ -21,8 +21,8 @@ public class Utilisateur{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateurSequenceGenerator")
-	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1)
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1, initialValue = 6)
+	//@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	
 	@Column(name="nom")
@@ -45,15 +45,18 @@ public class Utilisateur{
 	}
 	
 			
-	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse) {
+	
+	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.motDePasse = motDePasse;
+		this.emprunts = emprunts;
 	}
-	
+
+
 	public Long getId() {
 		return id;
 	}
