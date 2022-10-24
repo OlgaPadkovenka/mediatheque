@@ -18,6 +18,9 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	
 	@Query("From Livre")
 	List<Item> findAllLivre();
+
+	@Query("From Item")
+	Item findByIdItem(Integer nombreDExemplaires);
 	
 	
 

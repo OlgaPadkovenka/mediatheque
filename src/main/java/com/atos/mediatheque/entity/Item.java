@@ -17,6 +17,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -48,8 +49,8 @@ public abstract class Item {
 	private String nom;
 	
 	@ManyToMany(mappedBy = "Items", cascade = CascadeType.REMOVE)
-	//@JsonManagedReference
-	@JsonIgnore 
+	@JsonIgnore
+	//@JsonBackReference
  	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Long getId() {

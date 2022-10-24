@@ -25,7 +25,6 @@ public class Utilisateur{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateurSequenceGenerator")
 	@SequenceGenerator(name = "utilisateurSequenceGenerator", allocationSize = 1)
-	//@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	
 	@Column(name="nom")
@@ -41,7 +40,7 @@ public class Utilisateur{
 	private String motDePasse;
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
-	//@JsonManagedReference
+	@JsonBackReference
 	    private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Utilisateur() {

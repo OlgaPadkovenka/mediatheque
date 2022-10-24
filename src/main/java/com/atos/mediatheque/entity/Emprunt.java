@@ -42,12 +42,12 @@ public class Emprunt {
 	private Date dateRetour;
 	
 	@ManyToOne
-	//@JsonManagedReference
-	@JsonIgnore
+	@JsonManagedReference
 	private Utilisateur utilisateur;
 	
 	 @ManyToMany
 	 //@JsonManagedReference
+	 @JsonIgnore
  	 @JoinTable(
  			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
