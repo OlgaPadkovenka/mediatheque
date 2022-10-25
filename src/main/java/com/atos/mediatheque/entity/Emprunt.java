@@ -92,13 +92,13 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 
-//	public Set<Item> getItems() {
-//		return Items;
-//	}
-//
-//	public void setItems(Set<Item> items) {
-//		Items = items;
-//	}
+	public Set<Item> getItems() {
+		return Items;
+	}
+
+	public void setItems(Set<Item> items) {
+		Items = items;
+	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;

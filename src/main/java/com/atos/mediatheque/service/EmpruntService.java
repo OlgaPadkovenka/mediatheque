@@ -2,6 +2,7 @@ package com.atos.mediatheque.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -48,7 +49,7 @@ public class EmpruntService {
 			System.out.println("vous ne pouvez pas emprunter plus de 3 items");
 		}
 		
-		List<Item> itemsDisponibles = new ArrayList<>();
+		Set<Item> itemsDisponibles = new HashSet<>();
 		
 		for(Item item: items) {
 			Item itemEmprunte = itemRepository.findById(item.getId()).get();

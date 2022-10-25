@@ -1,5 +1,6 @@
 package com.atos.mediatheque.controller;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,8 +34,8 @@ public class EmpruntController
 	private EmpruntRepository empruntRepository;
 	@Autowired
 	private UtilisateurRerository utilisateurRerository;
-//	@Autowired
-//	private ItemRepository itemRepository;
+	@Autowired
+	private ItemRepository itemRepository;
 	
 	@Autowired
 	private EmpruntService empruntService;
@@ -56,13 +57,18 @@ public class EmpruntController
 		 return empruntRepository.findEmpruntByUtilisateur(utilisateur);
 	  }
 	  	  
-	  @PostMapping("by-user/{id}/new")
-	  public ResponseEntity<Emprunt> save(@Valid @RequestBody Set<Item> items, @PathVariable Long idUtilisateur) {
+	  @PostMapping("by-user/{idUtilisateur}/new")
+	  public ResponseEntity<Emprunt> save(@Valid @RequestBody Set<Long> idItems, @PathVariable Long idUtilisateur) {
 		  //id utilisateur
 		  Utilisateur utilisateur = new Utilisateur();
 		  
 		  utilisateur = utilisateurRerository.findById(idUtilisateur).orElseThrow();
 		  utilisateur.setId(idUtilisateur);
+		  
+		  Set<Item> items = new HashSet<>();
+		  for(Long idItem : idItems) {
+			  items.add(itemRepository.findById(idItem).orElseThrow());
+		  }
 
 		  return ResponseEntity.status(HttpStatus.CREATED).body(empruntService.faireEmprunt(utilisateur, items));
 
