@@ -31,19 +31,20 @@ public class EmpruntService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
+	@Transactional
 	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) {
 	
 		utilisateur = utilisateurRerository.findById(utilisateur.getId()).orElseThrow();
 		
-		int nombreItemsEmtrunts = 0;
+		int nombreItemsEmprunts = 0;
 		
 		for(Emprunt emprunt : utilisateur.getEmprunts()) {
 
-			nombreItemsEmtrunts += utilisateur.getEmprunts().size();
+			nombreItemsEmprunts += utilisateur.getEmprunts().size();
 		
 		}
 	
-		if(nombreItemsEmtrunts + items.size() > 3) {
+		if(nombreItemsEmprunts + items.size() > 3) {
 			System.out.println("vous ne pouvez pas emprunter plus de 3 items");
 		}
 		

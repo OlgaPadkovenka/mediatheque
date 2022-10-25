@@ -2,7 +2,6 @@ package com.atos.mediatheque.entity;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -54,13 +53,13 @@ public class Emprunt {
  			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
  		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
- 		   List<Item> Items;
+ 		   Set<Item> Items;
 	 
 		public Emprunt() {
 			super();
 		}
 		
-	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, List<Item> items) {
+	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<Item> items) {
 		super();
 		this.id = id;
 		this.dateEmprunt = dateEmprunt;
@@ -100,14 +99,6 @@ public class Emprunt {
 //	public void setItems(Set<Item> items) {
 //		Items = items;
 //	}
-	
-	public List<Item> getItems() {
-		return Items;
-	}
-
-	public void setItems(List<Item> items) {
-		Items = items;
-	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
