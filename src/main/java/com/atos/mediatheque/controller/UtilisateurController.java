@@ -46,12 +46,13 @@ private UtilisateurRerository utilisateurRerository;
 		  return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
 	  }
 
-  
-	  @PostMapping
+ 
+	  @PostMapping("/new")
 	  public ResponseEntity<Utilisateur> save(@Valid @RequestBody Utilisateur utilisateur) {
 		  utilisateur = utilisateurRerository.save(utilisateur);
 		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
 	  }
+	  
 	  
 	  @PutMapping("/by-id/{id}")
 	  public ResponseEntity<Utilisateur> update(@Valid @RequestBody Utilisateur utilisateur) {
