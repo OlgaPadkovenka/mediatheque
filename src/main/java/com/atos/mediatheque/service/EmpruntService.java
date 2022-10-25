@@ -1,10 +1,13 @@
 package com.atos.mediatheque.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,19 +31,44 @@ public class EmpruntService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
-//	public void effectuerEmprunt(Utilisateur utilisateur, List<Item> items) {
-//		List<Item> itemEmprunt = new ArrayList<>();
-//		
-//		for(Item item : items) {
-//
-//			Item it = itemRepository.findByIdItem(item.getNombreDExemplaires());
-//			
-//			it.setNombreDExemplaires(it.getNombreDExemplaires() - 1);
-//
-//		itemEmprunt.add(it);
-//		
-//		}
-//	
-//	}
+	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) {
+	
+		utilisateur = utilisateurRerository.findById(utilisateur.getId()).orElseThrow();
+		
+		int nombreItemsEmtrunts = 0;
+		
+		for(Emprunt emprunt : utilisateur.getEmprunts()) {
+
+			nombreItemsEmtrunts += utilisateur.getEmprunts().size();
+		
+		}
+	
+		if(nombreItemsEmtrunts + items.size() > 3) {
+			System.out.println("vous ne pouvez pas emprunter plus de 3 items");
+		}
+		
+		List<Item> itemsDisponibles = new ArrayList<>();
+		
+		for(Item item: items) {
+			Item itemEmprunte = itemRepository.findById(item.getId()).get();
+			
+			if(itemEmprunte.getNombreDExemplaires() == 0) {
+				System.out.println("L'item n'est pas disponible");
+			} else {
+				itemEmprunte.setNombreDExemplaires(itemEmprunte.getNombreDExemplaires() - 1);
+				itemsDisponibles.add(itemEmprunte);
+			}
+		}
+		
+		Emprunt emprunt = new Emprunt();
+		emprunt.setDateEmprunt(new Date());
+		emprunt.setItems(itemsDisponibles);
+		emprunt.setUtilisateur(utilisateur);
+		
+		empruntRepository.save(emprunt);
+		
+		return emprunt;
+		
+	}
 
 }

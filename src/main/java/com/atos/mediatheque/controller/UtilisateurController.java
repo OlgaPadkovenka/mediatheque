@@ -7,20 +7,19 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 
 @RestController
@@ -50,7 +49,7 @@ private UtilisateurRerository utilisateurRerository;
 	  @PostMapping("/new")
 	  public ResponseEntity<Utilisateur> save(@Valid @RequestBody Utilisateur utilisateur) {
 		  utilisateur = utilisateurRerository.save(utilisateur);
-		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.OK);
+		   return new ResponseEntity<Utilisateur> (utilisateur, HttpStatus.CREATED);
 	  }
 	  
 	  

@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -40,7 +41,8 @@ public class Utilisateur{
 	private String motDePasse;
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
-	@JsonBackReference
+	//@JsonBackReference
+	//@JsonIgnore
 	    private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Utilisateur() {
