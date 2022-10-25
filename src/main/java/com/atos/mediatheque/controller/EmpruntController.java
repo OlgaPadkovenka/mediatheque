@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class EmpruntController
 		  //id utilisateur
 		  Utilisateur utilisateur = new Utilisateur();
 		  
-		  utilisateur = utilisateurRerository.findById(idUtilisateur).orElseThrow();
+		  utilisateur = utilisateurRerository.findById(idUtilisateur).orElseThrow(()  -> new EntityNotFoundException("Cet utilisateur n'existe pas."));
 		  utilisateur.setId(idUtilisateur);
 		  
 		  Set<Item> items = new HashSet<>();
