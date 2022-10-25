@@ -33,7 +33,7 @@ public class EmpruntService {
 	private ItemRepository itemRepository;
 	
 	@Transactional
-	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) {
+	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) throws EmprutLimitException{
 	
 		utilisateur = utilisateurRerository.findById(utilisateur.getId()).orElseThrow();
 		
@@ -46,7 +46,8 @@ public class EmpruntService {
 		}
 	
 		if(nombreItemsEmprunts + items.size() > 3) {
-			System.out.println("vous ne pouvez pas emprunter plus de 3 items");
+		
+			throw new EmprutLimitException("vous ne pouvez pas emprunter plus de 3 items");
 		}
 		
 		Set<Item> itemsDisponibles = new HashSet<>();
