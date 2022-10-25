@@ -25,6 +25,7 @@ import com.atos.mediatheque.repository.ItemRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 import com.atos.mediatheque.service.EmpruntService;
 import com.atos.mediatheque.service.EmprutLimitException;
+import com.atos.mediatheque.service.ItemNotDisponibleException;
 
 
 @RestController
@@ -60,7 +61,7 @@ public class EmpruntController
 	  }
 	  	  
 	  @PostMapping("by-user/{idUtilisateur}/new")
-	  public ResponseEntity<Emprunt> save(@Valid @RequestBody Set<Long> idItems, @PathVariable Long idUtilisateur) throws EmprutLimitException {
+	  public ResponseEntity<Emprunt> save(@Valid @RequestBody Set<Long> idItems, @PathVariable Long idUtilisateur) throws EmprutLimitException, ItemNotDisponibleException {
 		  //id utilisateur
 		  Utilisateur utilisateur = new Utilisateur();
 		  

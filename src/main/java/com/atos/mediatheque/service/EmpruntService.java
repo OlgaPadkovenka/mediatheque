@@ -33,7 +33,7 @@ public class EmpruntService {
 	private ItemRepository itemRepository;
 	
 	@Transactional
-	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) throws EmprutLimitException{
+	public Emprunt faireEmprunt(Utilisateur utilisateur, Set<Item> items) throws EmprutLimitException, ItemNotDisponibleException {
 	
 		utilisateur = utilisateurRerository.findById(utilisateur.getId()).orElseThrow();
 		
@@ -56,7 +56,9 @@ public class EmpruntService {
 			Item itemEmprunte = itemRepository.findById(item.getId()).get();
 			
 			if(itemEmprunte.getNombreDExemplaires() == 0) {
-				System.out.println("L'item n'est pas disponible");
+				
+				throw new ItemNotDisponibleException("L'item n'est pas disponible");
+		
 			} else {
 				itemEmprunte.setNombreDExemplaires(itemEmprunte.getNombreDExemplaires() - 1);
 				itemsDisponibles.add(itemEmprunte);
