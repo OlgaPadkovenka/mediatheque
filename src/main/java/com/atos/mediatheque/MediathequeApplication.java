@@ -9,7 +9,7 @@ public class MediathequeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MediathequeApplication.class, args);
 		
-		System.out.println("start application");
+		System.out.println("start");
 	}
 
 }

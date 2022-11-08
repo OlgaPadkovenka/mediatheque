@@ -76,5 +76,7 @@ public class EmpruntController
 		  return ResponseEntity.status(HttpStatus.CREATED).body(empruntService.faireEmprunt(utilisateur, items));
 
 	  }	  
+	  
+	  
 	
 }

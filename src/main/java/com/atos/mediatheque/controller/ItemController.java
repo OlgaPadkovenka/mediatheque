@@ -20,7 +20,6 @@ import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.DVD;
 import com.atos.mediatheque.entity.Item;
 import com.atos.mediatheque.entity.Livre;
-import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.ItemRepository;
 
 
@@ -64,19 +63,19 @@ public class ItemController {
 	  @PostMapping("/cd")
 	  public ResponseEntity<CD> save(@Valid @RequestBody CD cd) {
 		  cd = itemRepository.save(cd);
-		  return new ResponseEntity<CD> (cd, HttpStatus.OK);
+		  return new ResponseEntity<CD> (cd, HttpStatus.CREATED);
 	  } 
 	  
 	  @PostMapping("/dvd")
 	  public ResponseEntity<DVD> save(@Valid @RequestBody DVD dvd) {
 		  dvd = itemRepository.save(dvd);
-		  return new ResponseEntity<DVD> (dvd, HttpStatus.OK);
+		  return new ResponseEntity<DVD> (dvd, HttpStatus.CREATED);
 	  } 
 	  
 	  @PostMapping("/livre")
 	  public ResponseEntity<Livre> save(@Valid @RequestBody Livre livre) {
 		  livre = itemRepository.save(livre);
-		  return new ResponseEntity<Livre> (livre, HttpStatus.OK);
+		  return new ResponseEntity<Livre> (livre, HttpStatus.CREATED);
 	  } 
 	  
 	  @PutMapping("/cd/by-id/{id}")
