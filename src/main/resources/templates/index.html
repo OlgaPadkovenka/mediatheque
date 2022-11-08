@@ -7,6 +7,8 @@
 <body>
 	<div th:each="item:${listItems}">
 		<div th:text="${item.id}"></div>
+		<div th:text="${item.titre}"></div>
+		<div th:text="${item.nom}"></div>
 	</div>
 </body>
 </html>
