@@ -13,5 +13,5 @@ public interface EmpruntRepository extends JpaRepository<Emprunt, Long>{
 	//les emprunts d'un utilisateur
 	@Query("Select e from Emprunt e WHERE e.utilisateur = :utilisateur")
 	List<Emprunt> findEmpruntByUtilisateur(Utilisateur utilisateur);
-
+	
 }
