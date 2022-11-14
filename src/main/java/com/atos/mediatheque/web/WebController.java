@@ -36,6 +36,32 @@ public class WebController {
 		return "index";
 	}
 	
+	@GetMapping("/cd")
+	public String cd(Model model) {
+		List<Item> listCds = itemRepository.findAllCd();
+		model.addAttribute("listCds", listCds);
+		return "items/cd";
+	}
+	
+	@GetMapping("/dvd")
+	public String dvd(Model model) {
+		List<Item> listDvds = itemRepository.findAllDvd();
+		model.addAttribute("listDvds", listDvds);
+		return "items/dvd";
+	}
+	
+	@GetMapping("/livre")
+	public String livre(Model model) {
+		List<Item> listLivres = itemRepository.findAllLivre();
+		model.addAttribute("listLivres", listLivres);
+		return "items/livre";
+	}
+	
+	@GetMapping("/connection")
+	public String connection (Model model) {
+		return "connection";
+	}
+	
 	@GetMapping("/user/{id}")
 	public Object userProfil (Model model, @PathVariable Long id) {
 		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
