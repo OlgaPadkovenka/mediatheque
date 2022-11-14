@@ -10,18 +10,20 @@ import com.atos.mediatheque.entity.Item;
 public interface ItemRepository extends JpaRepository<Item, Long>{
 	
 	
-	@Query("From CD")
+	@Query("From CD ORDER BY TITRE")
 	List<Item> findAllCd();
 	
-	@Query("From DVD")
+	@Query("From DVD ORDER BY TITRE")
 	List<Item> findAllDvd();
 	
-	@Query("From Livre")
+	@Query("From Livre ORDER BY TITRE")
 	List<Item> findAllLivre();
 
-	@Query("From Item")
+	@Query("From Item ORDER BY TITRE")
 	Item findByIdItem(Integer nombreDExemplaires);
 	
 	
-
+	@Query("From Item ORDER BY TITRE")
+	List<Item> findAll();
+	
 }

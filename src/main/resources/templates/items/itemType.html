@@ -1,0 +1,9 @@
+
+<div id="itemType">
+	<small th:if="${item.class.name == 'com.atos.mediatheque.entity.CD'}"
+		th:text="CD"></small> <small
+		th:if="${item.class.name == 'com.atos.mediatheque.entity.DVD'}"
+		th:text="DVD"></small> <small
+		th:if="${item.class.name == 'com.atos.mediatheque.entity.Livre'}"
+		th:text="Livre"></small>
+</div>
