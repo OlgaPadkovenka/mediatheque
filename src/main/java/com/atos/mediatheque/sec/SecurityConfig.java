@@ -16,6 +16,8 @@ public class SecurityConfig {
 	@Bean
 public InMemoryUserDetailsManager userDetailsService() {
 		
+		System.out.println("config user");
+		
 		  UserDetails user = User
 		            .withUsername("user")
 		            .password(passwordEncoder().encode("password"))
