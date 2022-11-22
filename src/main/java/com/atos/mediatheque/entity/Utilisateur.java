@@ -45,6 +45,7 @@ public class Utilisateur{
 	//@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
 	
+	
 	//chanque fois quand je charge un utilisateur, Hibernate charge toutes ses roles en mémoire
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<RoleUser> role = new ArrayList<>();

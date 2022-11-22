@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
-import com.atos.mediatheque.sec.SecurityConfig;
+import com.atos.mediatheque.security.SecurityConfig;
 
 @SpringBootApplication
 @ComponentScan(basePackages= {"com.atos.mediatheque.web"})

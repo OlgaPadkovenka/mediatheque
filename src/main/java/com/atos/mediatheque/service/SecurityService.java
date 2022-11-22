@@ -1,18 +1,18 @@
 package com.atos.mediatheque.service;
 
-import com.atos.mediatheque.entity.Role;
+import com.atos.mediatheque.entity.RoleUser;
 import com.atos.mediatheque.entity.Utilisateur;
 
 public interface SecurityService {
 
-	Utilisateur saveNewUtilisateur(String email, String nom, String prenom, String motDePasse, String reMotDePasse);
+	Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse, String reMotDePasse);
 
-	Role saveNewRole(String name);
+	RoleUser saveNewRole(String roleName);
 
-	void addRoleAUtilisateur(String nom, String name);
+	void addRoleToUser(String nom, String roleName);
 
-	void removeRoleFromUser();
+	void removeRoleFromUser(String nom, String roleName);
 
-	Utilisateur loadByUserName(String nom);
+	Utilisateur loadByUserName(String email);
 
 }

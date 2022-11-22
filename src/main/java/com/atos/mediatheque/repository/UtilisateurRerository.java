@@ -16,5 +16,7 @@ public interface UtilisateurRerository extends JpaRepository<Utilisateur, Long> 
 	//void updateUtilisateur(@Param(value="email") String email);
 
 	List<Utilisateur> findAll();
+	
+	Utilisateur findByEmail(String email);
 }
  

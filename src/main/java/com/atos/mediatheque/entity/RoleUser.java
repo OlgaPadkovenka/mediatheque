@@ -1,5 +1,7 @@
 package com.atos.mediatheque.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,17 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-//get et set lombok
-@Data
-//constructeur avec arguments
-@AllArgsConstructor
-//constructeur sans argument
-@NoArgsConstructor
 @Table(name="role")
 public class RoleUser {
 
@@ -29,6 +21,54 @@ public class RoleUser {
 	
 	@Column(name="nom", unique = true)
 	private String roleName;
+
+	public RoleUser(Long id, String roleName) {
+		super();
+		this.id = id;
+		this.roleName = roleName;
+	}
+	
+	public RoleUser() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, roleName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RoleUser other = (RoleUser) obj;
+		return Objects.equals(id, other.id) && Objects.equals(roleName, other.roleName);
+	}
+
+	@Override
+	public String toString() {
+		return "RoleUser [id=" + id + ", roleName=" + roleName + "]";
+	}
 	
 	
 }

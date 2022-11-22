@@ -3,9 +3,9 @@ package com.atos.mediatheque.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.atos.mediatheque.entity.Role;
+import com.atos.mediatheque.entity.RoleUser;
 import com.atos.mediatheque.entity.Utilisateur;
-import com.atos.mediatheque.repository.RoleRepository;
+import com.atos.mediatheque.repository.RoleUserRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
 import lombok.AllArgsConstructor;
@@ -19,11 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 public class SecurityServiceImp implements SecurityService{
 	
 	private UtilisateurRerository utilisateurRerository;
-	private RoleRepository roleRepository;
+	private RoleUserRepository roleUserRepository;
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public Utilisateur saveNewUtilisateur(String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
+	public Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
 		if(!motDePasse.equals(reMotDePasse)) throw new RuntimeException("Passwords not match");
 		String hashedMDP = passwordEncoder.encode(motDePasse);
 		Utilisateur utilisateur = new Utilisateur();
@@ -35,33 +35,37 @@ public class SecurityServiceImp implements SecurityService{
 		return utilisateurSaved;
 	};
 
+
 	@Override
-	public Role saveNewRole(String name) {
-		Role role = roleRepository.findByName(name);
-		if(role != null) throw new RuntimeException("Role "+ name + "allready existe");
-		role = new Role();
-		role.setName(name);
-		Role roleSaved = roleRepository.save(role);
-		return roleSaved;
+	public RoleUser saveNewRole(String roleName) {
+		RoleUser roleUser = roleUserRepository.findByRoleName(roleName);
+		
+		if(roleUser != null) throw new RuntimeException("Role " + roleName+ "allready exist"); 
+		
+		roleUser = new RoleUser();
+		roleUser.setRoleName(roleName);
+		roleUserRepository.save(roleUser);
+		return roleUser;
 	}
 
 	@Override
-	public void addRoleAUtilisateur(String nom, String name) {
+	public void addRoleToUser(String nom, String roleName) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeRoleFromUser() {
+	public void removeRoleFromUser(String nom, String roleName) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Utilisateur loadByUserName(String nom) {
+	public Utilisateur loadByUserName(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 	
 }
