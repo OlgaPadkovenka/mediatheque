@@ -33,6 +33,16 @@ public class DVD extends Item {
 	public void setDvdType(String dvdType) {
 		this.dvdType = dvdType;
 	}
+	
+	public DVD() {
+		super();
+	}
+
+	public DVD(String duree, String dvdType) {
+		super();
+		this.duree = duree;
+		this.dvdType = dvdType;
+	}
 
 	@Override
 	public String toString() {

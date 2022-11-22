@@ -34,7 +34,7 @@ public class Utilisateur{
 	@Column(name="prenom")
 	private String prenom;
 	
-	@Column(name="email")
+	@Column(name="email", unique = true)
 	private String email;
 	
 	@Column(name="mot_de_passe")
@@ -45,6 +45,7 @@ public class Utilisateur{
 	//@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
 	
+	//chanque fois quand je charge un utilisateur, Hibernate charge toutes ses roles en mémoire
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<RoleUser> role = new ArrayList<>();
 	

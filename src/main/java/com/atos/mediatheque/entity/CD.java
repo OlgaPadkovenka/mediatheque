@@ -1,6 +1,5 @@
 package com.atos.mediatheque.entity;
 
-
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cd")
+
 public class CD extends Item {
 	
 //	@Id
@@ -18,8 +18,7 @@ public class CD extends Item {
 		
 	@Column(name="duree")
 	private String duree;
-	
-	
+
 	public String getDuree() {
 		return duree;
 	}
@@ -47,12 +46,9 @@ public class CD extends Item {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CD [duree=");
-		builder.append(duree);
-		builder.append("]");
-		return builder.toString();
+		return "CD [duree=" + duree + "]";
 	}
+	
 	
 	
 }

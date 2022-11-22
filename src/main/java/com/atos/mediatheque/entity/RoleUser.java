@@ -27,7 +27,7 @@ public class RoleUser {
 	@SequenceGenerator(name = "roleSequenceGenerator", allocationSize = 1)
 	private Long id;
 	
-	@Column(name="nom")
+	@Column(name="nom", unique = true)
 	private String roleName;
 	
 	
