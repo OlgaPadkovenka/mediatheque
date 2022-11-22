@@ -1,15 +1,19 @@
 package com.atos.mediatheque.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -39,13 +43,14 @@ public class Utilisateur{
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
 	//@JsonBackReference
 	//@JsonIgnore
-	    private Set<Emprunt> emprunts = new HashSet<>();
+	private Set<Emprunt> emprunts = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<RoleUser> role = new ArrayList<>();
 	
 	public Utilisateur() {
 		super();
 	}
-	
-			
 	
 	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts) {
 		super();
