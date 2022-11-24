@@ -54,7 +54,8 @@ public class Utilisateur{
 		super();
 	}
 	
-	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts) {
+	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts,
+			List<RoleUser> role) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -62,7 +63,10 @@ public class Utilisateur{
 		this.email = email;
 		this.motDePasse = motDePasse;
 		this.emprunts = emprunts;
+		this.role = role;
 	}
+
+
 
 
 	public Long getId() {
@@ -102,6 +106,15 @@ public class Utilisateur{
 	public void setEmprunts(Set<Emprunt> emprunts) {
 		this.emprunts = emprunts;
 	}
+	
+	public List<RoleUser> getRole() {
+		return role;
+	}
+
+	public void setRole(List<RoleUser> role) {
+		this.role = role;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id, motDePasse, nom, prenom);

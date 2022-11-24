@@ -2,6 +2,7 @@ package com.atos.mediatheque.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atos.mediatheque.entity.RoleUser;
 import com.atos.mediatheque.entity.Utilisateur;
@@ -16,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 //constructeur avec tous les arguments de Lombok
 @AllArgsConstructor
+//transactional de Spring
+@Transactional
 public class SecurityServiceImp implements SecurityService{
 	
 	private UtilisateurRerository utilisateurRerository;
@@ -44,26 +47,49 @@ public class SecurityServiceImp implements SecurityService{
 		
 		roleUser = new RoleUser();
 		roleUser.setRoleName(roleName);
-		roleUserRepository.save(roleUser);
-		return roleUser;
+		RoleUser savedRoleUser = roleUserRepository.save(roleUser);
+		return savedRoleUser;
 	}
 
 	@Override
-	public void addRoleToUser(String nom, String roleName) {
-		// TODO Auto-generated method stub
+	public void addRoleToUser(String email, String roleName) {
+		//Je charge l'utilisateur
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
 		
+		//vérifier si l'utilisateur n'est pas égale à null
+		if(utilisateur == null) throw new RuntimeException("User not found");
+		
+		//Je charge des roles
+		RoleUser roleUser = roleUserRepository.findByRoleName(roleName);
+		
+		//vérifier si le rôle n'est pas égale à null
+		if(roleUser == null) throw new RuntimeException("Role not found");
+		
+		utilisateur.getRole().add(roleUser);
 	}
 
 	@Override
-	public void removeRoleFromUser(String nom, String roleName) {
-		// TODO Auto-generated method stub
+	public void removeRoleFromUser(String email, String roleName) {
+		//Je charge l'utilisateur
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
+		
+		//vérifier si l'utilisateur n'est pas égale à null
+		if(utilisateur == null) throw new RuntimeException("User not found");
+		
+		//Je charge des roles
+		RoleUser roleUser = roleUserRepository.findByRoleName(roleName);
+		
+		//vérifier si le rôle n'est pas égale à null
+		if(roleUser == null) throw new RuntimeException("Role not found");
+		
+		utilisateur.getRole().remove(roleUser);
 		
 	}
 
 	@Override
 	public Utilisateur loadByUserName(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return utilisateurRerository.findByEmail(email);
 	}
 
 	
