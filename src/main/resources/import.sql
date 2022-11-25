@@ -9,6 +9,16 @@ insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (2,'Sylvie
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (3,'Roger','Smith','smithrog@hotmail.fr','unpassword');
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (4,'Erik','Jackson','jacksEr@hotmail.fr','unknown');
 insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (5,'Daniela','Sagna','sagnaD@hotmail.fr','flawless');
+insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (6,'User1','User1','user1@gmail.com','$2a$12$Y/Mvz5EGwtnk/tK5dU5juu/5iOR8A5m./D/FUSzUqTVoY194/mPQG');
+insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (7,'User2','User2','user2@gmail.com','user2');
+insert into UTILISATEUR (ID, NOM, PRENOM, EMAIL, MOT_DE_PASSE) values (8,'User3','User3','user3@gmail.com','user3');
+
+insert into ROLE (ID, NOM) values (1, 'ADMIN');
+insert into ROLE (ID, NOM) values (2, 'USER');
+
+insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (6, 1);
+insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (6, 2);
+insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (7, 1);
 
 insert into DVD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, DVD_TYPE) values (6,'Scorcese Martin', 178, 6,'1995-01-01','Casino', 'DVD');
 insert into DVD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, DVD_TYPE) values (7,'Scorcese Martin', 146, 4,'1990-01-01','Les Affranchis', 'BLURAY');
@@ -33,3 +43,4 @@ insert into EMPRUNT_ITEM (EMPRUNT_ID, ITEM_ID) VALUES (3, 2);
 alter sequence emprunt_sequence_generator restart with 100;
 alter sequence item_sequence_generator restart with 100;
 alter sequence utilisateur_sequence_generator restart with 100;
+alter sequence role_sequence_generator restart with 100;

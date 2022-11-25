@@ -3,6 +3,8 @@ package com.atos.mediatheque.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.atos.mediatheque.entity.Utilisateur;
 
@@ -17,6 +19,6 @@ public interface UtilisateurRerository extends JpaRepository<Utilisateur, Long> 
 
 	List<Utilisateur> findAll();
 	
-	Utilisateur findByEmail(String email);
+	Utilisateur findByEmail(@Param(value="email") String email);
 }
  

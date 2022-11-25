@@ -1,4 +1,4 @@
-package com.atos.mediatheque.service;
+package com.atos.mediatheque.security;
 
 import com.atos.mediatheque.entity.RoleUser;
 import com.atos.mediatheque.entity.Utilisateur;

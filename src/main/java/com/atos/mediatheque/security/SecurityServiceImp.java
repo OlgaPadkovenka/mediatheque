@@ -1,4 +1,4 @@
-package com.atos.mediatheque.service;
+package com.atos.mediatheque.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,20 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 //ca permet de logger des informations
 @Slf4j
-//constructeur avec tous les arguments de Lombok
-@AllArgsConstructor
 //transactional de Spring
 @Transactional
 public class SecurityServiceImp implements SecurityService{
 	
+	
+	
+	public SecurityServiceImp(UtilisateurRerository utilisateurRerository, RoleUserRepository roleUserRepository,
+			PasswordEncoder passwordEncoder) {
+		super();
+		this.utilisateurRerository = utilisateurRerository;
+		this.roleUserRepository = roleUserRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+
 	private UtilisateurRerository utilisateurRerository;
 	private RoleUserRepository roleUserRepository;
 	private PasswordEncoder passwordEncoder;
