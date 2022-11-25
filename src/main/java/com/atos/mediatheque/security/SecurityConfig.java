@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig {
 	
 	@Autowired
 	private UserDetailsServiceImp userDetailsServiceImp;
@@ -33,12 +33,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	   }
 	 
 
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			  http.authorizeRequests()
-		      .anyRequest().authenticated()
-		      .and().formLogin();
-		}  
+	   @Bean
+		public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+
+	        http
+	        .authorizeHttpRequests((authz) -> {
+				try {
+					authz
+					    .anyRequest().authenticated()
+					    .and().formLogin();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	        );
+	    return http.build();
+
+		}   
 	
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
