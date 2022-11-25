@@ -22,8 +22,6 @@ public class SecurityConfig {
 	
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		
-		System.out.println("config user");
-		
 		 auth.userDetailsService(userDetailsServiceImp);
 }
 	

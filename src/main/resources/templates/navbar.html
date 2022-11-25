@@ -11,20 +11,26 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/cd">CDs</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/cd}">CDs</a></li>
 		</ul>
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/dvd">DVDs</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/dvd}">DVDs</a></li>
 		</ul>
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/livre">Livres</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/livre}">Livres</a></li>
 		</ul>
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/connection">Se
+			<li class="nav-item"><a class="nav-link" th:href="@{/connection}">Se
 					connecter</a></li>
 		</ul>
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="/inscription">S'inrégistrer</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/inscription}">S'inrégistrer</a></li>
+		</ul>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link"><span sec:authentication = "name"></span></a></li>
+		</ul>
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 		</ul>
 	</div>
 
