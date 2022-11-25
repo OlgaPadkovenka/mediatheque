@@ -54,17 +54,19 @@ public class WebController {
 	public String livre(Model model) {
 		List<Item> listLivres = itemRepository.findAllLivre();
 		model.addAttribute("listLivres", listLivres);
+		//	return "redirect:/user/1";
 		return "items/livre";
 	}
 	
 	@GetMapping("/connection")
 	public String connection (Model model) {
-		return "connection";
+		return "/connection";
 	}
 	
-	@GetMapping("/user/{id}")
-	public Object userProfil (Model model, @PathVariable Long id) {
-		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+	@GetMapping("/user/{email}")
+	public Object userProfil (Model model, @PathVariable String email) {
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
+		//Utilisateur utilisateur = utilisateurRerository.findById(id).get();
 		model.addAttribute("utilisateur", utilisateur);
 		return "user";
 	}
