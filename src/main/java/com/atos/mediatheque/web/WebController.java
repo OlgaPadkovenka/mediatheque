@@ -2,11 +2,16 @@ package com.atos.mediatheque.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.atos.mediatheque.entity.Emprunt;
 import com.atos.mediatheque.entity.Item;
@@ -36,6 +41,19 @@ public class WebController {
 		return "index";
 	}
 	
+//	@GetMapping("/show-item/{id}")
+//	public String showItem(@PathVariable("id") Long id, @Valid Item item, Model model) {
+//	    itemRepository.findById(id);
+//	    return "items/show-item";
+//	}
+//	
+//	@PutMapping("/update-item/{id}")
+//	public String updateItem(@PathVariable("id") Long id, @Valid Item item, 
+//	  BindingResult result, Model model) {
+//	    itemRepository.save(item);
+//	    return "redirect:/";
+//	}
+		
 	@GetMapping("/delete")
 	public String delete(Long id) {
 		itemRepository.deleteById(id);
