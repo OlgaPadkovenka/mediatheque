@@ -11,7 +11,7 @@
 			<p class="card-text">Some quick example text to build on the card
 				title and make up the bulk of the card's content.</p>
 			<a href="#" class="btn btn-outline-primary">Plus d'info</a>
-			<span><a class="btn btn-outline-danger" th:href="@{delete(id=${item.id})}">Supprimer</a></span>
+			<span><a onclick="confirm('Etes-vous sure de vouloir supprimer?')" class="btn btn-outline-danger" th:href="@{delete(id=${item.id})}">Supprimer</a></span>
 		</div>
 	</div>
 </div>
