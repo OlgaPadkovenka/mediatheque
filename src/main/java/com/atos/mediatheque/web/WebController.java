@@ -36,6 +36,12 @@ public class WebController {
 		return "index";
 	}
 	
+	@GetMapping("/delete")
+	public String delete(Long id) {
+		itemRepository.deleteById(id);
+		return "redirect:/";
+	}
+	
 	@GetMapping("/cd")
 	public String cd(Model model) {
 		List<Item> listCds = itemRepository.findAllCd();

@@ -38,8 +38,8 @@ public class SecurityConfig {
 	        .authorizeHttpRequests((authz) -> {
 				try {
 					authz.antMatchers("/").permitAll();
-					authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin().loginPage("/connection");
-					
+					authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin();
+					//authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin().loginPage("/connection");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

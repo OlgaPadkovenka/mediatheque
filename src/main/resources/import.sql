@@ -17,7 +17,6 @@ insert into ROLE (ID, NOM) values (1, 'ADMIN');
 insert into ROLE (ID, NOM) values (2, 'USER');
 
 insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (6, 1);
-insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (6, 2);
 insert into UTILISATEUR_ROLE (UTILISATEUR_ID, ROLE_ID) values (7, 1);
 
 insert into DVD (ID, NOM, DUREE, NOMBRE_D_EXEMPLAIRES, DATE_DE_PARUTION, TITRE, DVD_TYPE) values (6,'Scorcese Martin', 178, 6,'1995-01-01','Casino', 'DVD');
