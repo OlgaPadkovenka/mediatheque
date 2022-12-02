@@ -8,34 +8,67 @@
 		aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	
-	<form class="form-inline my-2 my-lg-0">
+
+	<form class="form-inline m-2">
 		<input class="form-control mr-sm-2" type="search" placeholder="Search"
 			aria-label="Search">
 	</form>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" th:href="@{/cd}">CDs</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" th:href="@{/dvd}">DVDs</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" th:href="@{/livre}">Livres</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('ADMIN')">
-			<li class="nav-item"><a class="nav-link" th:href="@{/createCD}">Créer un CD</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('ADMIN')">
-			<li class="nav-item"><a class="nav-link" th:href="@{/createDVD}">Créer un DVD</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('ADMIN')">
-			<li class="nav-item"><a class="nav-link" th:href="@{/createLivre}">Créer un livre</a></li>
-		</ul>
+			
+			<!-- CD start -->
+			
+		<div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+			<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">CD</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" th:href="@{/cd}">Consulter</a>
+				<a class="dropdown-item" th:href="@{/createCD}">Créer</a> <a
+					class="dropdown-item" href="#">Mettre à jour</a>
+			</div>
+		</div>
+		
+		<!-- CD end -->
+		
+		<!-- DVD start -->
+		
+				<div class="dropdown m-2" sec:authorize="hasAuthority('ADMIN')">
+			<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">DVD</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" th:href="@{/dvd}">Consulter</a>
+				<a class="dropdown-item" th:href="@{/createDVD}">Créer</a> <a
+					class="dropdown-item" href="#">Mettre à jour</a>
+			</div>
+		</div>
+		
+		<!-- DVD end -->
+		
+		<!-- Livre start -->
+		
+						<div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+			<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Livre</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" th:href="@{/livre}">Consulter</a>
+				<a class="dropdown-item" th:href="@{/createLivre}">Créer</a> <a
+					class="dropdown-item" href="#">Mettre à jour</a>
+			</div>
+		</div>
+		
+		<!-- Livre end -->
+		
+		<!-- Search start -->
+		
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item"><a class="nav-link" th:href="@{/}">Chercher</a></li>
 		</ul>
+		
+		<!-- Search end -->
+		
 		<ul class="navbar-nav mr-auto" sec:authorize="!isAuthenticated()">
 			<li class="nav-item"><a class="nav-link"
 				th:href="@{/connection}">Se connecter</a></li>
