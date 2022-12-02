@@ -76,7 +76,8 @@
 		</ul>
 		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
 			<li class="nav-item"><a class="nav-link"
-				sec:authentication="name" th:href="@{/user/user1@gmail.com}"></a></li>
+				sec:authentication="name" th:href="@{/user}"></a></li>
+				<!-- th:href="@{editCD(id=${item.id})}"  -->
 		</ul>
 		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
 			<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Se

@@ -45,13 +45,15 @@ public class WebController {
 		model.addAttribute("listItems", listItems);
 		return "index";
 	}
-			
-	@GetMapping("/delete")
-	public String delete(Long id) {
-		itemRepository.deleteById(id);
-		return "redirect:/";
-	}
 	
+	@GetMapping("/showItem")
+	public String showItem (Model model, Long id) {
+		Item item = itemRepository.findById(id).orElse(null);
+		model.addAttribute("item", item);
+		System.out.println(item);
+		return "items/showItem";
+	}
+				
 	@GetMapping("/createCD")
 	public String createCD(Model model) {
 		model.addAttribute("cd", new CD());
@@ -139,20 +141,35 @@ public class WebController {
 		return "items/livre";
 	}
 	
-	
+	@GetMapping("/delete")
+	public String delete(Long id) {
+		itemRepository.deleteById(id);
+		return "redirect:/";
+	}
 	
 	@GetMapping("/connection")
 	public String connection (Model model) {
 		return "/connection";
 	}
 	
-	@GetMapping("/user/{email}")
-	public Object userProfil (Model model, @PathVariable String email) {
-		Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
-		//Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+	@GetMapping("/user")
+	public String user (Model model, Long id) {
+		//Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
+		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+		if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
 		model.addAttribute("utilisateur", utilisateur);
 		return "user";
 	}
+	
+//	@GetMapping("/editLivre")
+//	public String editLivre(Model model, Long id) {
+//		Item livre = itemRepository.findById(id).orElse(null);
+//		
+//		if(livre == null) throw new RuntimeException("Item introuvable");
+//		
+//		model.addAttribute("livre", livre);
+//		return "items/editLivre";
+//	}
 	
 	@GetMapping("/user/{id}/emprunts")
 	public Object empruntUser (Model model, @PathVariable Long id, Utilisateur utilisateur) {
