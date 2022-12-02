@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.atos.mediatheque.entity.CD;
+import com.atos.mediatheque.entity.DVD;
 import com.atos.mediatheque.entity.Emprunt;
 import com.atos.mediatheque.entity.Item;
+import com.atos.mediatheque.entity.Livre;
 import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.repository.ItemRepository;
@@ -53,6 +58,7 @@ public class WebController {
 //	    itemRepository.save(item);
 //	    return "redirect:/";
 //	}
+	
 		
 	@GetMapping("/delete")
 	public String delete(Long id) {
@@ -66,6 +72,50 @@ public class WebController {
 		model.addAttribute("listCds", listCds);
 		return "items/cd";
 	}
+	
+	@GetMapping("/createCD")
+	public String createCD(Model model) {
+		model.addAttribute("cd", new CD());
+		return "items/createCD";
+	}
+	
+	@PostMapping("/saveCD")
+	public String saveCD(Model model, CD cd) {
+		itemRepository.save(cd);
+		return "redirect:/";
+		//return "redirect:/createCD";
+	}
+	
+	@GetMapping("/createDVD")
+	public String createDVD(Model model) {
+		model.addAttribute("dvd", new DVD());
+		return "items/createDVD";
+	}
+	
+	@PostMapping("/saveDVD")
+	public String saveDVD(Model model, DVD dvd) {
+		itemRepository.save(dvd);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/createLivre")
+	public String createLivre(Model model) {
+		model.addAttribute("livre", new Livre());
+		return "items/createLivre";
+	}
+	
+	@PostMapping("/saveLivre")
+	public String saveLivre(Model model, Livre livre) {
+		itemRepository.save(livre);
+		return "redirect:/";
+	}
+	
+//	  @PostMapping("/save")
+//	  public String save(@Valid @RequestBody CD cd) {
+//		  cd = itemRepository.save(cd);
+//		  new ResponseEntity<CD> (cd, HttpStatus.CREATED);
+//		  return "items/createCD";
+//	  } 
 	
 	@GetMapping("/dvd")
 	public String dvd(Model model) {

@@ -8,6 +8,8 @@
 
 			<h5 class="card-title" th:text="${item.titre}"></h5>
 			<h6 class="card-title" th:text="${item.nom}"></h6>
+			
+			<h6 class="card-title">Nombre d'exemplaires : <small th:text="${item.nombreDExemplaires}"></small></h6>
 			<p class="card-text">Some quick example text to build on the card
 				title and make up the bulk of the card's content.</p>
 				
@@ -20,7 +22,7 @@
 			</span>
 				
 			<span sec:authorize="hasAuthority('ADMIN')">
-				<a th:href="@{/showItem/{id} (id=${item.id}) }" class="btn btn-outline-primary">Update</a>
+				<a th:href="@{/showItem/{id} (id=${item.id}) }" class="btn btn-outline-success">Update</a>
 			</span>
 			
 			<span sec:authorize="hasAuthority('ADMIN')">
