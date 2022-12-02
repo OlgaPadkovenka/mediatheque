@@ -39,6 +39,7 @@ public class SecurityConfig {
 				try {
 					//authz.anyRequest().authenticated().and().formLogin();
 					authz.antMatchers("/").permitAll().and().formLogin();
+					authz.antMatchers("/create**").hasAnyAuthority("ADMIN");
 					//authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin();
 					//authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin().loginPage("/connection");
 				} catch (Exception e) {
