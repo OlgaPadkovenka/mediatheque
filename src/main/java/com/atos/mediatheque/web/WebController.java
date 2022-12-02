@@ -45,32 +45,11 @@ public class WebController {
 		model.addAttribute("listItems", listItems);
 		return "index";
 	}
-	
-//	@GetMapping("/show-item/{id}")
-//	public String showItem(@PathVariable("id") Long id, @Valid Item item, Model model) {
-//	    itemRepository.findById(id);
-//	    return "items/show-item";
-//	}
-//	
-//	@PutMapping("/update-item/{id}")
-//	public String updateItem(@PathVariable("id") Long id, @Valid Item item, 
-//	  BindingResult result, Model model) {
-//	    itemRepository.save(item);
-//	    return "redirect:/";
-//	}
-	
-		
+			
 	@GetMapping("/delete")
 	public String delete(Long id) {
 		itemRepository.deleteById(id);
 		return "redirect:/";
-	}
-	
-	@GetMapping("/cd")
-	public String cd(Model model) {
-		List<Item> listCds = itemRepository.findAllCd();
-		model.addAttribute("listCds", listCds);
-		return "items/cd";
 	}
 	
 	@GetMapping("/createCD")
@@ -83,7 +62,16 @@ public class WebController {
 	public String saveCD(Model model, CD cd) {
 		itemRepository.save(cd);
 		return "redirect:/";
-		//return "redirect:/createCD";
+	}
+	
+	@GetMapping("/editCD")
+	public String editCD(Model model, Long id) {
+		Item cd = itemRepository.findById(id).orElse(null);
+		
+		if(cd == null) throw new RuntimeException("Item introuvable");
+		
+		model.addAttribute("cd", cd);
+		return "items/editCD";
 	}
 	
 	@GetMapping("/createDVD")
@@ -98,6 +86,16 @@ public class WebController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/editDVD")
+	public String editDVD(Model model, Long id) {
+		Item dvd = itemRepository.findById(id).orElse(null);
+		
+		if(dvd == null) throw new RuntimeException("Item introuvable");
+		
+		model.addAttribute("dvd", dvd);
+		return "items/editDVD";
+	}
+	
 	@GetMapping("/createLivre")
 	public String createLivre(Model model) {
 		model.addAttribute("livre", new Livre());
@@ -110,12 +108,22 @@ public class WebController {
 		return "redirect:/";
 	}
 	
-//	  @PostMapping("/save")
-//	  public String save(@Valid @RequestBody CD cd) {
-//		  cd = itemRepository.save(cd);
-//		  new ResponseEntity<CD> (cd, HttpStatus.CREATED);
-//		  return "items/createCD";
-//	  } 
+	@GetMapping("/editLivre")
+	public String editLivre(Model model, Long id) {
+		Item livre = itemRepository.findById(id).orElse(null);
+		
+		if(livre == null) throw new RuntimeException("Item introuvable");
+		
+		model.addAttribute("livre", livre);
+		return "items/editLivre";
+	}
+	
+	@GetMapping("/cd")
+	public String cd(Model model) {
+		List<Item> listCds = itemRepository.findAllCd();
+		model.addAttribute("listCds", listCds);
+		return "items/cd";
+	}
 	
 	@GetMapping("/dvd")
 	public String dvd(Model model) {
@@ -128,9 +136,10 @@ public class WebController {
 	public String livre(Model model) {
 		List<Item> listLivres = itemRepository.findAllLivre();
 		model.addAttribute("listLivres", listLivres);
-		//	return "redirect:/user/1";
 		return "items/livre";
 	}
+	
+	
 	
 	@GetMapping("/connection")
 	public String connection (Model model) {

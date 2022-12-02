@@ -19,43 +19,46 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<title>Créer un livre</title>
+<title>Editer un CD</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
-		<form method="post" th:action="@{saveLivre}">
-
-			<div class="w-50">
+		<form method="post" th:action="@{saveCD}">
+		
+			<div class="w-50 justify-content-center">
 			
-			<!-- Livre start -->
+			<!-- CD start -->
+			
+				<label >ID</label>
+				<input id="id" class="form-control" type="text" name="id" th:value="${cd.id}">
 			
 				<label for="titre">Titre</label>
-				<input id="titre" class="form-control" type="text" name="titre" th:value="${livre.titre}">
-				<span th:errors="${livre.titre}"></span>
+				<input id="titre" class="form-control" type="text" name="titre" th:value="${cd.titre}">
+				<span th:errors="${cd.titre}"></span>
 				
 				<label for="nombreDExemplaires">Nombre d'exemplaires</label>
-				<input id="nombreDExemplaires" class="form-control" type="number" name="nombreDExemplaires" th:value="${livre.nombreDExemplaires}">
-				<span th:errors="${livre.nombreDExemplaires}"></span>
+				<input id="nombreDExemplaires" class="form-control" type="number" name="nombreDExemplaires" th:value="${cd.nombreDExemplaires}">
+				<span th:errors="${cd.nombreDExemplaires}"></span>
 				
 				<label for="dateDeParution">Date de parution</label>
-				<input id="dateDeParution" class="form-control" type="date" name="dateDeParution" th:value="${livre.dateDeParution}">
-				<span th:errors="${livre.dateDeParution}"></span>
+				<input id="dateDeParution" class="form-control" type="date" name="dateDeParution" th:value="${cd.dateDeParution}">
+				<span th:errors="${cd.dateDeParution}"></span>
 				
 				<label for="nom">Nom</label>
-				<input id="nom" class="form-control" type="text" name="nom" th:value="${livre.nom}">
-				<span th:errors="${livre.nom}"></span>
+				<input id="nom" class="form-control" type="text" name="nom" th:value="${cd.nom}">
+				<span th:errors="${cd.nom}"></span>
 				
-				<label for="numeroISBN">Numero ISBN</label>
-				<input id="numeroISBN" class="form-control" type="text" name="numeroISBN" th:value="${livre.numeroISBN}">
-				<span th:errors="${livre.numeroISBN}"></span>
-				
+				<label for="duree">Durée</label>
+				<input id="duree" class="form-control" type="text" name="duree" th:value="${cd.duree}">
+				<span th:errors="${cd.duree}"></span>
+
 				<button type="submit" class="btn btn-primary">Envoyer</button>
 			</div>
 		</form>
 		
-		<!-- Livre end -->
+		<!-- CD end -->
 	</div>
 
 

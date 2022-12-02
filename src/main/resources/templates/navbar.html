@@ -24,8 +24,7 @@
 				aria-expanded="false">CD</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" th:href="@{/cd}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createCD}">Créer</a> <a
-					 sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" href="#">Mettre à jour</a>
+				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createCD}">Créer</a>
 			</div>
 		</div>
 		
@@ -39,8 +38,7 @@
 				aria-expanded="false">DVD</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" th:href="@{/dvd}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createDVD}">Créer</a> <a
-					 sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" href="#">Mettre à jour</a>
+				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createDVD}">Créer</a>
 			</div>
 		</div>
 		
@@ -54,8 +52,7 @@
 				aria-expanded="false">Livre</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" th:href="@{/livre}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createLivre}">Créer</a> <a
-					 sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" href="#">Mettre à jour</a>
+				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createLivre}">Créer</a>
 			</div>
 		</div>
 		

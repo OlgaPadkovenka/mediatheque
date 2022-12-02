@@ -22,7 +22,9 @@
 			</span>
 				
 			<span sec:authorize="hasAuthority('ADMIN')">
-				<a th:href="@{/showItem/{id} (id=${item.id}) }" class="btn btn-outline-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.CD'}" th:href="@{editCD(id=${item.id})}" class="btn btn-outline-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.DVD'}" th:href="@{editDVD(id=${item.id})}" class="btn btn-outline-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.Livre'}" th:href="@{editLivre(id=${item.id})}" class="btn btn-outline-success">Update</a>
 			</span>
 			
 			<span sec:authorize="hasAuthority('ADMIN')">
