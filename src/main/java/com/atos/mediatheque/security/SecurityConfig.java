@@ -39,11 +39,11 @@ public class SecurityConfig {
 				try {
 					//authz.anyRequest().authenticated().and().formLogin();
 					authz.antMatchers("/").permitAll().and().formLogin().defaultSuccessUrl("/user");
+					//authz.antMatchers("/").permitAll().and().formLogin().loginPage("/connection").defaultSuccessUrl("/user");
 					authz.antMatchers("/create**").hasAnyAuthority("ADMIN");
 					authz.antMatchers("/edit**").hasAnyAuthority("ADMIN");
-				
-					//authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin();
-					//authz.antMatchers("/cd", "/user/**").authenticated().and().formLogin().loginPage("/connection");
+					authz.and().logout().logoutSuccessUrl("/");
+	
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

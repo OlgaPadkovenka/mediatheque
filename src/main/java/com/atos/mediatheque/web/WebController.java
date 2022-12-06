@@ -148,50 +148,21 @@ public class WebController {
 	public String connection (Model model) {
 		return "/connection";
 	}
-	
-//	@GetMapping("/user")
-//	public String user (@AuthenticationPrincipal UserDetails userDetails, Model model, String email) {
-//		String user = userDetails.getUsername();
-//		 user = utilisateurRerository.findByEmail(email).toString();
-//		//Utilisateur utilisateur = utilisateurRerository.findById(id).get();
-//		if(user == null) throw new RuntimeException("Utilisateur introuvable");
-//		model.addAttribute("user", user);
-//		return "user";
-//	}
-
-	
+		
 	@GetMapping("/user")
 	public String user (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal) {
-		
-		//Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
-		//Utilisateur utilisateur =  utilisateurRerository.findById(id).orElse(null);
-		
-		//if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
-		
-		//model.addAttribute("utilisateur", utilisateur);
-		//System.out.println(utilisateur.getEmail());
-		
-		System.out.println(principal.getName());
+
 		String utilisateurConnecte = principal.getName();
 		
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
 		model.addAttribute("utilisateur", utilisateur);
 		
-		System.out.println(utilisateur);
-		
 		return "user";
 	}
 	
-//	@GetMapping("/user")
-//	public String userProfil (Model model, SecurityService securityService, String email) {
-//		
-//		//Utilisateur user = utilisateurRerository.findByEmail(email);
-//		Utilisateur utilisateur = securityService.loadByUserName(email);
-//		
-//		if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
-//		model.addAttribute("utilisateur", utilisateur);
-//		System.out.println(utilisateur.getEmail());
-//		return "user";
+//	@GetMapping("/logout")
+//	public String logout (Model model) {
+//		return "redirect:/";
 //	}
 	
 	@GetMapping("/user/{id}/emprunts")
