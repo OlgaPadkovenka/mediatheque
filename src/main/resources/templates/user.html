@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,12 +26,23 @@
 		<div class="row" th:insert="navbar" id="navbar"></div>
 		<div class="text-center h6">Mon profile</div>
 		<div class="text-center h5">
-			<span th:text="${utilisateur.nom}"></span> <span
-				th:text="${utilisateur.prenom}"></span>
-			<div th:text="${utilisateur.email}"></div>
+ 			<span th:text="${utilisateur.nom}"></span>
+			<span 
+ 				th:text="${utilisateur.prenom}"></span> 
+ 			<div th:text="${utilisateur.email}"></div>
 		</div>
 
 		<div th:insert="emprunt" id="emprunt"></div>
+
+<!--  <div sec:authentication="principal.authorities"></div> -->
+<!--  <div sec:authentication="name"></div> -->
+<!--  <div th:text="${utilisateur.nom}"></div> -->
+ 
+
+
+
+
+
 
 	</div>
 </body>

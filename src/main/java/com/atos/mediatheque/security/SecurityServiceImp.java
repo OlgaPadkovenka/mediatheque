@@ -99,7 +99,5 @@ public class SecurityServiceImp implements SecurityService{
 		// TODO Auto-generated method stub
 		return utilisateurRerository.findByEmail(email);
 	}
-
-	
 	
 }

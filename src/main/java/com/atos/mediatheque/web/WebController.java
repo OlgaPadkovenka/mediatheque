@@ -1,19 +1,18 @@
 package com.atos.mediatheque.web;
 
+import java.security.Principal;
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+
 
 import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.DVD;
@@ -25,7 +24,6 @@ import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.repository.ItemRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @Controller
 public class WebController {
@@ -38,7 +36,7 @@ public class WebController {
 	
 	@Autowired
 	private EmpruntRepository empruntRepository;
-
+	
 	@GetMapping("/")
 	public String index(Model model) {
 		List<Item> listItems = itemRepository.findAll();
@@ -50,7 +48,6 @@ public class WebController {
 	public String showItem (Model model, Long id) {
 		Item item = itemRepository.findById(id).orElse(null);
 		model.addAttribute("item", item);
-		System.out.println(item);
 		return "items/showItem";
 	}
 				
@@ -152,23 +149,49 @@ public class WebController {
 		return "/connection";
 	}
 	
+//	@GetMapping("/user")
+//	public String user (@AuthenticationPrincipal UserDetails userDetails, Model model, String email) {
+//		String user = userDetails.getUsername();
+//		 user = utilisateurRerository.findByEmail(email).toString();
+//		//Utilisateur utilisateur = utilisateurRerository.findById(id).get();
+//		if(user == null) throw new RuntimeException("Utilisateur introuvable");
+//		model.addAttribute("user", user);
+//		return "user";
+//	}
+
+	
 	@GetMapping("/user")
-	public String user (Model model, Long id) {
+	public String user (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal) {
+		
 		//Utilisateur utilisateur = utilisateurRerository.findByEmail(email);
-		Utilisateur utilisateur = utilisateurRerository.findById(id).get();
-		if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
+		//Utilisateur utilisateur =  utilisateurRerository.findById(id).orElse(null);
+		
+		//if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
+		
+		//model.addAttribute("utilisateur", utilisateur);
+		//System.out.println(utilisateur.getEmail());
+		
+		System.out.println(principal.getName());
+		String utilisateurConnecte = principal.getName();
+		
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
 		model.addAttribute("utilisateur", utilisateur);
+		
+		System.out.println(utilisateur);
+		
 		return "user";
 	}
 	
-//	@GetMapping("/editLivre")
-//	public String editLivre(Model model, Long id) {
-//		Item livre = itemRepository.findById(id).orElse(null);
+//	@GetMapping("/user")
+//	public String userProfil (Model model, SecurityService securityService, String email) {
 //		
-//		if(livre == null) throw new RuntimeException("Item introuvable");
+//		//Utilisateur user = utilisateurRerository.findByEmail(email);
+//		Utilisateur utilisateur = securityService.loadByUserName(email);
 //		
-//		model.addAttribute("livre", livre);
-//		return "items/editLivre";
+//		if(utilisateur == null) throw new RuntimeException("Utilisateur introuvable");
+//		model.addAttribute("utilisateur", utilisateur);
+//		System.out.println(utilisateur.getEmail());
+//		return "user";
 //	}
 	
 	@GetMapping("/user/{id}/emprunts")

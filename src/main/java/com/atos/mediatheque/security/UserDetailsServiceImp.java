@@ -25,6 +25,7 @@ public class UserDetailsServiceImp implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
 		Utilisateur utilisateur = securityService.loadByUserName(email);
 
 		//sans streams
@@ -43,6 +44,11 @@ public class UserDetailsServiceImp implements UserDetailsService{
 		
 		
 		User user = new User(utilisateur.getEmail(), utilisateur.getMotDePasse(), authorities);
+		
+		System.out.println(utilisateur.getNom() + utilisateur.getPrenom() + utilisateur.getEmail() + utilisateur.getId());
+		
+		System.out.println("User " + user + " "+ "Utilisateur " +  utilisateur);
+		
 		return user;
 	}
 
