@@ -35,6 +35,16 @@ public class WebController {
 	@Autowired
 	private EmpruntRepository empruntRepository;
 	
+	
+	
+	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
+			EmpruntRepository empruntRepository) {
+		super();
+		this.itemRepository = itemRepository;
+		this.utilisateurRerository = utilisateurRerository;
+		this.empruntRepository = empruntRepository;
+	}
+
 	@GetMapping("/")
 	public String index(Model model) {
 		List<Item> listItems = itemRepository.findAll();
@@ -194,6 +204,8 @@ public class WebController {
 		List<Emprunt> listEmprunts = empruntRepository.findItemEmpente();
 		
 		
+		
+		
 		//List<Emprunt> listEmprunts = empruntRepository.findItemEmpente(utilisateur);
 		//System.out.println("Coucou " + empruntRepository.findByItems(listEmprunts));
 		
@@ -201,6 +213,7 @@ public class WebController {
 		model.addAttribute("listEmprunts", listEmprunts);
 		
 		System.out.println(listEmprunts);
+		//System.out.println(listEmprunts.get(1).getItems());
 		
 		return "emprunt";
 	}

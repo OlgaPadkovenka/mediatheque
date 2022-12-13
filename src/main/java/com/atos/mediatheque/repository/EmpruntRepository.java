@@ -26,7 +26,7 @@ public interface EmpruntRepository extends JpaRepository<Emprunt, Long>{
 	
 
 ////	//cds empruntés
-	@Query(value="SELECT * FROM EMPRUNT join emprunt_item on emprunt_item.emprunt_id = emprunt.id join cd on cd.id = emprunt_item.item_id", nativeQuery = true)
+	@Query(value="SELECT * FROM EMPRUNT join emprunt_item on emprunt_item.emprunt_id = emprunt.id join item on item.id = emprunt_item.item_id", nativeQuery = true)
 	List<Emprunt> findItemEmpente();
 //
 	//@Query("Select e from Emprunt e join Item i WHERE e.emprunt_id = :item")

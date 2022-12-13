@@ -47,13 +47,13 @@ public class Emprunt {
  			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
  		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
- 		   Set<CD> Items;
+ 		   Set<Item> Items;
 	 
 		public Emprunt() {
 			super();
 		}
 		
-	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<CD> items) {
+	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<Item> items) {
 		super();
 		this.id = id;
 		this.dateEmprunt = dateEmprunt;
@@ -86,13 +86,11 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 
-
-
-	public Set<CD> getItems() {
+	public Set<Item> getItems() {
 		return Items;
 	}
 
-	public void setItems(Set<CD> items) {
+	public void setItems(Set<Item> items) {
 		Items = items;
 	}
 
