@@ -2,15 +2,13 @@ package com.atos.mediatheque.web;
 
 import java.security.Principal;
 import java.util.List;
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -148,6 +146,11 @@ public class WebController {
 	public String connection (Model model) {
 		return "/connection";
 	}
+	
+	@GetMapping("/inscription")
+	public String inscription (Model model) {
+		return "/inscription";
+	}
 		
 	@GetMapping("/user")
 	public String user (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal) {
@@ -155,7 +158,10 @@ public class WebController {
 		String utilisateurConnecte = principal.getName();
 		
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
+		
 		model.addAttribute("utilisateur", utilisateur);
+		
+		System.out.println(utilisateur.getId());
 		
 		return "user";
 	}
@@ -165,10 +171,39 @@ public class WebController {
 //		return "redirect:/";
 //	}
 	
-	@GetMapping("/user/{id}/emprunts")
-	public Object empruntUser (Model model, @PathVariable Long id, Utilisateur utilisateur) {
-		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
+//	@GetMapping("/user/emprunts")
+//	public Object empruntUser ( Model model, @PathVariable Long id, Utilisateur utilisateur) {
+//		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
+//		model.addAttribute("listEmprunts", listEmprunts);
+//		return "emprunt";
+//	}
+	
+	@GetMapping("/user/emprunts")
+	public String empruntUser (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal, Emprunt emprunt, CD cd)
+	
+		 {
+		
+		String utilisateurConnecte = principal.getName();
+
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
+		
+		System.out.println(utilisateur);
+		
+//		Set<Item> items = emprunt.getItems();
+	
+		List<Emprunt> listEmprunts = empruntRepository.findItemEmpente();
+		
+		
+		//List<Emprunt> listEmprunts = empruntRepository.findItemEmpente(utilisateur);
+		//System.out.println("Coucou " + empruntRepository.findByItems(listEmprunts));
+		
+		
 		model.addAttribute("listEmprunts", listEmprunts);
+		
+		System.out.println(listEmprunts);
+		
 		return "emprunt";
 	}
+	
+	
 }

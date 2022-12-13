@@ -26,4 +26,10 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	@Query("From Item ORDER BY TITRE")
 	List<Item> findAll();
 	
+		
+	//SELECT * FROM CD JOIN EMPRUNT_ITEM ON CD.ID = EMPRUNT_ITEM.ITEM_ID
+//	
+//	@Query("SELECT i From Item i JOIN EMPRUNT_ITEM WHERE EMPRUNT_ID = ITEM_ID")
+//	List<Item> findItemEmprunte();
+//	
 }

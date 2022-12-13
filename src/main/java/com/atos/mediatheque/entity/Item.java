@@ -47,7 +47,7 @@ public abstract class Item {
 	private String nom;
 	
 	@ManyToMany(mappedBy = "Items", cascade = CascadeType.REMOVE)
-	@JsonIgnore
+	//@JsonIgnore
  	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Item() {

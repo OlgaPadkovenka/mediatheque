@@ -1,9 +1,6 @@
 package com.atos.mediatheque.security;
 
-import java.beans.JavaBean;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +42,8 @@ public class UserDetailsServiceImp implements UserDetailsService{
 		
 		User user = new User(utilisateur.getEmail(), utilisateur.getMotDePasse(), authorities);
 		
-		System.out.println(utilisateur.getNom() + utilisateur.getPrenom() + utilisateur.getEmail() + utilisateur.getId());
-		
-		System.out.println("User " + user + " "+ "Utilisateur " +  utilisateur);
-		
 		return user;
 	}
-
+	
+	
 }

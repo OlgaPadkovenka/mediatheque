@@ -31,8 +31,15 @@
  				th:text="${utilisateur.prenom}"></span> 
  			<div th:text="${utilisateur.email}"></div>
 		</div>
+		
+		<div>
+	<div class="text-center h6">Mes emprunts</div>
+	<div th:each="emprunt : ${listEmprunts}">
+		<div th:text="${emprunt.id}"></div>
+	</div>
+</div>
 
-		<div th:insert="emprunt" id="emprunt"></div>
+<!-- 		<div th:insert="emprunt" id="emprunt"></div> -->
 
 <!--  <div sec:authentication="principal.authorities"></div> -->
 <!--  <div sec:authentication="name"></div> -->

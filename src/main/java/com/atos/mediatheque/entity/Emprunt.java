@@ -43,19 +43,17 @@ public class Emprunt {
 	private Utilisateur utilisateur;
 	
 	 @ManyToMany
-	 //@JsonManagedReference
-	 @JsonIgnore
  	 @JoinTable(
  			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"),
  		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
- 		   Set<Item> Items;
+ 		   Set<CD> Items;
 	 
 		public Emprunt() {
 			super();
 		}
 		
-	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<Item> items) {
+	public Emprunt(Long id, Date dateEmprunt, Date dateRetour, Utilisateur utilisateur, Set<CD> items) {
 		super();
 		this.id = id;
 		this.dateEmprunt = dateEmprunt;
@@ -88,11 +86,13 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 
-	public Set<Item> getItems() {
+
+
+	public Set<CD> getItems() {
 		return Items;
 	}
 
-	public void setItems(Set<Item> items) {
+	public void setItems(Set<CD> items) {
 		Items = items;
 	}
 

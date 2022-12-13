@@ -1,4 +1,4 @@
-package com.atos.mediatheque.security;
+ package com.atos.mediatheque.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
