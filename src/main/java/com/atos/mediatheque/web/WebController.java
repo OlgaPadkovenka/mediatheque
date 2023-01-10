@@ -183,13 +183,7 @@ public class WebController {
 		
 		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
 		model.addAttribute("listEmprunts", listEmprunts);
-		
-		
-		
-		//list des items empruntes
-		List<Item> listItemsEmpruntes = itemRepository.findItemEmprunte();
-		model.addAttribute("listItemsEmpruntes", listItemsEmpruntes);
-		
+
 		return "user";
 	}
 	
@@ -198,31 +192,6 @@ public class WebController {
 //		return "redirect:/";
 //	}
 	
-//	@GetMapping("/user/emprunts")
-//	public Object empruntUser ( Model model, @PathVariable Long id, Utilisateur utilisateur) {
-//		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
-//		model.addAttribute("listEmprunts", listEmprunts);
-//		return "emprunt";
-//	}
-	
-	@GetMapping("/user/emprunts")
-	public String empruntUser (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal)
-	{
 		
-		String utilisateurConnecte = principal.getName();
-
-		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
-								
-		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
-		
-		//List<Item> listEmprunts = itemRepository.findItemEmprunte();
-		
-		model.addAttribute("listEmprunts", listEmprunts);
-		
-		System.out.println(listEmprunts);
-		
-		return "emprunt";
-	}
-	
 	
 }

@@ -35,15 +35,19 @@
 
 
 		<div class="text-center h6">Mes emprunts</div>
+		<div class="row" th:insert="emprunt" id="emprunt"></div>
 	
-		<div th:each="emprunt : ${listEmprunts}">
-			<div th:text="${emprunt.id}"></div>
-			<div th:text="${#dates.format(emprunt.dateEmprunt, 'dd-MM-yyyy')}"></div>
-			<div th:each="item : ${emprunt.items}" th:text="${item.titre}"></div>
-			<div th:each="item : ${emprunt.items}" th:text="${item.nom}"></div>
-			<div th:each="item : ${emprunt.items}" th:text="${item.nombreDExemplaires}"></div>
-			<div th:each="item : ${emprunt.items}" th:text="${#dates.format(item.dateDeParution, 'YYYY')}"></div>
-		</div>	
+<!-- 		<div th:each="emprunt : ${listEmprunts}"> -->
+<!-- 			<div th:text="${emprunt.id}"></div> -->
+<!-- 			<div  th:each="item : ${emprunt.items}"  th:insert="items/itemType" id="itemType"></div> -->
+<!-- 			<div>Titre : <span th:each="item : ${emprunt.items}" th:text="${item.titre}"></span></div> -->
+<!-- 			<div>Auteur : <span th:each="item : ${emprunt.items}" th:text="${item.nom}"></span></div> -->
+<!-- 			<div>Date de parution : <span th:each="item : ${emprunt.items}" th:text="${#dates.format(item.dateDeParution, 'YYYY')}"></span></div> -->
+<!-- 			<div>Nombre d'éxemplaire : <span th:each="item : ${emprunt.items}" th:text="${item.nombreDExemplaires}"></span></div> -->
+<!-- 			<div> Date d'emprunt : <span th:text="${#dates.format(emprunt.dateEmprunt, 'dd-MM-yyyy')}"></span></div> -->
+<!-- 			<div> Date de retour : <span th:text="${#dates.format(emprunt.dateRetour, 'dd-MM-yyyy')}"></span></div> -->
+			
+<!-- 		</div>	 -->
 
 
 
