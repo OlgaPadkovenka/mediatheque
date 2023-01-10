@@ -35,15 +35,16 @@
 
 
 		<div class="text-center h6">Mes emprunts</div>
+	
 		<div th:each="emprunt : ${listEmprunts}">
 			<div th:text="${emprunt.id}"></div>
-			<div th:text="${emprunt.dateEmprunt}"></div>
+			<div th:text="${#dates.format(emprunt.dateEmprunt, 'dd-MM-yyyy')}"></div>
 			<div th:each="item : ${emprunt.items}" th:text="${item.titre}"></div>
 			<div th:each="item : ${emprunt.items}" th:text="${item.nom}"></div>
 			<div th:each="item : ${emprunt.items}" th:text="${item.nombreDExemplaires}"></div>
-			<div th:each="item : ${emprunt.items}" th:text="${item.dateDeParution}"></div>
-			
-		</div>
+			<div th:each="item : ${emprunt.items}" th:text="${#dates.format(item.dateDeParution, 'YYYY')}"></div>
+		</div>	
+
 
 
 <!-- 		<div data-th-object="${utilisateur }"> -->
