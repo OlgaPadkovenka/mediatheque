@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.DVD;
@@ -34,8 +37,7 @@ public class WebController {
 	
 	@Autowired
 	private EmpruntRepository empruntRepository;
-	
-	
+		
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
 			EmpruntRepository empruntRepository) {
@@ -46,9 +48,18 @@ public class WebController {
 	}
 
 	@GetMapping("/")
-	public String index(Model model) {
-		List<Item> listItems = itemRepository.findAll();
-		model.addAttribute("listItems", listItems);
+	public String items(Model model,
+			@RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="size", defaultValue = "8") int size,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+		
+		Page<Item> listItems = itemRepository.findAll(PageRequest.of(page, size));
+		//List<Item> listItems = itemRepository.findByTitre(keyword);
+		model.addAttribute("listItems", listItems.getContent());
+		model.addAttribute("pages", new int[listItems.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", keyword);
+		
 		return "index";
 	}
 	
@@ -165,13 +176,19 @@ public class WebController {
 	@GetMapping("/user")
 	public String user (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal) {
 
+		//utilisateur connecté
 		String utilisateurConnecte = principal.getName();
-		
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
-		
 		model.addAttribute("utilisateur", utilisateur);
 		
-		System.out.println(utilisateur.getId());
+		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
+		model.addAttribute("listEmprunts", listEmprunts);
+		
+		
+		
+		//list des items empruntes
+		List<Item> listItemsEmpruntes = itemRepository.findItemEmprunte();
+		model.addAttribute("listItemsEmpruntes", listItemsEmpruntes);
 		
 		return "user";
 	}
@@ -189,31 +206,20 @@ public class WebController {
 //	}
 	
 	@GetMapping("/user/emprunts")
-	public String empruntUser (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal, Emprunt emprunt, CD cd)
-	
-		 {
+	public String empruntUser (@CurrentSecurityContext(expression = "authentication.principal") Model model, Principal principal)
+	{
 		
 		String utilisateurConnecte = principal.getName();
 
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
+								
+		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
 		
-		System.out.println(utilisateur);
-		
-//		Set<Item> items = emprunt.getItems();
-	
-		List<Emprunt> listEmprunts = empruntRepository.findItemEmpente();
-		
-		
-		
-		
-		//List<Emprunt> listEmprunts = empruntRepository.findItemEmpente(utilisateur);
-		//System.out.println("Coucou " + empruntRepository.findByItems(listEmprunts));
-		
+		//List<Item> listEmprunts = itemRepository.findItemEmprunte();
 		
 		model.addAttribute("listEmprunts", listEmprunts);
 		
 		System.out.println(listEmprunts);
-		//System.out.println(listEmprunts.get(1).getItems());
 		
 		return "emprunt";
 	}

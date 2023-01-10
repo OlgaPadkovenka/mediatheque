@@ -25,6 +25,26 @@
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
 		<div class="row" th:insert="card" id="card"></div>
+
+         <ul class="nav nav-pills">
+                  <li th:each="page, status:${pages}">
+                      <a th:class="${status.index==currentPage?'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
+                         th:text="${status.index}"
+                         th:href="@{index(page=${status.index})}"
+                      ></a>
+                  </li>
+              </ul>
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

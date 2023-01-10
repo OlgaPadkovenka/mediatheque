@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,8 +19,6 @@ import javax.persistence.SequenceGenerator;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -46,7 +45,7 @@ public abstract class Item {
 	@Column(name="nom")
 	private String nom;
 	
-	@ManyToMany(mappedBy = "Items", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "items", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
  	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Item() {

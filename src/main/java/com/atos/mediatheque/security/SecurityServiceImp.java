@@ -9,7 +9,6 @@ import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.RoleUserRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

@@ -1,6 +1,12 @@
 <div id="emprunt">
 	<div class="text-center h6">Mes emprunts</div>
-	<div th:each="emprunt : ${listEmprunts}">
-		<div th:text="${emprunt.id}"></div>
+	<div th:each="item : ${listEmprunts}">
+		<div th:text="${item.id}"></div>
+		<div th:text="${item.nom}"></div>
+		<div th:text="${item.titre}"></div>
 	</div>
+</div>
+
+<div>
+
 </div>

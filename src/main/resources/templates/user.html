@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,32 +25,34 @@
 <body>
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
+
 		<div class="text-center h6">Mon profile</div>
 		<div class="text-center h5">
- 			<span th:text="${utilisateur.nom}"></span>
-			<span 
- 				th:text="${utilisateur.prenom}"></span> 
- 			<div th:text="${utilisateur.email}"></div>
+			<span th:text="${utilisateur.nom}"></span> <span
+				th:text="${utilisateur.prenom}"></span>
+			<div th:text="${utilisateur.email}"></div>
 		</div>
-		
-		<div>
-	<div class="text-center h6">Mes emprunts</div>
-	<div th:each="emprunt : ${listEmprunts}">
-		<div th:text="${emprunt.id}"></div>
+
+
+		<div class="text-center h6">Mes emprunts</div>
+		<div th:each="emprunt : ${listEmprunts}">
+			<div th:text="${emprunt.id}"></div>
+			<div th:text="${emprunt.dateEmprunt}"></div>
+			<div th:each="item : ${emprunt.items}" th:text="${item.titre}"></div>
+			<div th:each="item : ${emprunt.items}" th:text="${item.nom}"></div>
+			<div th:each="item : ${emprunt.items}" th:text="${item.nombreDExemplaires}"></div>
+			<div th:each="item : ${emprunt.items}" th:text="${item.dateDeParution}"></div>
+			
+		</div>
+
+
+<!-- 		<div data-th-object="${utilisateur }"> -->
+<!-- 			<div th:text="*{id}"></div> -->
+<!-- 			<div th:text="*{nom}"></div> -->
+<!-- 			<div th:text="*{prenom}"></div> -->
+<!-- 		</div> -->
+
 	</div>
-</div>
-
-<!-- 		<div th:insert="emprunt" id="emprunt"></div> -->
-
-<!--  <div sec:authentication="principal.authorities"></div> -->
-<!--  <div sec:authentication="name"></div> -->
-<!--  <div th:text="${utilisateur.nom}"></div> -->
- 
-
-
-
-
-
 
 	</div>
 </body>

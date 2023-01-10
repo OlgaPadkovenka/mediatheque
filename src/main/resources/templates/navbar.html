@@ -9,9 +9,9 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<form class="form-inline m-2">
+	<form method = "get" th:action = "@{index}" class="form-inline m-2">
 		<input class="form-control mr-sm-2" type="search" placeholder="Search"
-			aria-label="Search">
+			aria-label="Search" name="keyword" th:value="${keyword}">
 	</form>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
