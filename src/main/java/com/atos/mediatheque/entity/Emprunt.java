@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,8 +37,8 @@ public class Emprunt {
 	private Long id;
 	
 	@Column(name="date_emprunt")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	@DateTimeFormat(pattern = "dd-MM-yyy")
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	//@DateTimeFormat(pattern = "dd-MM-yyy")
 	private Date dateEmprunt;
 	
 	@Column(name="date_retour")

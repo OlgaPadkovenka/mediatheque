@@ -1,6 +1,7 @@
 package com.atos.mediatheque;
 
 import java.security.Principal;
+import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +13,8 @@ public class MediathequeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MediathequeApplication.class, args);
 		
-		System.out.println("start application");
+		System.out.println("start application" + " " + new Date());
+		
 
 	}
 

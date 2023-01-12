@@ -1,6 +1,8 @@
 package com.atos.mediatheque.web;
 
 import java.security.Principal;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -185,6 +187,46 @@ public class WebController {
 		model.addAttribute("listEmprunts", listEmprunts);
 
 		return "user";
+	}
+	
+	@GetMapping("/faireEmprunt")
+	public String createEmprunt(@CurrentSecurityContext(expression = "authentication.principal") Model model, Long id, Principal principal) {
+		Item item = itemRepository.findById(id).orElse(null);
+
+		String utilisateurConnecte = principal.getName();
+		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
+		
+		Emprunt emprunt = new Emprunt();
+		emprunt.setUtilisateur(utilisateur);
+		emprunt.setDateEmprunt(new Date());
+
+		Set<Item> listItem = new HashSet<>();
+		
+		listItem.add(item);
+		
+		emprunt.setItems(listItem);
+		
+		empruntRepository.save(emprunt);
+		
+		return "redirect:/user";
+		
+	}
+	
+//	@GetMapping("/editDVD")
+//	public String editDVD(Model model, Long id) {
+//		Item dvd = itemRepository.findById(id).orElse(null);
+//		
+//		if(dvd == null) throw new RuntimeException("Item introuvable");
+//		
+//		model.addAttribute("dvd", dvd);
+//		return "items/editDVD";
+//	}
+	
+	@PostMapping("/saveEmprunt")
+	public String saveEmprunt(Model model, Emprunt emprunt) {
+//		
+//		empruntRepository.save(emprunt);
+		return "redirect:/user";
 	}
 	
 //	@GetMapping("/logout")

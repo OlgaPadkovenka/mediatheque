@@ -19,7 +19,10 @@
 			</span>
 				
 			<span  sec:authorize="hasAuthority('USER')">
-				<a  class="btn btn-outline-success">Emprunter</a>
+				<a  class="btn btn-outline-success" th:href="@{faireEmprunt(id=${item.id})}">Emprunter</a>
+<!-- 				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.CD'}" th:href="@{/faireEmprunt}" class="btn btn-outline-success">Emprunter</a> -->
+<!-- 				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.DVD'}" th:href="@{/faireEmprunt}" class="btn btn-outline-success">Emprunter</a> -->
+<!-- 				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.Livre'}" th:href="@{/faireEmprunt}" class="btn btn-outline-success">Emprunter</a> -->
 			</span>
 				
 			<span sec:authorize="hasAuthority('ADMIN')">
