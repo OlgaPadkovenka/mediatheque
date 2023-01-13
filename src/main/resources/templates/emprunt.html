@@ -4,7 +4,7 @@
 		<!-- <img src="..." class="card-img-top" alt="Photo"> -->
 		<div class="card-body">
 	
-<!-- 			<h5 class="card-title" th:text="${emprunt.id}"></h5> -->
+			<h5 class="card-title" th:text="${emprunt.id}"></h5>
 
 			<div class="card-title"  th:each="item : ${emprunt.items}"  th:insert="items/itemType" id="itemType"></div>
 		
@@ -20,7 +20,9 @@
 			
 			<h6 class="card-title">Date de retour : <span th:text="${#dates.format(emprunt.dateRetour, 'dd-MM-yyyy')}"></span></h6>
 			
-			<button type="submit" class="btn btn-primary">Restituer</button>
+			<span>
+			<a class="btn btn-primary" th:href="@{restituer(id=${emprunt.id})}">Restituer</a>
+			</span>
 			
 		</div>
 	</div>

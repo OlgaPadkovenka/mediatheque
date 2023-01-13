@@ -196,10 +196,7 @@ public class WebController {
 		
 		Integer exemplaire = item.getNombreDExemplaires() - 1;
 		item.setNombreDExemplaires(exemplaire);
-		
-		System.out.println();
-		
-
+	
 		String utilisateurConnecte = principal.getName();
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
 		
@@ -208,7 +205,6 @@ public class WebController {
 		emprunt.setDateEmprunt(new Date());
 
 		Set<Item> listItem = new HashSet<>();
-		
 		
 		listItem.add(item);
 		
@@ -221,8 +217,26 @@ public class WebController {
 	}
 	
 	@GetMapping("/restituer")
-	public String restituer(Model model, Long id) {
+	public String restituerEmprunt(@CurrentSecurityContext(expression = "authentication.principal") Model model, Long id, Principal principal) {
 
+		
+		Emprunt emprunt = empruntRepository.findById(id).orElse(null);
+		Date dateRetour = new Date();
+		emprunt.setDateRetour(dateRetour);
+				
+//		Item item = itemRepository.findById(id).orElse(null);
+//		
+//		Integer exemplaire = item.getNombreDExemplaires() + 1;
+//		item.setNombreDExemplaires(exemplaire);
+//	
+//		Set<Item> listItem = emprunt.getItems();
+//		
+//		listItem.add(item);
+//		
+//		emprunt.setItems(listItem);
+		
+		empruntRepository.save(emprunt);
+		
 		return "redirect:/user";
 	}
 	

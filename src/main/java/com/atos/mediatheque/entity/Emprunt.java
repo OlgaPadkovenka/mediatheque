@@ -37,12 +37,9 @@ public class Emprunt {
 	private Long id;
 	
 	@Column(name="date_emprunt")
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	//@DateTimeFormat(pattern = "dd-MM-yyy")
 	private Date dateEmprunt;
 	
 	@Column(name="date_retour")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateRetour;
 	
 	@ManyToOne
