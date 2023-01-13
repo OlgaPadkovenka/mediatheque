@@ -27,6 +27,7 @@ import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.repository.ItemRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
+import com.atos.mediatheque.service.EmpruntService;
 
 
 @Controller
@@ -40,6 +41,9 @@ public class WebController {
 	
 	@Autowired
 	private EmpruntRepository empruntRepository;
+	
+	@Autowired
+	private EmpruntService empruntService;
 		
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
@@ -197,27 +201,9 @@ public class WebController {
 	
 	@GetMapping("/faireEmprunt")
 	public String createEmprunt(@CurrentSecurityContext(expression = "authentication.principal") Model model, Long id, Principal principal) {
-		
-		Item item = itemRepository.findById(id).orElse(null);
-		
-		Integer exemplaire = item.getNombreDExemplaires() - 1;
-		item.setNombreDExemplaires(exemplaire);
-	
-		String utilisateurConnecte = principal.getName();
-		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
-		
-		Emprunt emprunt = new Emprunt();
-		emprunt.setUtilisateur(utilisateur);
-		emprunt.setDateEmprunt(new Date());
+				
+		empruntService.faireEmprunt(model, id, principal);
 
-		Set<Item> listItem = new HashSet<>();
-		
-		listItem.add(item);
-		
-		emprunt.setItems(listItem);
-		
-		empruntRepository.save(emprunt);
-		
 		return "redirect:/user";
 		
 	}
@@ -229,6 +215,8 @@ public class WebController {
 		Emprunt emprunt = empruntRepository.findById(id).orElse(null);
 		Date dateRetour = new Date();
 		emprunt.setDateRetour(dateRetour);
+
+		//item.getNombreDExemplaires() + 1; ne marche pas
 				
 //		Item item = itemRepository.findById(id).orElse(null);
 //		

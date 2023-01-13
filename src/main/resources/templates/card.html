@@ -15,11 +15,11 @@
 				title and make up the bulk of the card's content.</p>
 				
 			<span>
-				<a  class="btn btn-outline-primary" th:href = "@{/showItem(id=${item.id})}">Plus d'info</a>
+				<a  class="btn btn-primary" th:href = "@{/showItem(id=${item.id})}">Plus d'info</a>
 			</span>
 				
 			<span  sec:authorize="hasAuthority('USER')">
-				<a  class="btn btn-outline-success" th:href="@{faireEmprunt(id=${item.id})}">Emprunter</a>	
+				<a  class="btn btn-success" th:href="@{faireEmprunt(id=${item.id})}">Emprunter</a>	
 			</span>
 				
 			<span sec:authorize="hasAuthority('ADMIN')">
@@ -29,7 +29,7 @@
 			</span>
 			
 			<span sec:authorize="hasAuthority('ADMIN')">
-				<a onclick="confirm('Etes-vous sure de vouloir supprimer?')" class="btn btn-outline-danger" th:href="@{delete(id=${item.id})}">Supprimer</a>
+				<a onclick="confirm('Etes-vous sure de vouloir supprimer?')" class="btn btn-danger" th:href="@{delete(id=${item.id})}">Supprimer</a>
 			</span> 
 			
 		</div>
