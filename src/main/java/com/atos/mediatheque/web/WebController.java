@@ -1,6 +1,7 @@
 package com.atos.mediatheque.web;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -183,9 +184,14 @@ public class WebController {
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
 		model.addAttribute("utilisateur", utilisateur);
 		
+		//Liste des emprunts
 		List<Emprunt> listEmprunts = empruntRepository.findEmpruntByUtilisateur(utilisateur);
 		model.addAttribute("listEmprunts", listEmprunts);
-
+		
+		//Historique
+		List<Emprunt> listHistoriqueEmprunts = empruntRepository.findHistoriqueEmpruntByUtilisateur(utilisateur);
+		model.addAttribute("listHistoriqueEmprunts", listHistoriqueEmprunts);
+		
 		return "user";
 	}
 	

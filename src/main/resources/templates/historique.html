@@ -1,5 +1,6 @@
 
-<div class="col-sm mb-4" id="emprunt" th:each="emprunt : ${listEmprunts}">
+<div id="historique"></div>
+<div class="col-sm mb-4" id="historique" th:each="emprunt : ${listHistoriqueEmprunts}">
 	<div class="card" style="width: 18rem;">
 		<!-- <img src="..." class="card-img-top" alt="Photo"> -->
 		<div class="card-body">
@@ -18,10 +19,9 @@
 			
 			<h6 class="card-title">Date d'emprunt : <span th:text="${#dates.format(emprunt.dateEmprunt, 'dd-MM-yyyy')}"></span></h6>
 			
-			<span>
-			<a class="btn btn-primary" th:href="@{restituer(id=${emprunt.id})}">Restituer</a>
-			</span>
-			
+			<h6 class="card-title">Date de retour : <span th:text="${#dates.format(emprunt.dateRetour, 'dd-MM-yyyy')}"></span></h6>
+						
 		</div>
 	</div>
 </div>
+
