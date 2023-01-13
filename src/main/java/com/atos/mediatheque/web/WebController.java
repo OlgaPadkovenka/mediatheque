@@ -191,7 +191,14 @@ public class WebController {
 	
 	@GetMapping("/faireEmprunt")
 	public String createEmprunt(@CurrentSecurityContext(expression = "authentication.principal") Model model, Long id, Principal principal) {
+		
 		Item item = itemRepository.findById(id).orElse(null);
+		
+		Integer exemplaire = item.getNombreDExemplaires() - 1;
+		item.setNombreDExemplaires(exemplaire);
+		
+		System.out.println();
+		
 
 		String utilisateurConnecte = principal.getName();
 		Utilisateur utilisateur = utilisateurRerository.findByEmail(utilisateurConnecte);
@@ -201,6 +208,7 @@ public class WebController {
 		emprunt.setDateEmprunt(new Date());
 
 		Set<Item> listItem = new HashSet<>();
+		
 		
 		listItem.add(item);
 		
@@ -212,22 +220,13 @@ public class WebController {
 		
 	}
 	
-//	@GetMapping("/editDVD")
-//	public String editDVD(Model model, Long id) {
-//		Item dvd = itemRepository.findById(id).orElse(null);
-//		
-//		if(dvd == null) throw new RuntimeException("Item introuvable");
-//		
-//		model.addAttribute("dvd", dvd);
-//		return "items/editDVD";
-//	}
-	
-	@PostMapping("/saveEmprunt")
-	public String saveEmprunt(Model model, Emprunt emprunt) {
-//		
-//		empruntRepository.save(emprunt);
+	@GetMapping("/restituer")
+	public String restituer(Model model, Long id) {
+
 		return "redirect:/user";
 	}
+	
+
 	
 //	@GetMapping("/logout")
 //	public String logout (Model model) {
