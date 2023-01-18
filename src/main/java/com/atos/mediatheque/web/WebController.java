@@ -1,14 +1,10 @@
 package com.atos.mediatheque.web;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
@@ -27,6 +23,7 @@ import com.atos.mediatheque.entity.Utilisateur;
 import com.atos.mediatheque.repository.EmpruntRepository;
 import com.atos.mediatheque.repository.ItemRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
+import com.atos.mediatheque.security.SecurityService;
 import com.atos.mediatheque.service.EmpruntService;
 
 
@@ -44,15 +41,31 @@ public class WebController {
 	
 	@Autowired
 	private EmpruntService empruntService;
-		
+	
+	@Autowired
+	private SecurityService securityService;
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
-			EmpruntRepository empruntRepository) {
+			EmpruntRepository empruntRepository, EmpruntService empruntService, SecurityService securityService) {
 		super();
 		this.itemRepository = itemRepository;
 		this.utilisateurRerository = utilisateurRerository;
 		this.empruntRepository = empruntRepository;
+		this.empruntService = empruntService;
+		this.securityService = securityService;
 	}
+	
+
+//	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
+//			EmpruntRepository empruntRepository, EmpruntService empruntService) {
+//		super();
+//		this.itemRepository = itemRepository;
+//		this.utilisateurRerository = utilisateurRerository;
+//		this.empruntRepository = empruntRepository;
+//		this.empruntService = empruntService;
+//	}
+	
+	
 
 	@GetMapping("/")
 	public String items(Model model,
@@ -70,6 +83,7 @@ public class WebController {
 		return "index";
 	}
 	
+
 	@GetMapping("/showItem")
 	public String showItem (Model model, Long id) {
 		Item item = itemRepository.findById(id).orElse(null);
@@ -233,14 +247,25 @@ public class WebController {
 		
 		return "redirect:/user";
 	}
+		
+	@GetMapping("/register")
+	public String register (Model model) {
+		model.addAttribute("utilisateur", new Utilisateur());
+		return "register";
+	}	
 	
+	@PostMapping("/saveUser")
+	public String saveUser(Model model, String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
+		securityService.saveNewUser(email, nom, prenom, motDePasse, reMotDePasse);
 
+		return "redirect:/";
+	}
 	
-//	@GetMapping("/logout")
-//	public String logout (Model model) {
+//	@PostMapping("/saveUser")
+//	public String saveUser(Model model, Utilisateur utilisateur) {
+//		utilisateurRerository.save(utilisateur);
+//		
 //		return "redirect:/";
 //	}
-	
-		
-	
+//	
 }

@@ -34,24 +34,32 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
+    	// http.exceptionHandling().accessDeniedPage("/403");
         http
                 .authorizeHttpRequests((authz) -> {
                             try {
-                                //authz.anyRequest().authenticated().and().formLogin();
+                              
                                 authz.antMatchers("/").permitAll().and().formLogin().defaultSuccessUrl("/user");
                                 authz.antMatchers("/index**").permitAll();
-                                //authz.antMatchers("/").permitAll().and().formLogin().loginPage("/connection").defaultSuccessUrl("/user");
+                                authz.antMatchers("/register").permitAll();
                                 authz.antMatchers("/create**").hasAnyAuthority("ADMIN");
                                 authz.antMatchers("/edit**").hasAnyAuthority("ADMIN");
-                                authz.antMatchers("/faire**").permitAll();
+                                authz.antMatchers("/faire**").hasAnyAuthority("USER");
+ 
                                 authz.and().logout().logoutSuccessUrl("/");
+                               
+                                
 
                             } catch (Exception e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         }
+              
                 );
+        
+       
+        
         return http.build();
 
     }

@@ -5,7 +5,7 @@ import com.atos.mediatheque.entity.Utilisateur;
 
 public interface SecurityService {
 
-	Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse, String reMotDePasse);
+	Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse,  String reMotDePasse);
 
 	RoleUser saveNewRole(String roleName);
 

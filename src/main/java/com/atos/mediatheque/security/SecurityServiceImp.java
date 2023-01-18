@@ -33,7 +33,7 @@ public class SecurityServiceImp implements SecurityService{
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
+	public Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse,  String reMotDePasse) {
 		if(!motDePasse.equals(reMotDePasse)) throw new RuntimeException("Passwords not match");
 		String hashedMDP = passwordEncoder.encode(motDePasse);
 		Utilisateur utilisateur = new Utilisateur();
@@ -44,6 +44,8 @@ public class SecurityServiceImp implements SecurityService{
 		Utilisateur utilisateurSaved = utilisateurRerository.save(utilisateur);
 		return utilisateurSaved;
 	};
+	
+
 
 
 	@Override

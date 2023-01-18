@@ -16,6 +16,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,21 +30,22 @@ public abstract class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSequenceGenerator")
 	@SequenceGenerator(name = "itemSequenceGenerator", allocationSize = 1)
-
 	private Long id;
 		
-	@Column(name="titre")
+	@Column(name="titre", nullable=false)
+	@NotEmpty(message = "Le titre ne peut pas être null")
+	@Size(min = 1, max = 200)
 	private String titre; 
 	
 	@Column(name="nombre_d_exemplaires")
 	private Integer nombreDExemplaires;
 	
-	@Column(name="date_de_parution")
+	@Column(name="date_de_parution", nullable=false)
 	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateDeParution;
 	
-	@Column(name="nom")
+	@Column(name="nom", nullable=false)
 	private String nom;
 	
 	@ManyToMany(mappedBy = "items", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

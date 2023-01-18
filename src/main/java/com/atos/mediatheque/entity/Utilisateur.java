@@ -38,11 +38,10 @@ public class Utilisateur{
 	private String email;
 	
 	@Column(name="mot_de_passe")
-	private String motDePasse;
+	private String motDePasse; 
+	
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
-	//@JsonBackReference
-	//@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	
@@ -65,9 +64,6 @@ public class Utilisateur{
 		this.emprunts = emprunts;
 		this.role = role;
 	}
-
-
-
 
 	public Long getId() {
 		return id;
