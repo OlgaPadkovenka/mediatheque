@@ -248,18 +248,18 @@ public class WebController {
 		return "redirect:/user";
 	}
 		
-	@GetMapping("/register")
-	public String register (Model model) {
-		model.addAttribute("utilisateur", new Utilisateur());
-		return "register";
-	}	
-	
-	@PostMapping("/saveUser")
-	public String saveUser(Model model, String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
-		securityService.saveNewUser(email, nom, prenom, motDePasse, reMotDePasse);
-
-		return "redirect:/";
-	}
+//	@GetMapping("/register")
+//	public String register (Model model) {
+//		model.addAttribute("utilisateur", new Utilisateur());
+//		return "register";
+//	}	
+//	
+//	@PostMapping("/saveUser")
+//	public String saveUser(Model model, String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
+//		securityService.saveNewUser(email, nom, prenom, motDePasse, reMotDePasse);
+//
+//		return "redirect:/";
+//	}
 	
 //	@PostMapping("/saveUser")
 //	public String saveUser(Model model, Utilisateur utilisateur) {

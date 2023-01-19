@@ -25,14 +25,24 @@ import com.atos.mediatheque.repository.UtilisateurRerository;
 public class EmpruntService {
 	
 	
-	@Autowired
 	private EmpruntRepository empruntRepository;
-	@Autowired
+
 	private UtilisateurRerository utilisateurRerository;
-	@Autowired
+
 	private ItemRepository itemRepository;
 	
 	
+	public EmpruntService(EmpruntRepository empruntRepository, UtilisateurRerository utilisateurRerository,
+			ItemRepository itemRepository) {
+		super();
+		this.empruntRepository = empruntRepository;
+		this.utilisateurRerository = utilisateurRerository;
+		this.itemRepository = itemRepository;
+	}
+
+
+
+
 	@Transactional
 	public void faireEmprunt(@CurrentSecurityContext(expression = "authentication.principal") Model model, Long id, Principal principal) {
 		Item item = itemRepository.findById(id).orElse(null);

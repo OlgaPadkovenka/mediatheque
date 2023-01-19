@@ -17,6 +17,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -29,16 +35,28 @@ public class Utilisateur{
 	private Long id;
 	
 	@Column(name="nom")
+	@NotEmpty(message = "Le nom ne peut pas être vide")
+    @Size(min = 2, max = 200, message = "Le nom doit avoir entre 2 et 200 caractères")
 	private String nom;
 	
 	@Column(name="prenom")
+	@NotEmpty(message = "Le prénom ne peut pas être vide")
+    @Size(min = 2, max = 200, message = "Le prénom doit avoir entre 2 et 200 caractères")
 	private String prenom;
 	
 	@Column(name="email", unique = true)
+	@NotEmpty(message = "L'email ne peut pas être vide")
+	@Email(message="L'email n'est pas correcte")
 	private String email;
 	
 	@Column(name="mot_de_passe")
+	@Pattern(regexp = "\\A(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])\\S{8,}\\z",
+	message = "Le mot de passe doit avoir au moins 8 caractères sans espaces,"
+			+ " un chiffre, une lettre majuscule et minuscule, un caractère spécial! "
+			+ "Bon courage à vous!")
 	private String motDePasse; 
+	
+	private String reMotDePasse; 
 	
 	
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
@@ -50,7 +68,7 @@ public class Utilisateur{
 	private List<RoleUser> role = new ArrayList<>();
 	
 	public Utilisateur() {
-		super();
+//		super();
 	}
 	
 	public Utilisateur(Long id, String nom, String prenom, String email, String motDePasse, Set<Emprunt> emprunts,
@@ -96,6 +114,15 @@ public class Utilisateur{
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+	public String getReMotDePasse() {
+		return reMotDePasse;
+	}
+
+	public void setReMotDePasse(String reMotDePasse) {
+		this.reMotDePasse = reMotDePasse;
+	}
+
 	public Set<Emprunt> getEmprunts() {
 		return emprunts;
 	}

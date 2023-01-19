@@ -12,7 +12,7 @@
 	<artifactId>mediatheque</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mediatheque</name>
-	<description>Mediatheque project Spring Boot for Atos</description>
+	<description>Mediatheque</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
