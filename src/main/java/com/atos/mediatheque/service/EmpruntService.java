@@ -24,7 +24,6 @@ import com.atos.mediatheque.repository.UtilisateurRerository;
 @Transactional
 public class EmpruntService {
 	
-	
 	private EmpruntRepository empruntRepository;
 
 	private UtilisateurRerository utilisateurRerository;
