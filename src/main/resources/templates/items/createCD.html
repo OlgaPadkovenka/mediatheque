@@ -27,29 +27,18 @@
 		<div class="row" th:insert="navbar" id="navbar"></div>
 		<form method="post" th:action="@{saveCD}">
 
-<!-- 			<div class="form-group row w-50">
-				<label class="col-sm-2 col-form-label">Titre</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" name="titre" th:value="${cd.titre}">
-				</div>
-			</div>  -->
-
-
 			<div class="w-50 justify-content-center">
 			
 			<!-- CD start -->
 			
 				<label for="titre">Titre</label>
 				<input id="titre" class="form-control" type="text" name="titre" th:value="${cd.titre}">
-				<span th:errors="${cd.titre}"></span>
 				
 				<label for="nombreDExemplaires">Nombre d'exemplaires</label>
 				<input id="nombreDExemplaires" class="form-control" type="number" name="nombreDExemplaires" th:value="${cd.nombreDExemplaires}">
-				<span th:errors="${cd.nombreDExemplaires}"></span>
 				
 				<label for="dateDeParution">Date de parution</label>
 				<input id="dateDeParution" class="form-control" type="date" name="dateDeParution" th:value="${cd.dateDeParution}">
-				<span th:errors="${cd.dateDeParution}"></span>
 				
 				<label for="nom">Nom</label>
 				<input id="nom" class="form-control" type="text" name="nom" th:value="${cd.nom}">
@@ -57,7 +46,6 @@
 				
 				<label for="duree">Durée</label>
 				<input id="duree" class="form-control" type="text" name="duree" th:value="${cd.duree}">
-				<span th:errors="${cd.duree}"></span>
 
 				<button type="submit" class="btn btn-primary">Envoyer</button>
 			</div>

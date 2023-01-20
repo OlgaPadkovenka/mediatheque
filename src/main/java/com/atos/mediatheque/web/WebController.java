@@ -29,56 +29,35 @@ import com.atos.mediatheque.service.EmpruntService;
 
 @Controller
 public class WebController {
-	
-	@Autowired
+
 	private ItemRepository itemRepository;
 	
-	@Autowired
 	private UtilisateurRerository utilisateurRerository;
 	
-	@Autowired
 	private EmpruntRepository empruntRepository;
 	
-	@Autowired
 	private EmpruntService empruntService;
 	
-	@Autowired
-	private SecurityService securityService;
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
-			EmpruntRepository empruntRepository, EmpruntService empruntService, SecurityService securityService) {
+			EmpruntRepository empruntRepository, EmpruntService empruntService) {
 		super();
 		this.itemRepository = itemRepository;
 		this.utilisateurRerository = utilisateurRerository;
 		this.empruntRepository = empruntRepository;
 		this.empruntService = empruntService;
-		this.securityService = securityService;
 	}
 	
 
-//	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
-//			EmpruntRepository empruntRepository, EmpruntService empruntService) {
-//		super();
-//		this.itemRepository = itemRepository;
-//		this.utilisateurRerository = utilisateurRerository;
-//		this.empruntRepository = empruntRepository;
-//		this.empruntService = empruntService;
-//	}
-	
-	
-
 	@GetMapping("/")
-	public String items(Model model,
-			@RequestParam(name="page", defaultValue = "0") int page,
-			@RequestParam(name="size", defaultValue = "8") int size,
-			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+	public String items(Model model) {
 		
-		Page<Item> listItems = itemRepository.findAll(PageRequest.of(page, size));
-		//List<Item> listItems = itemRepository.findByTitre(keyword);
-		model.addAttribute("listItems", listItems.getContent());
-		model.addAttribute("pages", new int[listItems.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("keyword", keyword);
+		//<Item> listItems = itemRepository.findAll(PageRequest.of(page, size));
+		List<Item> listItems = itemRepository.findAll();
+		model.addAttribute("listItems", listItems);
+//		model.addAttribute("pages", new int[listItems.getTotalPages()]);
+//		model.addAttribute("currentPage", page);
+//		model.addAttribute("keyword", keyword);
 		
 		return "index";
 	}
@@ -248,24 +227,4 @@ public class WebController {
 		return "redirect:/user";
 	}
 		
-//	@GetMapping("/register")
-//	public String register (Model model) {
-//		model.addAttribute("utilisateur", new Utilisateur());
-//		return "register";
-//	}	
-//	
-//	@PostMapping("/saveUser")
-//	public String saveUser(Model model, String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
-//		securityService.saveNewUser(email, nom, prenom, motDePasse, reMotDePasse);
-//
-//		return "redirect:/";
-//	}
-	
-//	@PostMapping("/saveUser")
-//	public String saveUser(Model model, Utilisateur utilisateur) {
-//		utilisateurRerository.save(utilisateur);
-//		
-//		return "redirect:/";
-//	}
-//	
 }

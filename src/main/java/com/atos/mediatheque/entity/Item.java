@@ -40,8 +40,7 @@ public abstract class Item {
 	@Column(name="nombre_d_exemplaires")
 	private Integer nombreDExemplaires;
 	
-	@Column(name="date_de_parution", nullable=false)
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Column(name="date_de_parution")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateDeParution;
 	
