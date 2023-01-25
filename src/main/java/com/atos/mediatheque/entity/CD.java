@@ -10,12 +10,7 @@ import javax.persistence.Table;
 @Table(name="cd")
 
 public class CD extends Item {
-	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cdSequenceGenerator")
-//	@SequenceGenerator(name = "cdSequenceGenerator", allocationSize = 1)
-//	private Long id;
-		
+			
 	@Column(name="duree")
 	private String duree;
 

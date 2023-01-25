@@ -13,7 +13,6 @@ public class MediathequeApplication {
 		SpringApplication.run(MediathequeApplication.class, args);
 		
 		System.out.println("start application" + " " + new Date());
-		
 
 	}
 

@@ -25,39 +25,44 @@
 
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
-		<form method="post" th:action="@{saveLivre}">
 
-			<div class="w-50">
-			
-			<!-- Livre start -->
-			
-				<label >ID</label>
-				<input id="id" class="form-control" type="text" name="id" th:value="${livre.id}">
-			
-				<label for="titre">Titre</label>
-				<input id="titre" class="form-control" type="text" name="titre" th:value="${livre.titre}">
-				<span th:errors="${livre.titre}"></span>
-				
-				<label for="nombreDExemplaires">Nombre d'exemplaires</label>
-				<input id="nombreDExemplaires" class="form-control" type="number" name="nombreDExemplaires" th:value="${livre.nombreDExemplaires}">
-				<span th:errors="${livre.nombreDExemplaires}"></span>
-				
-				<label for="dateDeParution">Date de parution</label>
-				<input id="dateDeParution" class="form-control" type="date" name="dateDeParution" th:value="${livre.dateDeParution}">
-				<span th:errors="${livre.dateDeParution}"></span>
-				
-				<label for="nom">Nom</label>
-				<input id="nom" class="form-control" type="text" name="nom" th:value="${livre.nom}">
-				<span th:errors="${livre.nom}"></span>
-				
-				<label for="numeroISBN">Numero ISBN</label>
-				<input id="numeroISBN" class="form-control" type="text" name="numeroISBN" th:value="${livre.numeroISBN}">
-				<span th:errors="${livre.numeroISBN}"></span>
-				
-				<button type="submit" class="btn btn-primary">Envoyer</button>
+		<div class="container h-100 w-75">
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-10 col-md-8 col-lg-6">
+
+					<form method="post" th:action="@{saveLivre}">
+
+						<div class="justify-content-center">
+
+							<!-- Livre start -->
+
+							<label class="my-2">ID</label> <input id="id" class="form-control"
+								type="text" name="id" th:value="${livre.id}"> 
+								<label class="my-2"
+								for="titre">Titre</label> <input id="titre" class="form-control"
+								type="text" name="titre" th:value="${livre.titre}"> <span
+								th:errors="${livre.titre}"></span> <label class="my-2"
+								for="nombreDExemplaires">Nombre d'exemplaires</label> <input
+								id="nombreDExemplaires" class="form-control" type="number"
+								name="nombreDExemplaires" th:value="${livre.nombreDExemplaires}">
+							<span th:errors="${livre.nombreDExemplaires}"></span> <label class="my-2"
+								for="dateDeParution">Date de parution</label> <input
+								id="dateDeParution" class="form-control" type="date"
+								name="dateDeParution" th:value="${livre.dateDeParution}">
+							<span th:errors="${livre.dateDeParution}"></span> <label class="my-2"
+								for="nom">Nom</label> <input id="nom" class="form-control"
+								type="text" name="nom" th:value="${livre.nom}"> <span
+								th:errors="${livre.nom}"></span> <label for="numeroISBN" class="my-2">Numero
+								ISBN</label> <input id="numeroISBN" class="form-control" type="text"
+								name="numeroISBN" th:value="${livre.numeroISBN}"> <span
+								th:errors="${livre.numeroISBN}"></span>
+
+							<button type="submit" class="btn btn-primary my-2">Envoyer</button>
+						</div>
+					</form>
+				</div>
 			</div>
-		</form>
-		
+		</div>
 		<!-- Livre end -->
 	</div>
 

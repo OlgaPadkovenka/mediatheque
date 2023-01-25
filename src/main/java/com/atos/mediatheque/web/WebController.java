@@ -51,14 +51,8 @@ public class WebController {
 
 	@GetMapping("/")
 	public String items(Model model) {
-		
-		//<Item> listItems = itemRepository.findAll(PageRequest.of(page, size));
 		List<Item> listItems = itemRepository.findAll();
-		model.addAttribute("listItems", listItems);
-//		model.addAttribute("pages", new int[listItems.getTotalPages()]);
-//		model.addAttribute("currentPage", page);
-//		model.addAttribute("keyword", keyword);
-		
+		model.addAttribute("listItems", listItems);		
 		return "index";
 	}
 	
@@ -161,16 +155,6 @@ public class WebController {
 	public String delete(Long id) {
 		itemRepository.deleteById(id);
 		return "redirect:/";
-	}
-	
-	@GetMapping("/connection")
-	public String connection (Model model) {
-		return "/connection";
-	}
-	
-	@GetMapping("/inscription")
-	public String inscription (Model model) {
-		return "/inscription";
 	}
 		
 	@GetMapping("/user")

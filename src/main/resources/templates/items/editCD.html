@@ -25,38 +25,46 @@
 
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
+		
+				<div class="container h-100 w-75">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-10 col-md-8 col-lg-6">
+			
 		<form method="post" th:action="@{saveCD}">
 		
-			<div class="w-50 justify-content-center">
+			<div class="justify-content-center">
 			
 			<!-- CD start -->
 			
-				<label >ID</label>
+				<label class="my-2">ID</label>
 				<input id="id" class="form-control" type="text" name="id" th:value="${cd.id}">
 			
-				<label for="titre">Titre</label>
+				<label for="titre" class="my-2">Titre</label>
 				<input id="titre" class="form-control" type="text" name="titre" th:value="${cd.titre}">
 				<span th:errors="${cd.titre}"></span>
 				
-				<label for="nombreDExemplaires">Nombre d'exemplaires</label>
+				<label for="nombreDExemplaires" class="my-2">Nombre d'exemplaires</label>
 				<input id="nombreDExemplaires" class="form-control" type="number" name="nombreDExemplaires" th:value="${cd.nombreDExemplaires}">
 				<span th:errors="${cd.nombreDExemplaires}"></span>
 				
-				<label for="dateDeParution">Date de parution</label>
+				<label for="dateDeParution" class="my-2">Date de parution</label>
 				<input id="dateDeParution" class="form-control" type="date" name="dateDeParution" th:value="${cd.dateDeParution}">
 				<span th:errors="${cd.dateDeParution}"></span>
 				
-				<label for="nom">Nom</label>
+				<label for="nom" class="my-2">Nom</label>
 				<input id="nom" class="form-control" type="text" name="nom" th:value="${cd.nom}">
 				<span th:errors="${cd.nom}"></span>
 				
-				<label for="duree">Durée</label>
+				<label for="duree" class="my-2">Durée</label>
 				<input id="duree" class="form-control" type="text" name="duree" th:value="${cd.duree}">
 				<span th:errors="${cd.duree}"></span>
 
-				<button type="submit" class="btn btn-primary">Envoyer</button>
+				<button type="submit" class="btn btn-primary my-2">Envoyer</button>
 			</div>
 		</form>
+		</div>
+		</div>
+		</div>
 		
 		<!-- CD end -->
 	</div>

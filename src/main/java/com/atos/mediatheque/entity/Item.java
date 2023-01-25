@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//je ne vaux pas pour qu'elle soit instanciée
+//je ne veux pas pour qu'elle soit instanciée
 public abstract class Item {
 	
 	@Id
@@ -34,7 +34,7 @@ public abstract class Item {
 		
 	@Column(name="titre", nullable=false)
 	@NotEmpty(message = "Le titre ne peut pas être null")
-	@Size(min = 1, max = 200)
+	@Size(min = 2, max = 200, message = "Le titre doit avoir entre 2 et 200 caractères")
 	private String titre; 
 	
 	@Column(name="nombre_d_exemplaires")
@@ -45,6 +45,8 @@ public abstract class Item {
 	private Date dateDeParution;
 	
 	@Column(name="nom", nullable=false)
+	@NotEmpty(message = "Le nom ne peut pas être null")
+	@Size(min = 2, max = 200, message = "Le nom doit avoir entre 2 et 200 caractères")
 	private String nom;
 	
 	@ManyToMany(mappedBy = "items", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

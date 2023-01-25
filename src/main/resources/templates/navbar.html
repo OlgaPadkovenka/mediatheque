@@ -1,6 +1,6 @@
 
-<!-- navbar start -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+<!-- navbar lg start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mx-4 mb-2" id="navbar">
 	<a class="navbar-brand" href="/">Mediatheque</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
@@ -9,16 +9,17 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<form method = "get" th:action = "@{index}" class="form-inline m-2">
-		<input class="form-control mr-sm-2" type="search" placeholder="Search"
-			aria-label="Search" name="keyword" th:value="${keyword}">
-	</form>
+<!-- 	<form method = "get" th:action = "@{index}" class="form-inline m-2"> -->
+<!-- 		<input class="form-control mr-sm-2" type="search" placeholder="Search" -->
+<!-- 			aria-label="Search" name="keyword" th:value="${keyword}"> -->
+<!-- 	</form> -->
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			
+		
 			<!-- CD start -->
-			
-		<div class="dropdown">
+
+		
+		<div class="dropdown m-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">CD</button>
@@ -46,7 +47,7 @@
 		
 		<!-- Livre start -->
 		
-						<div class="dropdown">
+						<div class="dropdown m-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Livre</button>
@@ -55,36 +56,45 @@
 				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createLivre}">Créer</a>
 			</div>
 		</div>
+
 		
 		<!-- Livre end -->
 		
 		<!-- Search start -->
 		
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" th:href="@{/}">Chercher</a></li>
-		</ul>
+<!-- 		<ul class="navbar-nav mr-auto"> -->
+<!-- 			<li class="nav-item"><a class="nav-link" th:href="@{/}">Chercher</a></li> -->
+<!-- 		</ul> -->
 		
-		<!-- Search end -->
+<!-- 		<!-- Search end --> 
+
+<!-- 		<div class="col"> -->
+<!-- 		<div class="d-flex justify-content-end"> -->
 		
-		<ul class="navbar-nav mr-auto" sec:authorize="!isAuthenticated()">
-			<li class="nav-item"><a class="nav-link"
-				th:href="@{/login}">Se connecter</a></li>
-		</ul>
-<!-- 		<ul><a  th:if="" th:href = "@{/user(id=${utilisateur.id})}">user</a></ul> -->
-		
-		<ul class="navbar-nav mr-auto" sec:authorize="!isAuthenticated()">
-			<li class="nav-item"><a class="nav-link"
-				th:href="@{/register}">S'inrégistrer</a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
-			<li class="nav-item"><a class="nav-link"
-				sec:authentication="name" th:href="@{/user}"></a></li>
-		</ul>
-		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
-			<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Se
-					déconnecter</a></li>
-		</ul>
-	</div>
+				<div class="navbar-nav" sec:authorize="!isAuthenticated()">
+			<div class="nav-item"><a class="nav-link"
+				th:href="@{/login}">Se connecter</a></div>
+		</div>
+				<div class="navbar-nav" sec:authorize="!isAuthenticated()">
+			<div class="nav-item"><a class="nav-link"
+				th:href="@{/register}">S'inrégistrer</a></div>
+		</div>
+		<div class="navbar-nav" sec:authorize="isAuthenticated()">
+			<div class="nav-item"><a class="nav-link"
+				sec:authentication="name" th:href="@{/user}"></a></div>
+		</div>
+
+					<div class="navbar-nav" sec:authorize="isAuthenticated()">
+			<div class="nav-item"><a class="nav-link" th:href="@{/logout}">Se
+					déconnecter</a></div>
+		</div>
+		</div>
+
+<!-- 		</div> -->
+
+
+<!-- 	</div>		 -->
+
 </nav>
 
 <!-- navbar end -->

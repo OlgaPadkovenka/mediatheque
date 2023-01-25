@@ -26,53 +26,7 @@
 	<div class="container">
 		<div class="row" th:insert="navbar" id="navbar"></div>
 
-<!-- 		<p th:text="${errorMsg}"></p> -->
-<!-- 		<form method="post" th:action="@{saveUser}" th:object="${utilisateur}"> -->
-
-<!-- 			<div class="w-50 justify-content-center"> -->
-
-<!-- 				Form user start -->
-
-
-<!-- 				<label for="nom">Nom</label> -->
-<!-- 				<div class="text-danger" th:if="${#fields.hasErrors('nom')}" -->
-<!-- 					th:errors="${utilisateur.nom}"></div> -->
-
-<!-- 				<input id="prenom" class="form-control" type="text" name="nom" -->
-<!-- 					th:value="${utilisateur.nom}"> <label for="prenom">Prénom</label> -->
-<!-- 				<div class="text-danger" th:if="${#fields.hasErrors('prenom')}" -->
-<!-- 					th:errors="${utilisateur.prenom}"></div> -->
-
-<!-- 				<input id="prenom" class="form-control" type="text" name="prenom" -->
-<!-- 					th:value="${utilisateur.prenom}">  -->
-					
-<!-- 					<label for="email">Email</label> -->
-<!-- 				<div class="text-danger" th:if="${#fields.hasErrors('email')}" -->
-<!-- 					th:errors="${utilisateur.email}"></div> -->
-<!-- 				<input id="email" class="form-control" type="text" name="email" -->
-<!-- 					th:value="${utilisateur.email}"> -->
-					
-<!-- 					<label for="motDePasse">Mot -->
-<!-- 					de passe</label> -->
-<!-- 				<div class="text-danger" th:if="${#fields.hasErrors('motDePasse')}" -->
-<!-- 					th:errors="${utilisateur.motDePasse}"></div> -->
-<!-- 				<input id="motDePasse" class="form-control" type="password" -->
-<!-- 					name="motDePasse" th:value="${utilisateur.motDePasse}"> -->
-					
-<!-- 					 <label -->
-<!-- 					for="reMotDePasse">Répétez votre mot de passe</label> <input -->
-<!-- 					id="reMotDePasse" class="form-control" type="password" -->
-<!-- 					name="reMotDePasse"> -->
-
-<!-- 				<button type="submit" class="btn btn-primary mt-2">Envoyer</button> -->
-<!-- 			</div> -->
-<!-- 		</form> -->
-
-		<!-- Form user end -->
-<!-- 	</div> -->
-
-
-	<div class="container h-100">
+	<div class="container h-100 w-50">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-10 col-md-8 col-lg-6">
 				<!-- Form -->
@@ -82,7 +36,6 @@
 					<!-- Input fields -->
 
 					<div class="form-group m-4">
-<!-- 						<label for="nom">Votre nom</label> -->
 						<div class="text-danger" th:if="${#fields.hasErrors('nom')}"
 							th:errors="${utilisateur.nom}"></div>
 						<input type="text" class="form-control username" id="nom"
@@ -90,7 +43,6 @@
 					</div>
 
 					<div class="form-group m-4">
-<!-- 						<label for="nom">Votre prénom</label> -->
 						<div class="text-danger" th:if="${#fields.hasErrors('prenom')}"
 							th:errors="${utilisateur.prenom}"></div>
 						<input id="nom" class="form-control" type="text" name="prenom"
@@ -98,7 +50,6 @@
 					</div>
 
 					<div class="form-group m-4">
-<!-- 						<label for="nom">Votre email</label> -->
 						<div class="text-danger" th:if="${#fields.hasErrors('email')}"
 							th:errors="${utilisateur.email}"></div>
 						<input id="email" class="form-control" type="email" name="email"
@@ -106,7 +57,6 @@
 					</div>
 					
 										<div class="form-group m-4">
-<!-- 						<label for="nom">Votre Mot de passe</label> -->
 						<div class="text-danger" th:if="${#fields.hasErrors('motDePasse')}"
 							th:errors="${utilisateur.motDePasse}"></div>
 						<input id="motDePasse" class="form-control" type="password" name="motDePasse"
@@ -127,6 +77,8 @@
 			</div>
 		</div>
 	</div>
+
+</div>
 
 </body>
 </html>

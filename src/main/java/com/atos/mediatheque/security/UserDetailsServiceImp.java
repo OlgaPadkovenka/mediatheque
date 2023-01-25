@@ -25,21 +25,12 @@ public class UserDetailsServiceImp implements UserDetailsService{
 		
 		Utilisateur utilisateur = securityService.loadByUserName(email);
 
-		//sans streams
-//		Collection<GrantedAuthority> authorities = new ArrayList<>();
-//		utilisateur.getRole().forEach(role -> {
-//			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
-//			authorities.add(authority);
-//		});
-
-		//Avec streams
 		Collection<GrantedAuthority> authorities = 
 				utilisateur.getRole()
 				.stream()
 				.map(role -> new SimpleGrantedAuthority(role.getRoleName()))
 				.collect(Collectors.toList());
-		
-		
+			
 		User user = new User(utilisateur.getEmail(), utilisateur.getMotDePasse(), authorities);
 		
 		return user;

@@ -18,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class SecurityServiceImp implements SecurityService{
 	
+	private UtilisateurRerository utilisateurRerository;
+	private RoleUserRepository roleUserRepository;
+	private PasswordEncoder passwordEncoder;
 	
 	
 	public SecurityServiceImp(UtilisateurRerository utilisateurRerository, RoleUserRepository roleUserRepository,
@@ -27,10 +30,6 @@ public class SecurityServiceImp implements SecurityService{
 		this.roleUserRepository = roleUserRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
-
-	private UtilisateurRerository utilisateurRerository;
-	private RoleUserRepository roleUserRepository;
-	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public Utilisateur saveNewUser(String email, String nom, String prenom, String motDePasse,  String reMotDePasse) {
