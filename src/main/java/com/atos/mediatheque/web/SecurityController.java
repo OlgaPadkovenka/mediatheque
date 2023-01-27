@@ -36,7 +36,9 @@ public class SecurityController {
 	}	
 	
 	@PostMapping("/saveUser")
-	public String saveUser(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult result, Model model, String email, String nom, String prenom, String motDePasse, String reMotDePasse) {
+	public String saveUser(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur,
+			BindingResult result, Model model, String email, String nom,
+			String prenom, String motDePasse, String reMotDePasse) {
 
 		if(result.hasErrors()) {
 			return "register";

@@ -22,11 +22,7 @@
 <title>Connection</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row" th:insert="navbar" id="navbar"></div>
 
-		<div class="row justify-content-center">
-			<h4 class="text-center m-2">Se connecter</h4>
 			        <div th:if="${param.error}">
             Invalid username and password.
         </div>
@@ -47,8 +43,6 @@
 
 				<button type="submit" value="Sign In" class="btn btn-primary m-2">Envoyer</button>
 			</form>
-		</div>
 
-	</div>
 </body>
 </html>

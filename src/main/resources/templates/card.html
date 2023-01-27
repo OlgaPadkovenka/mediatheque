@@ -25,13 +25,17 @@
 			</span>
 				
 			<span sec:authorize="hasAuthority('ADMIN')">
-				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.CD'}" th:href="@{editCD(id=${item.id})}" class="btn btn-success">Update</a>
-				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.DVD'}" th:href="@{editDVD(id=${item.id})}" class="btn btn-success">Update</a>
-				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.Livre'}" th:href="@{editLivre(id=${item.id})}" class="btn btn-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.CD'}"
+				 th:href="@{editCD(id=${item.id})}" class="btn btn-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.DVD'}"
+				 th:href="@{editDVD(id=${item.id})}" class="btn btn-success">Update</a>
+				<a th:if="${item.class.name == 'com.atos.mediatheque.entity.Livre'}"
+				 th:href="@{editLivre(id=${item.id})}" class="btn btn-success">Update</a>
 			</span>
 			
 			<span sec:authorize="hasAuthority('ADMIN')">
-				<a onclick="confirm('Etes-vous sure de vouloir supprimer?')" class="btn btn-outline-danger mt-2" th:href="@{delete(id=${item.id})}">Supprimer</a>
+				<a onclick="confirm('Etes-vous sure de vouloir supprimer?')"
+				class="btn btn-outline-danger mt-2" th:href="@{delete(id=${item.id})}">Supprimer</a>
 			</span> 
 			
 		</div>
