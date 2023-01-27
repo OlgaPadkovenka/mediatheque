@@ -65,7 +65,7 @@ public class WebController {
 		return itemsOnePage(model, 1);
 	}
 	
-	@GetMapping("/index/{pageNumber}")
+	@GetMapping("/page/{pageNumber}")
 	public String itemsOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
 		Page<Item> page = itemService.findPage(currentPage);
 		int totalPages = page.getTotalPages();
