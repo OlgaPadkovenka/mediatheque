@@ -21,7 +21,7 @@ public class ItemService {
 	}
 	
 	public Page<Item> findPage(int pageNumber) {
-		Pageable pegeable = PageRequest.of(pageNumber -1, 5);
+		Pageable pegeable = PageRequest.of(pageNumber -1, 6);
 		
 		return itemRepository.findAll(pegeable);
 	}
