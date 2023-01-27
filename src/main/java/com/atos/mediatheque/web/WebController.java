@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,6 +26,7 @@ import com.atos.mediatheque.repository.ItemRepository;
 import com.atos.mediatheque.repository.UtilisateurRerository;
 import com.atos.mediatheque.security.SecurityService;
 import com.atos.mediatheque.service.EmpruntService;
+import com.atos.mediatheque.service.ItemService;
 
 
 @Controller
@@ -38,21 +40,42 @@ public class WebController {
 	
 	private EmpruntService empruntService;
 	
+	private ItemService itemService;
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
-			EmpruntRepository empruntRepository, EmpruntService empruntService) {
+			EmpruntRepository empruntRepository, EmpruntService empruntService, ItemService itemService) {
 		super();
 		this.itemRepository = itemRepository;
 		this.utilisateurRerository = utilisateurRerository;
 		this.empruntRepository = empruntRepository;
 		this.empruntService = empruntService;
+		this.itemService = itemService;
+	}
+
+//	@GetMapping("/")
+//	public String items(Model model) {
+//		List<Item> listItems = itemRepository.findAll();
+//		model.addAttribute("listItems", listItems);		
+//		return "index";
+//	}
+	
+	@GetMapping("/")
+	public String getAllPages(Model model) {
+		//List<Item> listItems = itemRepository.findAll();
+		return itemsOnePage(model, 1);
 	}
 	
-
-	@GetMapping("/")
-	public String items(Model model) {
-		List<Item> listItems = itemRepository.findAll();
-		model.addAttribute("listItems", listItems);		
+	@GetMapping("/index/{pageNumber}")
+	public String itemsOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
+		Page<Item> page = itemService.findPage(currentPage);
+		int totalPages = page.getTotalPages();
+		long totalItems = page.getTotalElements();
+		List<Item> listItems = page.getContent();
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPages", totalPages);	
+		model.addAttribute("totalItems", totalItems);
+		model.addAttribute("listItems", listItems);	
 		return "index";
 	}
 	
