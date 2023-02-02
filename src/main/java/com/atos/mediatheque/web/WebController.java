@@ -67,16 +67,37 @@ public class WebController {
 	
 	@GetMapping("/page/{pageNumber}")
 	public String itemsOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
-		Page<Item> page = itemService.findPage(currentPage);
-		int totalPages = page.getTotalPages();
-		long totalItems = page.getTotalElements();
-		List<Item> listItems = page.getContent();
 		
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("totalPages", totalPages);	
-		model.addAttribute("totalItems", totalItems);
-		model.addAttribute("listItems", listItems);	
+		//Page<Item> page = itemService.findPage(currentPage, keyword);
+
+			Page<Item> page = itemService.findPage(currentPage);
+			int totalPages = page.getTotalPages();
+			long totalItems = page.getTotalElements(); 
+			
+			List<Item> listItems = page.getContent();
+						
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalPages", totalPages);	
+			model.addAttribute("totalItems", totalItems);
+			model.addAttribute("listItems", listItems);	
+	
 		return "index";
+	}
+	
+//	@GetMapping("/search")
+//	public String search(Model model, String keyword) {
+//		if(keyword != null) {
+//			model.addAttribute("listItems", itemService.findByKeyword(keyword) );
+//		} else {
+//			model.addAttribute("listItems", itemRepository.findAll());
+//		}
+//		return "search";  
+//	}
+	
+	@GetMapping("/search")
+	public String search(Model model, String keyword) {
+			model.addAttribute("listItems", itemRepository.findAll());
+		return "search";  
 	}
 	
 

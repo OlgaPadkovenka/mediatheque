@@ -1,6 +1,7 @@
 
 <!-- navbar lg start -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light mx-4 mb-2" id="navbar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mx-4 mb-2"
+	id="navbar">
 	<a class="navbar-brand" href="/">Mediatheque</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
@@ -9,95 +10,130 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-<!-- 	<form method = "get" th:action = "@{index}" class="form-inline m-2"> -->
-<!-- 		<input class="form-control mr-sm-2" type="search" placeholder="Search" -->
-<!-- 			aria-label="Search" name="keyword" th:value="${keyword}"> -->
-<!-- 	</form> -->
+<!-- 		<form method = "get" th:action = "@{items}" class="form-inline m-2"> -->
+<!-- 			<input id="txtSearch" class="form-control mr-sm-2" type="search" placeholder="Search" -->
+<!-- 				aria-label="Search" name="keyword"> -->
+<!-- 				<button type="submit">Go</button> -->
+<!-- 		</form> -->
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		
-			<!-- CD start -->
 
-		
+		<!-- CD start -->
+
+
 		<div class="dropdown m-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">CD</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" th:href="@{/cd}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createCD}">Créer</a>
+				<a class="dropdown-item" th:href="@{/cd}">Consulter</a> <a
+					sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+					th:href="@{/createCD}">Créer</a>
 			</div>
 		</div>
-		
+
 		<!-- CD end -->
-		
+
 		<!-- DVD start -->
-		
-				<div class="dropdown m-2">
+
+		<div class="dropdown m-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">DVD</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" th:href="@{/dvd}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createDVD}">Créer</a>
+				<a class="dropdown-item" th:href="@{/dvd}">Consulter</a> <a
+					sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+					th:href="@{/createDVD}">Créer</a>
 			</div>
 		</div>
-		
+
 		<!-- DVD end -->
-		
+
 		<!-- Livre start -->
-		
-						<div class="dropdown m-2">
+
+		<div class="dropdown m-2">
 			<button class="btn btn-secondary dropdown-toggle" type="button"
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Livre</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" th:href="@{/livre}">Consulter</a>
-				<a  sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" th:href="@{/createLivre}">Créer</a>
+				<a class="dropdown-item" th:href="@{/livre}">Consulter</a> <a
+					sec:authorize="hasAuthority('ADMIN')" class="dropdown-item"
+					th:href="@{/createLivre}">Créer</a>
 			</div>
 		</div>
 
-		
+
 		<!-- Livre end -->
-		
+
 		<!-- Search start -->
-		
-<!-- 		<ul class="navbar-nav mr-auto"> -->
-<!-- 			<li class="nav-item"><a class="nav-link" th:href="@{/}">Chercher</a></li> -->
-<!-- 		</ul> -->
-		
-<!-- 		<!-- Search end --> 
 
-<!-- 		<div class="col"> -->
-<!-- 		<div class="d-flex justify-content-end"> -->
-		
-				<div class="navbar-nav" sec:authorize="!isAuthenticated()">
-			<div class="nav-item"><a class="nav-link"
-				th:href="@{/login}">Se connecter</a></div>
-		</div>
-				<div class="navbar-nav" sec:authorize="!isAuthenticated()">
-			<div class="nav-item"><a class="nav-link"
-				th:href="@{/register}">S'inrégistrer</a></div>
-		</div>
-		<div class="navbar-nav" sec:authorize="isAuthenticated()">
-			<div class="nav-item"><a class="nav-link"
-				sec:authentication="name" th:href="@{/user}"></a></div>
-		</div>
+		<!-- 		<ul class="navbar-nav mr-auto"> -->
+		<!-- 			<li class="nav-item"><a class="nav-link" th:href="@{/}">Chercher</a></li> -->
+		<!-- 		</ul> -->
 
-					<div class="navbar-nav" sec:authorize="isAuthenticated()">
-			<div class="nav-item"><a class="nav-link" th:href="@{/logout}">Se
-					déconnecter</a></div>
-		</div>
-		</div>
+		<!-- 		<!-- Search end -->
 
+		<!-- 		<div class="col"> -->
+		<!-- 		<div class="d-flex justify-content-end"> -->
+
+<!-- 		<div class="navbar-nav"> -->
+<!-- 			<div class="nav-item"> -->
+<!-- 				<form method="get" th:action="@{/}"class="d-flex"> -->
+<!-- 					<input class="form-control" placeholder="Recherche" type="text" name="keyword"> -->
+<!-- 					<button class="mx-2 btn btn-primary" type="submit">Chercher</button> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
 <!-- 		</div> -->
 
+<!-- 		<div class="navbar-nav"> -->
+<!-- 			<div class="nav-item"> -->
+<!-- 				<form method="get" th:action="@{/search}"class="d-flex"> -->
+<!-- 					<input id="txtSearch" class="form-control" placeholder="Recherche" type="text" name="keyword" th:value="${keyword}"> -->
+<!-- 					<button class="mx-2 btn btn-primary" type="submit">Chercher</button> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
-<!-- 	</div>		 -->
+		<div class="navbar-nav">
+			<div class="nav-item">
+					<input id="txtSearch" class="form-control" placeholder="Recherche" type="text" name="keyword" th:value="${keyword}">
+			</div>
+
+		<div class="navbar-nav" sec:authorize="!isAuthenticated()">
+			<div class="nav-item">
+				<a class="nav-link" th:href="@{/login}">Se connecter</a>
+			</div>
+		</div>
+		<div class="navbar-nav" sec:authorize="!isAuthenticated()">
+			<div class="nav-item">
+				<a class="nav-link" th:href="@{/register}">S'inrégistrer</a>
+			</div>
+		</div>
+		<div class="navbar-nav" sec:authorize="isAuthenticated()">
+			<div class="nav-item">
+				<a class="nav-link" sec:authentication="name" th:href="@{/user}"></a>
+			</div>
+		</div>
+
+		<div class="navbar-nav" sec:authorize="isAuthenticated()">
+			<div class="nav-item">
+				<a class="nav-link" th:href="@{/logout}">Se déconnecter</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 		</div> -->
+
+
+	<!-- 	</div>		 -->
 
 </nav>
 
 <!-- navbar end -->
+
+<script th:inline="javascript">
+
+</script>
 
 
 

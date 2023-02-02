@@ -12,9 +12,6 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="livre")
 public class Livre extends Item {
 		
