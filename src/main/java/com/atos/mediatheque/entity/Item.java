@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -50,6 +52,7 @@ public abstract class Item {
 	private String nom;
 	
 	@ManyToMany(mappedBy = "items", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@JsonManagedReference
  	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	public Item() {

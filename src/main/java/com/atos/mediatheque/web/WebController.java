@@ -4,16 +4,19 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.mediatheque.entity.CD;
 import com.atos.mediatheque.entity.DVD;
@@ -29,9 +32,10 @@ import com.atos.mediatheque.service.EmpruntService;
 import com.atos.mediatheque.service.ItemService;
 
 
-@Controller
+@RestController
 public class WebController {
 
+	@Autowired
 	private ItemRepository itemRepository;
 	
 	private UtilisateurRerository utilisateurRerository;
@@ -43,7 +47,7 @@ public class WebController {
 	private ItemService itemService;
 	
 	public WebController(ItemRepository itemRepository, UtilisateurRerository utilisateurRerository,
-			EmpruntRepository empruntRepository, EmpruntService empruntService, ItemService itemService) {
+			EmpruntRepository empruntRepository, EmpruntService empruntService, ItemService itemService) throws BeanCreationException {
 		super();
 		this.itemRepository = itemRepository;
 		this.utilisateurRerository = utilisateurRerository;
@@ -59,11 +63,18 @@ public class WebController {
 //		return "index";
 //	}
 	
-	@GetMapping("/")
+/*	@GetMapping("/")
 	public String getAllPages(Model model) {
 		//List<Item> listItems = itemRepository.findAll();
 		return itemsOnePage(model, 1);
 	}
+	*/
+	
+    @GetMapping("/")
+    public List<Item> getAllItems() {
+        List<Item> items = itemRepository.findAll();
+        return items;
+    }
 	
 	@GetMapping("/page/{pageNumber}")
 	public String itemsOnePage(Model model, @PathVariable("pageNumber") int currentPage) {
@@ -117,6 +128,7 @@ public class WebController {
 	@PostMapping("/saveCD")
 	public String saveCD(Model model, CD cd) {
 		itemRepository.save(cd);
+		//itemRepository.save(itemService.saveCD());
 		return "redirect:/";
 	}
 	

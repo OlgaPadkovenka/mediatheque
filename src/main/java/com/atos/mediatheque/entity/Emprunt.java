@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -46,6 +47,7 @@ public class Emprunt {
  			 name = "emprunt_item",
  		     joinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName="id"),
  		     inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName="id"))
+	 @JsonBackReference
  		   private Set<Item> items = new HashSet<>();
 	 
 	 
